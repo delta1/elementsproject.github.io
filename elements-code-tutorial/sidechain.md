@@ -137,7 +137,7 @@ b-cli generatetoaddress 101 $ADDRGENB
 b-cli getwalletinfo
 ~~~~
 
-Get the merkel path as proof that the transaction was included in a block:
+Get the Merkle path as proof that the transaction was included in a block:
 
 ~~~~
 PROOF=$(b-cli gettxoutproof '''["'''$TXID'''"]''')
