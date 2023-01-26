@@ -410,8 +410,8 @@ strong {
     color: $blue2;
   }
 
-  .site-title a ,
-  .site-title a:visited {
+  .site-title,
+  .site-title:visited {
     color: $gray1;
   }
 
@@ -446,9 +446,7 @@ strong {
     color: $white;
   }
 
-  .navbar-default .navbar-nav > .open > a,
-  .navbar-default .navbar-nav > .open > a:focus,
-  .navbar-default .navbar-nav > .open > a:hover {
+  .navbar-nav > .active > a {
     background-color: $blue4;
     color: $black5;
   }
