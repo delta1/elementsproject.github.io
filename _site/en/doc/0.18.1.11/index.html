@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Index | elementsproject.org</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Index" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<meta property="og:description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<link rel="canonical" href="https://elementsproject.org/en/doc/0.18.1.11/" />
+<meta property="og:url" content="https://elementsproject.org/en/doc/0.18.1.11/" />
+<meta property="og:site_name" content="elementsproject.org" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-01-26T05:35:39-06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Index" />
+<meta name="google-site-verification" content="googlefba269d56ccb761c.html" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-01-26T05:35:39-06:00","datePublished":"2023-01-26T05:35:39-06:00","description":"Elements - an open source, sidechain-capable blockchain platform.","headline":"Index","mainEntityOfPage":{"@type":"WebPage","@id":"https://elementsproject.org/en/doc/0.18.1.11/"},"url":"https://elementsproject.org/en/doc/0.18.1.11/"}</script>
+<!-- End Jekyll SEO tag -->
+<link href='/assets/open-sans.css' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/bootstrap-v3.3.7.min.css">
+  <script src="/assets/jquery-v3.3.1.min.js"></script>
+  <script src="/assets/bootstrap-v3.3.7.min.js"></script>
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://elementsproject.org/feed.xml" title="elementsproject.org" /></head>
+<body><header class="site-header" role="banner">
+
+<div class="wrapper">
+  <img class="logo-float-left" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" /><span><a class="site-title" rel="author" href="/">elementsproject.org</a></span>
+</div>
+
+<nav class="navbar navbar-default navbar-elements-narrow">
+  <div class="container-fluid">
+
+    <!-- Enable mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsing-nav-bar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Nav links for toggling -->
+    <div class="collapse navbar-collapse" id="collapsing-nav-bar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/how-it-works">How it works</a></li>
+        <li><a href="/features">Features</a></li>
+        <li><a href="/community">Community</a></li>
+        <li><a href="/en/doc">RPC Docs</a></li>
+        <li><a href="https://github.com/ElementsProject/elements/releases">Download</a></li>
+
+        <li class="dropdown">
+          <a data-toggle="dropdown" role="button">Code Tutorial<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/elements-code-tutorial/overview">Tutorial Overview</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/installing-bitcoin">Installing Bitcoin</a></li>
+            <li><a href="/elements-code-tutorial/installing-elements">Installing Elements</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/working-environment">Setting up your working environment</a></li>
+            <li><a href="/elements-code-tutorial/basic-operations">Using Elements to perform basic operations</a></li>
+            <li><a href="/elements-code-tutorial/confidential-transactions">Using Confidential Transactions</a></li>
+            <li><a href="/elements-code-tutorial/issuing-assets">Issuing your own assets</a></li>
+            <li><a href="/elements-code-tutorial/reissuing-assets">Reissuing assets</a></li>
+            <li><a href="/elements-code-tutorial/block-creation">Block creation in a Strong Federation</a></li>
+            <li><a href="/elements-code-tutorial/sidechain">Elements as a Sidechain</a></li>
+            <li><a href="/elements-code-tutorial/blockchain">Elements as a standalone Blockchain</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/application-development">Developing applications on Elements</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-python">Desktop application example in Python</a></li>
+            <li><a href="/elements-code-tutorial/web-application">Web application example in Python using Flask</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-dotnetcore">Desktop application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/web-application-dotnetcore">MVC Web application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/other-languages">Node.js, Go, Ruby, Java, Perl examples</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/easy-run-code">An easy way to run the main tutorial code</a></li>
+            <li><a href="/elements-code-tutorial/advanced-examples">Advanced examples</a></li>
+            <li><a href="/elements-code-tutorial/building-elements-from-source">Building Elements from source</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="https://github.com/ElementsProject/elements">Elements on Github</a></li>
+          </ul>
+        </li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<script>
+$(document).ready(function() {
+  // Assign the 'active' class for currently viewed page
+
+  var pathname = window.location.pathname;
+  // Remove trailng '/'
+  if (pathname.charAt(pathname.length - 1) == '/') {
+    pathname = pathname.substr(0, pathname.length - 1);
+  }
+
+  // Sub pages not in sub menu (e.g. features/confidential-transactions)
+  var secondForwardSlashIndex = pathname.indexOf("/", 1);
+  if (-1 != secondForwardSlashIndex)
+  {
+    mainpathname = pathname.substr(0, secondForwardSlashIndex);
+    $('.nav > li > a[href="'+mainpathname+'"]').parent().addClass('active');
+  }
+
+  // Top level nav bar item
+  $('.nav > li > a[href="'+pathname+'"]').parent().addClass('active');
+
+  // Nav bar drop down item - must be linked to with the "/" prefix (e.g. /elements-code-tutorial/) in the menu html above
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().parent().parent().addClass('active');
+
+  // Nav bar drop down sub item
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().addClass('active');
+})
+</script>
+
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        
+
+<article class="page">
+  <h1>Elements Core 0.18.1.11 RPC</h1>
+  <div class="article-wrap">
+
+    
+
+      
+      <section class="toc">
+      
+        
+          <header>
+            <h3 class="toc-header">
+              blockchain
+            </h3>
+            <div class="toc-drawer js-hide-on-start">
+              <ul>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/blockchain/getbestblockhash/">getbestblockhash</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/blockchain/getblock/">getblock</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/blockchain/getblockchaininfo/">getblockchaininfo</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/blockchain/getblockcount/">getblockcount</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/blockchain/getblockhash/">getblockhash</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/blockchain/getblockheader/">getblockheader</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/blockchain/getblockstats/">getblockstats</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/blockchain/getchaintips/">getchaintips</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/blockchain/getchaintxstats/">getchaintxstats</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/blockchain/getdifficulty/">getdifficulty</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/blockchain/getmempoolancestors/">getmempoolancestors</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/blockchain/getmempooldescendants/">getmempooldescendants</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/blockchain/getmempoolentry/">getmempoolentry</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/blockchain/getmempoolinfo/">getmempoolinfo</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/blockchain/getrawmempool/">getrawmempool</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/blockchain/getsidechaininfo/">getsidechaininfo</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/blockchain/gettxout/">gettxout</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/blockchain/gettxoutproof/">gettxoutproof</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/blockchain/gettxoutsetinfo/">gettxoutsetinfo</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/blockchain/preciousblock/">preciousblock</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/blockchain/pruneblockchain/">pruneblockchain</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/blockchain/savemempool/">savemempool</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/blockchain/scantxoutset/">scantxoutset</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/blockchain/verifychain/">verifychain</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/blockchain/verifytxoutproof/">verifytxoutproof</a></li>
+                
+              </ul>
+            </div>
+          </header>
+        
+      
+        
+          <header>
+            <h3 class="toc-header">
+              control
+            </h3>
+            <div class="toc-drawer js-hide-on-start">
+              <ul>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/control/getmemoryinfo/">getmemoryinfo</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/control/getrpcinfo/">getrpcinfo</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/control/help/">help</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/control/logging/">logging</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/control/stop/">stop</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/control/uptime/">uptime</a></li>
+                
+              </ul>
+            </div>
+          </header>
+        
+      
+        
+          <header>
+            <h3 class="toc-header">
+              generating
+            </h3>
+            <div class="toc-drawer js-hide-on-start">
+              <ul>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/generating/combineblocksigs/">combineblocksigs</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/generating/consumecompactsketch/">consumecompactsketch</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/generating/consumegetblocktxn/">consumegetblocktxn</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/generating/finalizecompactblock/">finalizecompactblock</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/generating/generate/">generate</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/generating/generatetoaddress/">generatetoaddress</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/generating/getcompactsketch/">getcompactsketch</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/generating/getnewblockhex/">getnewblockhex</a></li>
+                
+              </ul>
+            </div>
+          </header>
+        
+      
+        
+      
+        
+          <header>
+            <h3 class="toc-header">
+              mining
+            </h3>
+            <div class="toc-drawer js-hide-on-start">
+              <ul>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/mining/getblocktemplate/">getblocktemplate</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/mining/getmininginfo/">getmininginfo</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/mining/getnetworkhashps/">getnetworkhashps</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/mining/prioritisetransaction/">prioritisetransaction</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/mining/submitblock/">submitblock</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/mining/submitheader/">submitheader</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/mining/testproposedblock/">testproposedblock</a></li>
+                
+              </ul>
+            </div>
+          </header>
+        
+      
+        
+          <header>
+            <h3 class="toc-header">
+              network
+            </h3>
+            <div class="toc-drawer js-hide-on-start">
+              <ul>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/network/addnode/">addnode</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/network/clearbanned/">clearbanned</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/network/disconnectnode/">disconnectnode</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/network/getaddednodeinfo/">getaddednodeinfo</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/network/getconnectioncount/">getconnectioncount</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/network/getnettotals/">getnettotals</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/network/getnetworkinfo/">getnetworkinfo</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/network/getnodeaddresses/">getnodeaddresses</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/network/getpeerinfo/">getpeerinfo</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/network/listbanned/">listbanned</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/network/ping/">ping</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/network/setban/">setban</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/network/setnetworkactive/">setnetworkactive</a></li>
+                
+              </ul>
+            </div>
+          </header>
+        
+      
+        
+          <header>
+            <h3 class="toc-header">
+              rawtransactions
+            </h3>
+            <div class="toc-drawer js-hide-on-start">
+              <ul>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/rawtransactions/analyzepsbt/">analyzepsbt</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/rawtransactions/blindpsbt/">blindpsbt</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/rawtransactions/combinepsbt/">combinepsbt</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/rawtransactions/combinerawtransaction/">combinerawtransaction</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/rawtransactions/converttopsbt/">converttopsbt</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/rawtransactions/createpsbt/">createpsbt</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/rawtransactions/createrawtransaction/">createrawtransaction</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/rawtransactions/decodepsbt/">decodepsbt</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/rawtransactions/decoderawtransaction/">decoderawtransaction</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/rawtransactions/decodescript/">decodescript</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/rawtransactions/finalizepsbt/">finalizepsbt</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/rawtransactions/fundrawtransaction/">fundrawtransaction</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/rawtransactions/getrawtransaction/">getrawtransaction</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/rawtransactions/joinpsbts/">joinpsbts</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/rawtransactions/rawblindrawtransaction/">rawblindrawtransaction</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/rawtransactions/rawissueasset/">rawissueasset</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/rawtransactions/rawreissueasset/">rawreissueasset</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/rawtransactions/sendrawtransaction/">sendrawtransaction</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/rawtransactions/signrawtransactionwithkey/">signrawtransactionwithkey</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/rawtransactions/testmempoolaccept/">testmempoolaccept</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/rawtransactions/utxoupdatepsbt/">utxoupdatepsbt</a></li>
+                
+              </ul>
+            </div>
+          </header>
+        
+      
+        
+          <header>
+            <h3 class="toc-header">
+              util
+            </h3>
+            <div class="toc-drawer js-hide-on-start">
+              <ul>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/util/createblindedaddress/">createblindedaddress</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/util/createmultisig/">createmultisig</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/util/deriveaddresses/">deriveaddresses</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/util/dumpassetlabels/">dumpassetlabels</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/util/estimatesmartfee/">estimatesmartfee</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/util/getdescriptorinfo/">getdescriptorinfo</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/util/getpakinfo/">getpakinfo</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/util/signmessagewithprivkey/">signmessagewithprivkey</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/util/tweakfedpegscript/">tweakfedpegscript</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/util/validateaddress/">validateaddress</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/util/verifymessage/">verifymessage</a></li>
+                
+              </ul>
+            </div>
+          </header>
+        
+      
+        
+          <header>
+            <h3 class="toc-header">
+              wallet
+            </h3>
+            <div class="toc-drawer js-hide-on-start">
+              <ul>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/abandontransaction/">abandontransaction</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/abortrescan/">abortrescan</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/addmultisigaddress/">addmultisigaddress</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/backupwallet/">backupwallet</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/blindrawtransaction/">blindrawtransaction</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/bumpfee/">bumpfee</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/claimpegin/">claimpegin</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/createrawpegin/">createrawpegin</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/createwallet/">createwallet</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/destroyamount/">destroyamount</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/dumpblindingkey/">dumpblindingkey</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/dumpissuanceblindingkey/">dumpissuanceblindingkey</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/dumpmasterblindingkey/">dumpmasterblindingkey</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/dumpprivkey/">dumpprivkey</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/dumpwallet/">dumpwallet</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/encryptwallet/">encryptwallet</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/getaddressesbylabel/">getaddressesbylabel</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/getaddressinfo/">getaddressinfo</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/getbalance/">getbalance</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/getnewaddress/">getnewaddress</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/getpeginaddress/">getpeginaddress</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/getrawchangeaddress/">getrawchangeaddress</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/getreceivedbyaddress/">getreceivedbyaddress</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/getreceivedbylabel/">getreceivedbylabel</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/gettransaction/">gettransaction</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/getunconfirmedbalance/">getunconfirmedbalance</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/getwalletinfo/">getwalletinfo</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/getwalletpakinfo/">getwalletpakinfo</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/importaddress/">importaddress</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/importblindingkey/">importblindingkey</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/importissuanceblindingkey/">importissuanceblindingkey</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/importmulti/">importmulti</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/importprivkey/">importprivkey</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/importprunedfunds/">importprunedfunds</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/importpubkey/">importpubkey</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/importwallet/">importwallet</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/initpegoutwallet/">initpegoutwallet</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/issueasset/">issueasset</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/keypoolrefill/">keypoolrefill</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/listaddressgroupings/">listaddressgroupings</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/listissuances/">listissuances</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/listlabels/">listlabels</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/listlockunspent/">listlockunspent</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/listreceivedbyaddress/">listreceivedbyaddress</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/listreceivedbylabel/">listreceivedbylabel</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/listsinceblock/">listsinceblock</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/listtransactions/">listtransactions</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/listunspent/">listunspent</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/listwalletdir/">listwalletdir</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/listwallets/">listwallets</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/loadwallet/">loadwallet</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/lockunspent/">lockunspent</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/reissueasset/">reissueasset</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/removeprunedfunds/">removeprunedfunds</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/rescanblockchain/">rescanblockchain</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/sendmany/">sendmany</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/sendtoaddress/">sendtoaddress</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/sendtomainchain/">sendtomainchain</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/sethdseed/">sethdseed</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/setlabel/">setlabel</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/settxfee/">settxfee</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/signblock/">signblock</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/signmessage/">signmessage</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/signrawtransactionwithwallet/">signrawtransactionwithwallet</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/unblindrawtransaction/">unblindrawtransaction</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/unloadwallet/">unloadwallet</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/walletcreatefundedpsbt/">walletcreatefundedpsbt</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/walletfillpsbtdata/">walletfillpsbtdata</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/walletlock/">walletlock</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/walletpassphrase/">walletpassphrase</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/walletpassphrasechange/">walletpassphrasechange</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/walletprocesspsbt/">walletprocesspsbt</a></li>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/wallet/walletsignpsbt/">walletsignpsbt</a></li>
+                
+              </ul>
+            </div>
+          </header>
+        
+      
+        
+          <header>
+            <h3 class="toc-header">
+              zmq
+            </h3>
+            <div class="toc-drawer js-hide-on-start">
+              <ul>
+                
+                  <li><a href="/en/doc/0.18.1.11/rpc/zmq/getzmqnotifications/">getzmqnotifications</a></li>
+                
+              </ul>
+            </div>
+          </header>
+        
+      
+      </section>
+
+    
+  </div><!-- /.article-wrap -->
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+    <img class="logo-footer" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" />
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list"><li class="footer-links"><a href="https://github.com/ElementsProject/elementsproject.github.io">elementsproject.org github</a></li><li class="footer-links"><a href="https://github.com/ElementsProject/elements">elements github</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Elements - an open source, sidechain-capable blockchain platform.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

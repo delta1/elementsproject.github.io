@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Confidential Transactions | elementsproject.org</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Confidential Transactions" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<meta property="og:description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<link rel="canonical" href="https://elementsproject.org/features/confidential-transactions" />
+<meta property="og:url" content="https://elementsproject.org/features/confidential-transactions" />
+<meta property="og:site_name" content="elementsproject.org" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Confidential Transactions" />
+<meta name="google-site-verification" content="googlefba269d56ccb761c.html" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Elements - an open source, sidechain-capable blockchain platform.","headline":"Confidential Transactions","url":"https://elementsproject.org/features/confidential-transactions"}</script>
+<!-- End Jekyll SEO tag -->
+<link href='/assets/open-sans.css' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/bootstrap-v3.3.7.min.css">
+  <script src="/assets/jquery-v3.3.1.min.js"></script>
+  <script src="/assets/bootstrap-v3.3.7.min.js"></script>
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://elementsproject.org/feed.xml" title="elementsproject.org" /></head>
+<body><header class="site-header" role="banner">
+
+<div class="wrapper">
+  <img class="logo-float-left" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" /><span><a class="site-title" rel="author" href="/">elementsproject.org</a></span>
+</div>
+
+<nav class="navbar navbar-default navbar-elements-narrow">
+  <div class="container-fluid">
+
+    <!-- Enable mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsing-nav-bar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Nav links for toggling -->
+    <div class="collapse navbar-collapse" id="collapsing-nav-bar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/how-it-works">How it works</a></li>
+        <li><a href="/features">Features</a></li>
+        <li><a href="/community">Community</a></li>
+        <li><a href="/en/doc">RPC Docs</a></li>
+        <li><a href="https://github.com/ElementsProject/elements/releases">Download</a></li>
+
+        <li class="dropdown">
+          <a data-toggle="dropdown" role="button">Code Tutorial<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/elements-code-tutorial/overview">Tutorial Overview</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/installing-bitcoin">Installing Bitcoin</a></li>
+            <li><a href="/elements-code-tutorial/installing-elements">Installing Elements</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/working-environment">Setting up your working environment</a></li>
+            <li><a href="/elements-code-tutorial/basic-operations">Using Elements to perform basic operations</a></li>
+            <li><a href="/elements-code-tutorial/confidential-transactions">Using Confidential Transactions</a></li>
+            <li><a href="/elements-code-tutorial/issuing-assets">Issuing your own assets</a></li>
+            <li><a href="/elements-code-tutorial/reissuing-assets">Reissuing assets</a></li>
+            <li><a href="/elements-code-tutorial/block-creation">Block creation in a Strong Federation</a></li>
+            <li><a href="/elements-code-tutorial/sidechain">Elements as a Sidechain</a></li>
+            <li><a href="/elements-code-tutorial/blockchain">Elements as a standalone Blockchain</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/application-development">Developing applications on Elements</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-python">Desktop application example in Python</a></li>
+            <li><a href="/elements-code-tutorial/web-application">Web application example in Python using Flask</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-dotnetcore">Desktop application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/web-application-dotnetcore">MVC Web application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/other-languages">Node.js, Go, Ruby, Java, Perl examples</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/easy-run-code">An easy way to run the main tutorial code</a></li>
+            <li><a href="/elements-code-tutorial/advanced-examples">Advanced examples</a></li>
+            <li><a href="/elements-code-tutorial/building-elements-from-source">Building Elements from source</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="https://github.com/ElementsProject/elements">Elements on Github</a></li>
+          </ul>
+        </li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<script>
+$(document).ready(function() {
+  // Assign the 'active' class for currently viewed page
+
+  var pathname = window.location.pathname;
+  // Remove trailng '/'
+  if (pathname.charAt(pathname.length - 1) == '/') {
+    pathname = pathname.substr(0, pathname.length - 1);
+  }
+
+  // Sub pages not in sub menu (e.g. features/confidential-transactions)
+  var secondForwardSlashIndex = pathname.indexOf("/", 1);
+  if (-1 != secondForwardSlashIndex)
+  {
+    mainpathname = pathname.substr(0, secondForwardSlashIndex);
+    $('.nav > li > a[href="'+mainpathname+'"]').parent().addClass('active');
+  }
+
+  // Top level nav bar item
+  $('.nav > li > a[href="'+pathname+'"]').parent().addClass('active');
+
+  // Nav bar drop down item - must be linked to with the "/" prefix (e.g. /elements-code-tutorial/) in the menu html above
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().parent().parent().addClass('active');
+
+  // Nav bar drop down sub item
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().addClass('active');
+})
+</script>
+
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <div class="post-content">
+    <h1 id="confidential-transactions">Confidential Transactions</h1>
+
+<h2 id="one-of-the-most-powerful-features-of-elements-is-confidential-transactions">One of the most powerful features of Elements is Confidential Transactions</h2>
+
+<p>Confidential Transactions keep the amount and type of assets transferred visible only to participants in the transaction (and those they choose to <a href="https://elementsproject.org/elements-code-tutorial/confidential-transactions#blindingkey">reveal the blinding key</a> to), while still cryptographically guaranteeing that no more coins can be spent than are available.</p>
+
+<p>This goes a step beyond the usual privacy offered by Bitcoin’s blockchain, which relies purely on pseudonymous (but public) identities. This matters, because insufficient financial privacy can have serious security and privacy implications for both commercial and personal transactions. Without adequate protection, thieves can focus their efforts on high-value targets, competitors can learn business details, and negotiating positions can be undermined.</p>
+
+<p>Watch <a href="https://www.youtube.com/embed/ZIugzFygviw">Gregory Maxwell explaining Confidential Transactions</a>:</p>
+
+<center><iframe width="560" height="315" src="https://www.youtube.com/embed/ZIugzFygviw" frameborder="0" allowfullscreen=""></iframe></center>
+
+<hr />
+
+<p>You can also read Gregory Maxwell’s <a href="https://elementsproject.org/features/confidential-transactions/investigation">initial investigation</a> for an in-depth look at the mathmatics behind Confidentail Transactions.</p>
+
+<h3 id="using-confidential-transactions-in-elements">Using Confidential Transactions in Elements</h3>
+
+<p>For a detailed look at using Confidential Transactions please refer to the Confidential Transactions section of the <a href="https://elementsproject.org/elements-code-tutorial/confidential-transactions">code tutorial</a>.</p>
+
+<p>At a high-level, the transaction flow is very similar to Bitcoin’s on the surface.</p>
+
+<h3 id="similarities-to-bitcoins-transaction-flow">Similarities to Bitcoin’s transaction flow</h3>
+
+<p>A new address is created:</p>
+
+<pre><code>elements-cli getnewaddress
+</code></pre>
+
+<p>By default this returns a new <a href="https://elementsproject.org/features/confidential-transactions/addresses">Confidential Address</a>. The prefix ‘CTE’ is used to denote the address is confidential[1]. An example address is shown below:</p>
+
+<div class="console-output">CTEwQjyErENrxo8dSQ6pq5atss7Ym9S7P6GGK4PiGAgQRgoh1iPUkLQ168Kqptfnwmpxr2Bf7ipQsagi
+</div>
+
+<p>Assets can then be sent to the address using the sendtoaddress command:</p>
+
+<pre><code>elements-cli sendtoaddress CTEwQjyErENrxo8dSQ6pq5atss7Ym9S7P6GGK4PiGAgQRgoh1iPUkLQ168Kqptfnwmpxr2Bf7ipQsagi 0.005
+</code></pre>
+
+<p>Which returns a transaction id:</p>
+
+<div class="console-output">82b2c5122207e5f33e7adadc6a4aab16a170e16028f0b0cf2c04f9d17d6f0321
+</div>
+
+<h3 id="differences-to-bitcoins-transaction-flow">Differences to Bitcoin’s transaction flow</h3>
+
+<p>The key difference from Bitcoin is the addition of cryptographic privacy.</p>
+
+<p>Confidential Transactions differ in that the the amounts and types of asset transferred are visible only to participants in the transaction, and those they choose to reveal the blinding key to.</p>
+
+<p>The <code>createrawtransaction</code> API in Elements works similar to Bitcoin’s raw
+transactions with the following differences:</p>
+
+<p><strong>1.</strong>    The intent to create a confidential output is indicated by using a confidential address for the destination.</p>
+
+<p><strong>2.</strong>    The <code>createrawtransaction</code> RPC has the additional key <code>nValue</code> per input which must be set to the value of the input. The value can be determined with the <code>listunspent</code> RPC for example.</p>
+
+<p><strong>3.</strong>    After calling <code>createrawtransaction</code> the user must call <code>blindrawtransaction</code> on the transaction if a confidential input or output address is involved.</p>
+
+<p><strong>4.</strong>    If at least one of the inputs is confidential, at least one of the outputs must also be confidential. Note that it is perfectly fine to create a 0-valued confidential output if otherwise there would be no confidential output.</p>
+
+<p><strong>5.</strong>    If all inputs are unconfidential, the number of confidential outputs must be <code>0</code> or <code>&gt;= 2</code>. Again, it’s fine to create a 0-valued confidential output.</p>
+
+<p>The following example spends a confidential and an unconfidential output and
+creates a confidential and unconfidential output. Due to the size of the
+transaction it is not displayed here, but will be saved in the <code>TX</code> variable.</p>
+
+<pre><code>TX=elements-cli createrawtransaction '[{"txid": "421079661b117b659af3431096ce2118043396e3647e523e413cd626fa798df7", "vout": 0, "nValue": 0.001}, {"txid": "17aa26d29582a9a26f02033918aaf9823d33458239074a0d7ee638b247f1fa2c", "vout": 0, "nValue": 0.001}]' '{"XoRDiv9z12ECsYCNjtHjDvV1Nn4KSBa6xRfHT1c3nKY1CwDiz5rzSMZL7QCgvuF1T5Kq43o1fMqBxbWQ": 0.001, "QLsHc5DgnpMjPaDSuEF5gXt7ccgmLtgh2N": 0.0005}'
+
+TX=elements-cli blindrawtransaction $TX
+
+TX=elements-cli signrawtransaction $TX | jq -r '.hex'
+
+elements-cli sendrawtransaction $TX
+</code></pre>
+
+<h3 id="limitations">Limitations</h3>
+
+<p>The implementation of Confidential Transactions, as it appears in Elements, has some important limitations to be aware of.</p>
+
+<p>The implementation only hides a certain number of the digits of the amount of each transaction output, dependent on the range proof’s “blinding coverage” at a desired precision level. The default blinding precision is currently 52 bits, which will cover any value up to 2^52 satoshi, which equates to a maximum amount of just over 45 million BTC equivalent units. As the maximum amount that can be transacted is inherited from Bitcoin, and set at 21 million BTC equivalent units, this currently provides cover for all asset transactions.</p>
+
+<p>A transaction output larger than the maximum value set by the blinding precision will reveal the order of magnitude of the amount to observers, and will also reveal additional digits at the bottom of the amount, so care must be taken if you alter the default value.</p>
+
+<p>For example, if a user chooses a lower blinding precision than the default in their own Elements implementation, or an increased maximum transaction amount, then all outputs under the limit will look the same, but an output over the amount will be visible as such to observers. Although the exact amount will not be revealed, the order or magnitue over the maximum will. Revealing the range in this way could be a very significant privacy leak; splitting such extremely large transactions to keep them under the maximum confidential amount is strongly recommended.</p>
+
+<h3 id="find-out-more-about-confidential-transactions">Find out more about Confidential Transactions</h3>
+
+<p>Gregory Maxwell’s <a href="https://elementsproject.org/features/confidential-transactions/investigation">original investigation</a> into Confidential Transactions.</p>
+
+<p>Try it yourself in the <a href="https://elementsproject.org/elements-code-tutorial/confidential-transactions">Elements Code Tutorial</a>.</p>
+
+<p>More details on <a href="https://elementsproject.org/features/confidential-transactions/addresses">Confidential Addresses</a>.</p>
+
+<p>[1] Elements now defaults to creating P2SH-P2WPKH addresses by default, which do not start with ‘CTE’. See the note <a href="https://elementsproject.org/elements-code-tutorial/confidential-transactions">here</a> on how to create ‘legacy’ addresses starting with ‘CTE’.</p>
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+    <img class="logo-footer" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" />
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list"><li class="footer-links"><a href="https://github.com/ElementsProject/elementsproject.github.io">elementsproject.org github</a></li><li class="footer-links"><a href="https://github.com/ElementsProject/elements">elements github</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Elements - an open source, sidechain-capable blockchain platform.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Issuing assets | elementsproject.org</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Issuing assets" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<meta property="og:description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<link rel="canonical" href="https://elementsproject.org/elements-code-tutorial/issuing-assets" />
+<meta property="og:url" content="https://elementsproject.org/elements-code-tutorial/issuing-assets" />
+<meta property="og:site_name" content="elementsproject.org" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Issuing assets" />
+<meta name="google-site-verification" content="googlefba269d56ccb761c.html" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Elements - an open source, sidechain-capable blockchain platform.","headline":"Issuing assets","url":"https://elementsproject.org/elements-code-tutorial/issuing-assets"}</script>
+<!-- End Jekyll SEO tag -->
+<link href='/assets/open-sans.css' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/bootstrap-v3.3.7.min.css">
+  <script src="/assets/jquery-v3.3.1.min.js"></script>
+  <script src="/assets/bootstrap-v3.3.7.min.js"></script>
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://elementsproject.org/feed.xml" title="elementsproject.org" /></head>
+<body><header class="site-header" role="banner">
+
+<div class="wrapper">
+  <img class="logo-float-left" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" /><span><a class="site-title" rel="author" href="/">elementsproject.org</a></span>
+</div>
+
+<nav class="navbar navbar-default navbar-elements-narrow">
+  <div class="container-fluid">
+
+    <!-- Enable mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsing-nav-bar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Nav links for toggling -->
+    <div class="collapse navbar-collapse" id="collapsing-nav-bar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/how-it-works">How it works</a></li>
+        <li><a href="/features">Features</a></li>
+        <li><a href="/community">Community</a></li>
+        <li><a href="/en/doc">RPC Docs</a></li>
+        <li><a href="https://github.com/ElementsProject/elements/releases">Download</a></li>
+
+        <li class="dropdown">
+          <a data-toggle="dropdown" role="button">Code Tutorial<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/elements-code-tutorial/overview">Tutorial Overview</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/installing-bitcoin">Installing Bitcoin</a></li>
+            <li><a href="/elements-code-tutorial/installing-elements">Installing Elements</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/working-environment">Setting up your working environment</a></li>
+            <li><a href="/elements-code-tutorial/basic-operations">Using Elements to perform basic operations</a></li>
+            <li><a href="/elements-code-tutorial/confidential-transactions">Using Confidential Transactions</a></li>
+            <li><a href="/elements-code-tutorial/issuing-assets">Issuing your own assets</a></li>
+            <li><a href="/elements-code-tutorial/reissuing-assets">Reissuing assets</a></li>
+            <li><a href="/elements-code-tutorial/block-creation">Block creation in a Strong Federation</a></li>
+            <li><a href="/elements-code-tutorial/sidechain">Elements as a Sidechain</a></li>
+            <li><a href="/elements-code-tutorial/blockchain">Elements as a standalone Blockchain</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/application-development">Developing applications on Elements</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-python">Desktop application example in Python</a></li>
+            <li><a href="/elements-code-tutorial/web-application">Web application example in Python using Flask</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-dotnetcore">Desktop application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/web-application-dotnetcore">MVC Web application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/other-languages">Node.js, Go, Ruby, Java, Perl examples</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/easy-run-code">An easy way to run the main tutorial code</a></li>
+            <li><a href="/elements-code-tutorial/advanced-examples">Advanced examples</a></li>
+            <li><a href="/elements-code-tutorial/building-elements-from-source">Building Elements from source</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="https://github.com/ElementsProject/elements">Elements on Github</a></li>
+          </ul>
+        </li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<script>
+$(document).ready(function() {
+  // Assign the 'active' class for currently viewed page
+
+  var pathname = window.location.pathname;
+  // Remove trailng '/'
+  if (pathname.charAt(pathname.length - 1) == '/') {
+    pathname = pathname.substr(0, pathname.length - 1);
+  }
+
+  // Sub pages not in sub menu (e.g. features/confidential-transactions)
+  var secondForwardSlashIndex = pathname.indexOf("/", 1);
+  if (-1 != secondForwardSlashIndex)
+  {
+    mainpathname = pathname.substr(0, secondForwardSlashIndex);
+    $('.nav > li > a[href="'+mainpathname+'"]').parent().addClass('active');
+  }
+
+  // Top level nav bar item
+  $('.nav > li > a[href="'+pathname+'"]').parent().addClass('active');
+
+  // Nav bar drop down item - must be linked to with the "/" prefix (e.g. /elements-code-tutorial/) in the menu html above
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().parent().parent().addClass('active');
+
+  // Nav bar drop down sub item
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().addClass('active');
+})
+</script>
+
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <div class="post-content">
+    <h1 id="elements-code-tutorial">Elements code tutorial</h1>
+
+<h2 id="issuing-your-own-assets">Issuing your own assets</h2>
+
+<p>Previously, the RPC calls we’ve made always returned values denominated in “bitcoin”. This is simply because that is what the labelling of the initial asset created by Elements defaults to.</p>
+
+<h5 id="note-you-can-use-the-defaultpeggedassetname-startup-parameter-to-change-the-label-of-the-default-asset-to-something-other-than-bitcoin-you-can-also-change-the-initial-issuance-amount-of-the-default-asset-using-the-initialfreecoins-parameter-and-the-initialreissuancetokens-parameter-to-allocate-reissuance-tokens-for-the-default-asset">NOTE: You can use the <strong>defaultpeggedassetname</strong> startup parameter to change the label of the default asset to something other than “bitcoin”. You can also change the initial issuance amount of the default asset using the <strong>initialfreecoins</strong> parameter and the <strong>initialreissuancetokens</strong> parameter to allocate reissuance tokens for the default asset.</h5>
+
+<p>In this section we’ll issue our own assets, label them, look at reissuance tokens and learn how to send them to other addresses. We’ll also take a look at how to keep track of what assets have been issued and re-issued and, in the next section, reissue and destory them. This last feature may be something which is required if you implement your own blockchain solution based upon real world assets. More on that in the next section.</p>
+
+<p>First, let’s take a look at Alice’s wallet to remind ourselves what it currently holds.</p>
+
+<pre><code>e1-cli getwalletinfo
+</code></pre>
+
+<p>We see that Alice holds a lot of the “bitcoin” asset and nothing else:</p>
+
+<div class="console-output">"balance": {
+    "bitcoin": 10500001.00000000
+</div>
+
+<p>Every asset you issue within Elements (including the “bitcoin” default) will be assigned its own hex value. This is used to uniquely identify it on the network. Notice how “bitcoin” is displayed with a readable asset name however. This is because Elements automatically associates the label “bitcoin” with the asset hex for that default asset. To find out its hex value we can run:</p>
+
+<pre><code>e1-cli dumpassetlabels
+</code></pre>
+
+<p>Which returns:</p>
+
+<div class="console-output">"bitcoin": "b2e15d0d7a0c94e4e2ce0fe6e8691b9e451377f6e46e8045a86f7c4b5d4f0f23"
+</div>
+
+<p>The asset hex above is set on chain creation.</p>
+
+<p>One of the main features of Elements is the ability to issue your own assets. We’ll do this next and then look at the details using some of the commands we’ve already used.</p>
+
+<h4 id="note-there-is-nothing-inherently-different-between-assets-in-the-way-they-are-handled-within-the-elements-protocol">Note: There is nothing inherently different between assets in the way they are handled within the Elements protocol.</h4>
+
+<p>Run the following to issue a quantity of 100 of a new asset.</p>
+
+<pre><code>ISSUE=$(e1-cli issueasset 100 1)
+</code></pre>
+
+<h5 id="note-the-advanced-examples-section-shows-you-how-to-manually-issue-an-asset-using-the-rawissueasset-command-how-to-prove-that-you-were-the-one-who-issued-the-asset-using-the-contract-hash-parameter-and-how-to-issue-to-and-spend-from-a-multi-sig-address">NOTE: The <a href="https://elementsproject.org/elements-code-tutorial/advanced-examples">Advanced Examples</a> section shows you how to manually issue an asset using the rawissueasset command, how to prove that you were the one who issued the asset using the contract hash parameter, and how to issue to and spend from a multi-sig address.</h5>
+
+<p>That will create a new asset type, an initial supply of 100 and also 1 <strong>reissuance token</strong>. The reissuance token is used to prove authority to reissue more of the asset at a later date. We have issued one such token in the command above. The token is transferable and you can initially create as many as you think you will need based upon how many of the network participants will need to perform this duty. The token is used to provide proof that any transactions that create new amounts of the asset were sent by someone holding the required authority. Each asset has its own reissuance token. We’ll look at this in more detail later.</p>
+
+<h5 id="note-the-minimum-amount-of-an-asset-you-can-issue-is-000000001-this-is-also-the-smallest-amount-of-any-issued-asset-that-you-can-send-the-minimum-amount-of-the-default-asset-that-you-can-send-is-higher-at-000001-these-differ-as-the-default-asset-considers-the-minimum-send-amount-of-the-bitcoin-networks-dust-limit-in-case-elements-is-being-run-as-a-sidechain-the-maximum-amount-of-an-asset-you-can-issue-is-21000000-although-more-can-be-created-by-reissuing-when-you-create-the-reissuance-token-as-above-where-the-amount-was-1-you-are-actually-creating-100000000-of-them-when-measured-in-their-smallest-denomination-this-is-because-they-are-divisible-like-every-other-asset-on-elements-the-1-is-little-more-than-a-user-interface-concession-for-ease-of-readability-we-will-refer-to-this-issuance-as-one-token">NOTE: The minimum amount of an asset you can issue is <strong>0.00000001</strong>. This is also the smallest amount of any issued asset that you can send. The minimum amount of the default asset that you can send is higher, at <strong>0.00001</strong>. These differ as the default asset considers the minimum send amount of the Bitcoin network’s dust limit in case Elements is being run as a sidechain. The maximum amount of an asset you can issue is <strong>21,000,000</strong> although more can be created by reissuing. When you create the reissuance token as above, where the amount was 1, you are actually creating <strong>100,000,000</strong> of them when measured in their smallest denomination. This is because they are divisible like every other asset on Elements. The 1 is little more than a user interface concession. For ease of readability we will refer to this issuance as “one token”.</h5>
+
+<p>We have stored all of the returned data from the issuance command in a variable named “ISSUE”, which we’ll pull the hex of the new asset from, storing that value in another variable named “ASSET”. We’ll also store the “token” value (which we’ll explain and use later) and the “txid” and “vin” of the issuance, which will be used when we try and unblind the issuing transaction shortly.</p>
+
+<p>In order to do this we can use a tool called <a href="https://stedolan.github.io/jq/">jq</a> (which we installed as part of the tutorial dependencies) to strip out and store only the parts returned and saved within “ISSUE” that we are interested in:</p>
+
+<pre><code>ASSET=$(echo $ISSUE | jq -r '.asset')
+TOKEN=$(echo $ISSUE | jq -r '.token')
+ITXID=$(echo $ISSUE | jq -r '.txid')
+IVIN=$(echo $ISSUE | jq -r '.vin')
+</code></pre>
+
+<p>To see the hex identifier for the asset we issued run:</p>
+
+<pre><code>echo $ASSET
+</code></pre>
+
+<p>Which will return something like this:</p>
+
+<div class="console-output">f0379482f9b77917670be0f060cc58debc6d93db0bf857458d5fb19080c8ab67
+</div>
+
+<p>In order to view all asset issuances that have been made we run the ‘listissuances” command:</p>
+
+<pre><code>e1-cli listissuances
+</code></pre>
+
+<p>That will show two instances of issuances. One will be the original default issuance of an asset with the “assetlabel” of “bitcoin” and the one that we have just issued ourselves. You’ll notice that both have the following:</p>
+
+<div class="console-output">"isreissuance": false,
+</div>
+
+<p>This indicates that both entries in the list are original issuances and not reissuances. More on this soon. You’ll also see that the newly issued asset does not have an “assetlabel”.</p>
+
+<h4 id="note-asset-labels-are-not-part-of-network-protocol-consensus-and-are-local-only-to-each-node-you-should-not-rely-on-them-for-transaction-processing-but-instead-use-the-assets-hex-value-which-is-shared-across-the-network">Note: Asset labels are <strong>not</strong> part of network protocol consensus and are local only to each node. You should not rely on them for transaction processing but instead use the asset’s hex value, which is shared across the network.</h4>
+
+<p>You can set the label by assigning it against the hex identifier of the asset. This can be done in the relevant elements.conf file by adding a line:</p>
+
+<div class="console-output">assetdir=asset_hex_here:your_label_here
+</div>
+
+<p>Or you can do this by passing in “assetdir” as a parameter when you start the node. We’ll do this now and call our new asset “demoasset”:</p>
+
+<pre><code>e1-cli stop
+e1-dae -assetdir=$ASSET:demoasset
+e1-cli listissuances
+</code></pre>
+
+<p>This shows that the asset we issued has the label we assigned to its hex value:</p>
+
+<div class="console-output">"assetlabel": "demoasset",
+</div>
+
+<p>Having labelled our asset for ease of reference, we will now look at the issuance data for “demoasset” in more detail. You will notice a “token” property similar to that below:</p>
+
+<div class="console-output">"token": "33244cc19dd9df0fd901e27246e3413c8f6a560451e2f3721fb6f636791087c7",
+</div>
+
+<p>This is the hex of the token and it can be used to reissue the asset. Yours will likely differ from the actual value above. There is also a “tokenamount” property which corresponds to the amount we created:</p>
+
+<div class="console-output">"tokenamount": 1.00000000,
+</div>
+
+<p>Notice that the default “bitcoin” asset has a token hex but that the token amount is 0, meaning that it cannot be reissued. This can be changed by setting the <strong>initialreissuancetokens</strong> parameter to a non-zero amount when you first initialize a chain.</p>
+
+<p>Confirm the transaction:</p>
+
+<pre><code>e1-cli generatetoaddress 1 $ADDRGEN1
+</code></pre>
+
+<p>Then wait a few seconds before having Bob’s wallet list its view of the asset issuances:</p>
+
+<pre><code>e2-cli listissuances
+</code></pre>
+
+<p>Bob’s wallet isn’t aware of the issuance transaction’s details, so we’ll import an address that was part of the issuance transaction output into his wallet as watch-only.</p>
+
+<pre><code>IADDR=$(e1-cli gettransaction $ITXID | jq -r '.details[0].address')
+e2-cli importaddress $IADDR
+</code></pre>
+
+<p>Another way to make Bob’s node aware of the issuance is for Bob to get the issuance transaction ID and use that to import any output address from the transaction into his wallet. This is useful if Bob is not able to get the adress from Alice, but knows the transaction in which the asset was issued… perhaps by using the <a href="https://blockstream.info/liquid/assets/">Blockstream Explorer’s assets list</a> to look it up. From that page he can either use the TXID or select one of the addresses from the outputs. Using the TXID requires that Bob’s node has <code>index=1</code> set in the elements.conf file.</p>
+
+<p>Bob’s already imported the address above but for reference the code to import using TXID is shown below. It doesn’t matter which address is used, so we will use the first instance:</p>
+
+<pre><code>ISSUE_RAW_TX=$(e2-cli getrawtransaction $ITXID 1)
+ISSUE_VOUTS=$(echo $ISSUE_RAW_TX | jq -r '.vout')
+VOUT_ADDRESS_ISSUE=$(echo $ISSUE_VOUTS | jq -r '.[0].scriptPubKey.addresses[0]')
+e2-cli importaddress $VOUT_ADDRESS_ISSUE
+</code></pre>
+
+<p>Either way, if we try and view the list of issuances from Bob’s node now we’ll see the issuance, but notice that the amount of the asset and the amount of its associated token are hidden:</p>
+
+<pre><code>e2-cli listissuances
+</code></pre>
+
+<p>The asset amount and the token amount are both blinded and shown as -1:</p>
+
+<div class="console-output">"tokenamount": -1,
+"assetamount": -1,
+</div>
+
+<p>Earlier in the tutorial we were able to expose the amount and type of asset being sent in a regular Confidential Transaction by exporting the blinding key used to create the blinded address and importing it into another wallet. We can do the same type of thing with the issuance transaction using the <strong>issuance blinding key</strong>.</p>
+
+<p>First, we need to export the issuance blinding key. We refer to issuances by their txid/vin pair. As there is only one per input it will be zero, but we’ll use the value we saved earlier as it is good practice to not rely on such things staying fixed:</p>
+
+<pre><code>ISSUEKEY=$(e1-cli dumpissuanceblindingkey $ITXID $IVIN)
+e2-cli importissuanceblindingkey $ITXID $IVIN $ISSUEKEY
+</code></pre>
+
+<p>Now when we run the command to list known issuances from Bob’s wallet we should see the actual values:</p>
+
+<pre><code>e2-cli listissuances
+</code></pre>
+
+<p>Which returns:</p>
+
+<div class="console-output">"tokenamount": 1.00000000,
+"assetamount": 100.00000000,
+</div>
+
+<p>Indeed, Bob’s wallet can now see both the amount of the asset and its reissuance token that were issued.</p>
+
+<p>Just like any other asset in Elements, we can send our “demoasset” from Alice’s address to Bob’s using the “sendtoaddress” command. This differs from its implementation in Bitcoin’s source code in that it accepts an additional parameter, which allows you to specify the type of asset to be sent. Be aware that the step above where we imported the issuance blinding key is not required in order to transact an issued asset between addresses and wallets. Importing the issuance blinding key just enables another wallet to view the issuance details in full.</p>
+
+<pre><code>E2DEMOADD=$(e2-cli getnewaddress)
+e1-cli sendtoaddress $E2DEMOADD 10 "" "" false false 1 UNSET false demoasset
+e1-cli generatetoaddress 1 $ADDRGEN1
+</code></pre>
+
+<h5 id="note-the-parameters-you-can-pass-to-sendtoaddress-are-detailed-within-the-elementssrcwalletrpcwalletcpp-file-on-github">NOTE: The parameters you can pass to “sendtoaddress” are detailed within the elements/src/wallet/rpcwallet.cpp file on <a href="https://github.com/ElementsProject/elements">Github</a></h5>
+
+<p>Bob’s wallet now has an amount of 10 “demoasset” and Alice has 90:</p>
+
+<pre><code>e2-cli getwalletinfo
+e1-cli getwalletinfo
+</code></pre>
+
+<p>As we didn’t assign a label in Bob’s node for the asset we created, it will be identified by its hex value instead. We will therefore have to use the hex identifier instead of the asset label when we send it from his node. Remember that asset labels are local only to each node and are not part of the network’s protocol rules. We’ll demonstrate how Bob can send the asset using the hex value by transferring the 10 “demoasset” back to Alice:</p>
+
+<pre><code>E1DEMOADD=$(e1-cli getnewaddress)
+e2-cli sendtoaddress $E1DEMOADD 10 "" "" false false 1 UNSET false $ASSET
+e2-cli generatetoaddress 1 $ADDRGEN2
+</code></pre>
+
+<p>We should see that Bob’s wallet has no “demoasset” in it anymore and Alice’s is back to 100:</p>
+
+<pre><code>e2-cli getwalletinfo
+e1-cli getwalletinfo
+</code></pre>
+
+<p>We can see that is indeed the case.</p>
+
+<p>In the next section we will look in detail at how to reissue more of an asset.</p>
+
+<p><a href="https://elementsproject.org/elements-code-tutorial/reissuing-assets">Next: Reissuing assets</a></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+    <img class="logo-footer" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" />
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list"><li class="footer-links"><a href="https://github.com/ElementsProject/elementsproject.github.io">elementsproject.org github</a></li><li class="footer-links"><a href="https://github.com/ElementsProject/elements">elements github</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Elements - an open source, sidechain-capable blockchain platform.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Elements .NET Core | elementsproject.org</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Elements .NET Core" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<meta property="og:description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<link rel="canonical" href="https://elementsproject.org/elements-code-tutorial/desktop-application-dotnetcore" />
+<meta property="og:url" content="https://elementsproject.org/elements-code-tutorial/desktop-application-dotnetcore" />
+<meta property="og:site_name" content="elementsproject.org" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Elements .NET Core" />
+<meta name="google-site-verification" content="googlefba269d56ccb761c.html" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Elements - an open source, sidechain-capable blockchain platform.","headline":"Elements .NET Core","url":"https://elementsproject.org/elements-code-tutorial/desktop-application-dotnetcore"}</script>
+<!-- End Jekyll SEO tag -->
+<link href='/assets/open-sans.css' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/bootstrap-v3.3.7.min.css">
+  <script src="/assets/jquery-v3.3.1.min.js"></script>
+  <script src="/assets/bootstrap-v3.3.7.min.js"></script>
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://elementsproject.org/feed.xml" title="elementsproject.org" /></head>
+<body><header class="site-header" role="banner">
+
+<div class="wrapper">
+  <img class="logo-float-left" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" /><span><a class="site-title" rel="author" href="/">elementsproject.org</a></span>
+</div>
+
+<nav class="navbar navbar-default navbar-elements-narrow">
+  <div class="container-fluid">
+
+    <!-- Enable mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsing-nav-bar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Nav links for toggling -->
+    <div class="collapse navbar-collapse" id="collapsing-nav-bar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/how-it-works">How it works</a></li>
+        <li><a href="/features">Features</a></li>
+        <li><a href="/community">Community</a></li>
+        <li><a href="/en/doc">RPC Docs</a></li>
+        <li><a href="https://github.com/ElementsProject/elements/releases">Download</a></li>
+
+        <li class="dropdown">
+          <a data-toggle="dropdown" role="button">Code Tutorial<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/elements-code-tutorial/overview">Tutorial Overview</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/installing-bitcoin">Installing Bitcoin</a></li>
+            <li><a href="/elements-code-tutorial/installing-elements">Installing Elements</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/working-environment">Setting up your working environment</a></li>
+            <li><a href="/elements-code-tutorial/basic-operations">Using Elements to perform basic operations</a></li>
+            <li><a href="/elements-code-tutorial/confidential-transactions">Using Confidential Transactions</a></li>
+            <li><a href="/elements-code-tutorial/issuing-assets">Issuing your own assets</a></li>
+            <li><a href="/elements-code-tutorial/reissuing-assets">Reissuing assets</a></li>
+            <li><a href="/elements-code-tutorial/block-creation">Block creation in a Strong Federation</a></li>
+            <li><a href="/elements-code-tutorial/sidechain">Elements as a Sidechain</a></li>
+            <li><a href="/elements-code-tutorial/blockchain">Elements as a standalone Blockchain</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/application-development">Developing applications on Elements</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-python">Desktop application example in Python</a></li>
+            <li><a href="/elements-code-tutorial/web-application">Web application example in Python using Flask</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-dotnetcore">Desktop application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/web-application-dotnetcore">MVC Web application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/other-languages">Node.js, Go, Ruby, Java, Perl examples</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/easy-run-code">An easy way to run the main tutorial code</a></li>
+            <li><a href="/elements-code-tutorial/advanced-examples">Advanced examples</a></li>
+            <li><a href="/elements-code-tutorial/building-elements-from-source">Building Elements from source</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="https://github.com/ElementsProject/elements">Elements on Github</a></li>
+          </ul>
+        </li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<script>
+$(document).ready(function() {
+  // Assign the 'active' class for currently viewed page
+
+  var pathname = window.location.pathname;
+  // Remove trailng '/'
+  if (pathname.charAt(pathname.length - 1) == '/') {
+    pathname = pathname.substr(0, pathname.length - 1);
+  }
+
+  // Sub pages not in sub menu (e.g. features/confidential-transactions)
+  var secondForwardSlashIndex = pathname.indexOf("/", 1);
+  if (-1 != secondForwardSlashIndex)
+  {
+    mainpathname = pathname.substr(0, secondForwardSlashIndex);
+    $('.nav > li > a[href="'+mainpathname+'"]').parent().addClass('active');
+  }
+
+  // Top level nav bar item
+  $('.nav > li > a[href="'+pathname+'"]').parent().addClass('active');
+
+  // Nav bar drop down item - must be linked to with the "/" prefix (e.g. /elements-code-tutorial/) in the menu html above
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().parent().parent().addClass('active');
+
+  // Nav bar drop down sub item
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().addClass('active');
+})
+</script>
+
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <div class="post-content">
+    <h1 id="elements-code-tutorial">Elements code tutorial</h1>
+
+<h2 id="desktop-application-example-in-c-using-net-core">Desktop application example in C# using .NET Core</h2>
+
+<p>Microsoft have created an open source version of their .NET platform called .NET Core that runs on a variety of operating systems. We will use C# (the most popular .NET language) for this example.</p>
+
+<h3 id="installing-the-net-core-sdk">Installing the .NET Core SDK</h3>
+
+<p>You can skip this step if you already have the .NET Core SDK installed.</p>
+
+<p>Before installing the .NET Core SDK, you’ll need to register the Microsoft key used to validate the required repository, register the product repository itself, and then install the required dependencies.</p>
+
+<p>Open a command prompt and run the following two commands.</p>
+
+<h5 id="note-the-command-you-run-after-wget-is-dependant-on-the-which-distribution-of-linux-you-are-running-please-check-here-to-get-the-right-one-there-are-only-two-lines-below-so-note-the-text-wrap-the-first-starts-with-wget-the-second-with-sudo">NOTE: The command you run after ‘wget’ is dependant on the which distribution of Linux you are running. Please check <a href="https://dotnet.microsoft.com/download/linux-package-manager/rhel/sdk-current">here</a> to get the right one. There are only two lines below so note the text wrap. The first starts with “wget”, the second with “sudo”.</h5>
+
+<pre><code>wget -q packages-microsoft-prod.deb https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+</code></pre>
+
+<p>Now we can install the .NET Core SDK:</p>
+
+<pre><code>sudo apt-get install apt-transport-https
+sudo apt-get update
+sudo apt-get install dotnet-sdk-2.1.4
+</code></pre>
+
+<h3 id="creating-the-application">Creating the application</h3>
+
+<p>Create a simple template console app:</p>
+
+<pre><code>dotnet new console -o dotnetelements
+cd dotnetelements
+dotnet run
+</code></pre>
+
+<p>That will create a file in $HOME/dotnetelements called <strong>Program.cs</strong>, execute the code within and output the following:</p>
+
+<div class="console-output">Hello World!
+</div>
+
+<p>Edit the <strong>Program.cs</strong> file in $HOME/dotnetelements using a text editor, change the contents to the following and then save the file:</p>
+
+<h5 id="note-some-of-the-lines-below-wrap-when-viewed-in-a-browser">NOTE: Some of the lines below wrap when viewed in a browser.</h5>
+<pre><code>using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+namespace dotnetelements
+{
+    class Program
+    {
+        private static HttpClient client = new HttpClient();
+        
+        static void Main(string[] args)
+        {
+            MainAsync().GetAwaiter().GetResult();
+        }
+
+        private static async Task MainAsync()
+        {
+            string url = "http://user1:password1@localhost:18884";
+
+            var contentData = new StringContent(@"{""method"": ""getwalletinfo"", ""jsonrpc"": ""2.0""}", System.Text.Encoding.UTF8, "application/json");
+            using (HttpResponseMessage response = await client.PostAsync(url, contentData))
+            using (HttpContent content = response.Content)
+            {
+                string data = await content.ReadAsStringAsync();
+                
+                if (null != data)
+                {
+                    Console.WriteLine(data);
+                }
+            }
+        }
+    }
+}
+</code></pre>
+
+<h3 id="running-the-application">Running the application</h3>
+
+<p>Before we try running any code we’ll make sure the required daemons are running:</p>
+
+<pre><code>cd
+cd elements
+cd src
+bitcoind -datadir=$HOME/bitcoindir
+./elementsd -datadir=$HOME/elementsdir1
+</code></pre>
+
+<p>If you get an error saying they are already running that’s fine.</p>
+
+<h5 id="note-if-you-get-an-error-connecting-to-the-elements-client-when-you-run-the-code-below-it-may-be-because-your-node-has-been-left-in-an-altered-state-after-quitting-the-tutorial-code-at-an-early-stage-to-refresh-and-reset-the-daemons-blockchain-and-config-files-re-run-the-first-section-of-the-tutorial-code-up-to-and-including-the-lines-where-the-3-config-files-are-copied-into-the-new-directories-then-run-the-commands-above-to-start-the-required-daemons">NOTE: If you get an error connecting to the elements client when you run the code below it may be because your node has been left in an altered state after quitting the tutorial code at an early stage. To refresh and reset the daemon’s blockchain and config files re-run the first section of the tutorial code up to and including the lines where the 3 config files are copied into the new directories, then run the commands above to start the required daemons.</h5>
+
+<p>Move to the the directory with the file in, compile and run the application:</p>
+
+<pre><code>cd
+cd dotnetelements
+dotnet run
+</code></pre>
+
+<p>Which outputs something similar to:</p>
+
+<p><img class="" alt="" src="https://elementsproject.org/images/dotnet.png" /></p>
+
+<p>As an application would be making multiple calls to the elementsd daemon via RPC you will probably want to move the code that actually does the request and response work into its own function. An example of how to do this is the <a href="https://github.com/wintercooled/dotnetcoreDynamicJSON-RPC">dynamic JSON RPC class</a>, a C# wrapper class intended to enable simple dynamic JSON RPC calls to Bitcoin, Elements and other RPC enabled daemons.</p>
+
+<p>Again, the code above is a starting point to get you up and running and you now have a functioning setup which you can use as a building block for further development.</p>
+
+<p><a href="https://elementsproject.org/elements-code-tutorial/web-application-dotnetcore">Next: An MVC Web application example in C# using .NET Core</a></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+    <img class="logo-footer" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" />
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list"><li class="footer-links"><a href="https://github.com/ElementsProject/elementsproject.github.io">elementsproject.org github</a></li><li class="footer-links"><a href="https://github.com/ElementsProject/elements">elements github</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Elements - an open source, sidechain-capable blockchain platform.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

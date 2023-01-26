@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Elements Blockchain | elementsproject.org</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Elements Blockchain" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<meta property="og:description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<link rel="canonical" href="https://elementsproject.org/elements-code-tutorial/blockchain" />
+<meta property="og:url" content="https://elementsproject.org/elements-code-tutorial/blockchain" />
+<meta property="og:site_name" content="elementsproject.org" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Elements Blockchain" />
+<meta name="google-site-verification" content="googlefba269d56ccb761c.html" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Elements - an open source, sidechain-capable blockchain platform.","headline":"Elements Blockchain","url":"https://elementsproject.org/elements-code-tutorial/blockchain"}</script>
+<!-- End Jekyll SEO tag -->
+<link href='/assets/open-sans.css' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/bootstrap-v3.3.7.min.css">
+  <script src="/assets/jquery-v3.3.1.min.js"></script>
+  <script src="/assets/bootstrap-v3.3.7.min.js"></script>
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://elementsproject.org/feed.xml" title="elementsproject.org" /></head>
+<body><header class="site-header" role="banner">
+
+<div class="wrapper">
+  <img class="logo-float-left" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" /><span><a class="site-title" rel="author" href="/">elementsproject.org</a></span>
+</div>
+
+<nav class="navbar navbar-default navbar-elements-narrow">
+  <div class="container-fluid">
+
+    <!-- Enable mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsing-nav-bar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Nav links for toggling -->
+    <div class="collapse navbar-collapse" id="collapsing-nav-bar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/how-it-works">How it works</a></li>
+        <li><a href="/features">Features</a></li>
+        <li><a href="/community">Community</a></li>
+        <li><a href="/en/doc">RPC Docs</a></li>
+        <li><a href="https://github.com/ElementsProject/elements/releases">Download</a></li>
+
+        <li class="dropdown">
+          <a data-toggle="dropdown" role="button">Code Tutorial<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/elements-code-tutorial/overview">Tutorial Overview</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/installing-bitcoin">Installing Bitcoin</a></li>
+            <li><a href="/elements-code-tutorial/installing-elements">Installing Elements</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/working-environment">Setting up your working environment</a></li>
+            <li><a href="/elements-code-tutorial/basic-operations">Using Elements to perform basic operations</a></li>
+            <li><a href="/elements-code-tutorial/confidential-transactions">Using Confidential Transactions</a></li>
+            <li><a href="/elements-code-tutorial/issuing-assets">Issuing your own assets</a></li>
+            <li><a href="/elements-code-tutorial/reissuing-assets">Reissuing assets</a></li>
+            <li><a href="/elements-code-tutorial/block-creation">Block creation in a Strong Federation</a></li>
+            <li><a href="/elements-code-tutorial/sidechain">Elements as a Sidechain</a></li>
+            <li><a href="/elements-code-tutorial/blockchain">Elements as a standalone Blockchain</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/application-development">Developing applications on Elements</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-python">Desktop application example in Python</a></li>
+            <li><a href="/elements-code-tutorial/web-application">Web application example in Python using Flask</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-dotnetcore">Desktop application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/web-application-dotnetcore">MVC Web application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/other-languages">Node.js, Go, Ruby, Java, Perl examples</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/easy-run-code">An easy way to run the main tutorial code</a></li>
+            <li><a href="/elements-code-tutorial/advanced-examples">Advanced examples</a></li>
+            <li><a href="/elements-code-tutorial/building-elements-from-source">Building Elements from source</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="https://github.com/ElementsProject/elements">Elements on Github</a></li>
+          </ul>
+        </li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<script>
+$(document).ready(function() {
+  // Assign the 'active' class for currently viewed page
+
+  var pathname = window.location.pathname;
+  // Remove trailng '/'
+  if (pathname.charAt(pathname.length - 1) == '/') {
+    pathname = pathname.substr(0, pathname.length - 1);
+  }
+
+  // Sub pages not in sub menu (e.g. features/confidential-transactions)
+  var secondForwardSlashIndex = pathname.indexOf("/", 1);
+  if (-1 != secondForwardSlashIndex)
+  {
+    mainpathname = pathname.substr(0, secondForwardSlashIndex);
+    $('.nav > li > a[href="'+mainpathname+'"]').parent().addClass('active');
+  }
+
+  // Top level nav bar item
+  $('.nav > li > a[href="'+pathname+'"]').parent().addClass('active');
+
+  // Nav bar drop down item - must be linked to with the "/" prefix (e.g. /elements-code-tutorial/) in the menu html above
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().parent().parent().addClass('active');
+
+  // Nav bar drop down sub item
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().addClass('active');
+})
+</script>
+
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <div class="post-content">
+    <h1 id="elements-code-tutorial">Elements code tutorial</h1>
+
+<h2 id="elements-as-a-standalone-blockchain">Elements as a standalone Blockchain</h2>
+
+<p>So far, we have worked with Elements by running it as a sidechain to Bitcoin’s blockchain. We’ll now take a look at how to run a standalone blockchain, with no links or references to the default “bitcoin” asset at all.</p>
+
+<p>In this section we will:</p>
+
+<p><strong>1.</strong>    Initialize a new Elements blockchain with a default asset named “newasset”.</p>
+
+<p><strong>2.</strong>    Specify 1,000,000 “newasset” to be created on initialization.</p>
+
+<p><strong>3.</strong>    Specify 2 reissuance tokens for “newasset” on initialization.</p>
+
+<p><strong>4.</strong>    Claim all the anyone-can-spend “newasset” coins.</p>
+
+<p><strong>5.</strong>    Claim all the anyone-can-spend reissuance tokens for “newasset”.</p>
+
+<p><strong>6.</strong>    Send the asset and its reissuance token to another node’s wallet.</p>
+
+<p><strong>7.</strong>    Reissue more “newasset” from both nodes.</p>
+
+<p>We’ll assume that you have already run the <a href="https://elementsproject.org/elements-code-tutorial/installing-elements">Installing Elements</a> and <a href="https://elementsproject.org/elements-code-tutorial/working-environment">Setting up your working environment</a> tutorial sections to install and prepare Elements for use.</p>
+
+<p>In order to run Elements as a standalone blockchain, we will make use of a few parameters that can either be added to the elements.conf file or passed in on node startup. They are:</p>
+
+<div class="console-output">defaultpeggedassetname
+
+feeasset
+
+initialreissuancetokens
+
+Initialfreecoins
+</div>
+
+<p>First we’ll make sure our daemons are not running:</p>
+
+<pre><code>e1-cli stop
+e2-cli stop
+</code></pre>
+
+<p>We will have no use for the Bitcoin daemon so if it is still running from a previous tutorial session you can use the command “b-cli stop” to shut it down.</p>
+
+<p>Next we’ll need to clear out any existing blockchain and wallet data as we will be creating a new blockchain from scratch. If these error that is fine and likely just because the data does not exist anyway:</p>
+
+<pre><code>cd 
+rm -rf ~/elementsdir1/elementsregtest
+rm -rf ~/elementsdir2/elementsregtest
+</code></pre>
+
+<p>Now we will perform steps 1 to 3 above. Start our two nodes with a few parameters which are used to configure the initialization of our blockchain:</p>
+
+<pre><code>STANDALONEARGS=("-validatepegin=0" "-defaultpeggedassetname=newasset" "-initialfreecoins=100000000000000" "-initialreissuancetokens=200000000")
+e1-dae ${STANDALONEARGS[@]}
+e2-dae ${STANDALONEARGS[@]}
+</code></pre>
+
+<p>Now we need to create default wallets and rescan the blockchain:</p>
+
+<pre><code>e1-cli createwallet ""
+e2-cli createwallet ""
+e1-cli rescanblockchain
+e2-cli rescanblockchain
+</code></pre>
+
+<p>We’ll look at what these parameters do in more detail next.</p>
+
+<hr />
+
+<h3 id="validatepegin">validatepegin</h3>
+<p>As we will not be running our blockchain as a sidechain, we need to disable the validation of the peg-in, as there will be no peg to validate.</p>
+
+<h3 id="defaultpeggedassetname">defaultpeggedassetname</h3>
+<p>This allows you to specify the name of the default asset created upon blockchain initialization. If you do not provide this, the default asset created by Elements will be labelled as “bitcoin”.</p>
+
+<h3 id="initialfreecoins">initialfreecoins</h3>
+<p>The number (in the equivalent of Bitcoin’s Satoshi unit) of the default asset to create.</p>
+
+<h3 id="initialreissuancetokens">initialreissuancetokens</h3>
+<p>The number (in the equivalent of Bitcoin’s Satoshi unit) of the reissuance tokens for the default asset to create.</p>
+
+<hr />
+
+<p>Checking that the blockchain initialization worked as expected:</p>
+
+<pre><code>e1-cli getwalletinfo
+e2-cli getwalletinfo
+</code></pre>
+
+<p>The results of which will look something like the following. Note that we can see the asset and its reissuance token as already being present in both wallet balances because they are currently in ‘anyone-can-spend’ addresses.</p>
+
+<div class="console-output">"balance": {
+    "newasset": 1000000.00000000,
+    "a6be6b365498cd451be75ba0f68c258ee01e08f3cb30d5f8469f6628db58dc61": 2.00000000
+</div>
+
+<p>In order to claim the reissuance token, we need to take the hex it was assigned upon creation and store it in a variable for later use. The default asset has been labelled as ‘newasset’, as our chain initialization parameters specified, and so can easily be referred to later.</p>
+
+<h5 id="note-the-exact-hex-of-your-reissuance-token-may-differ-from-that-above-so-you-may-need-to-change-the-following-line-of-code-to-represent-the-hex-you-have">NOTE: The exact hex of your reissuance token may differ from that above, so you may need to change the following line of code to represent the hex you have.</h5>
+
+<pre><code>DEFAULTRIT=a6be6b365498cd451be75ba0f68c258ee01e08f3cb30d5f8469f6628db58dc61
+</code></pre>
+
+<p>When implementing code in an application, you’ll need to execute something similar to the code below in order to extract the hex id from the wallet balance list at runtime. It should be noted that the example code is limited in scope to our ‘two assets, one of which has a known label’ setup. You can ignore the following example code block for now and just use the line above and replace the actual hex id with the one your reissuance token was assigned.</p>
+
+<pre><code>DEFAULTRIT=$(e1-cli getwalletinfo | jq '[.balance] | .[0]' | jq -r 'keys | .[0]')
+
+if [ $DEFAULTRIT = "newasset" ]; then
+  DEFAULTRIT=$(e1-cli getwalletinfo | jq '[.balance] | .[0]' | jq -r 'keys | .[1]')
+fi
+</code></pre>
+
+<p>Having initialized our new blockchain with 1,000,000 assets named “newasset” and 2 reissueance tokens for “newasset”, we can now progress through steps 4 to 7. Start by having the e1 node claim the anyone-can-spend balances:</p>
+
+<pre><code>e1-cli sendtoaddress $(e1-cli getnewaddress) 1000000 "" "" true
+</code></pre>
+
+<p>Note that we did not need to specify the asset being sent, as “newasset” will be used by default.</p>
+
+<p>Now claim the anyone-can-spend reissuance token and generate some blocks to confirm the transactions. We also need to recreate the generate receiving addresses, because we deleted the corresponding wallets above.</p>
+
+<pre><code>e1-cli sendtoaddress $(e1-cli getnewaddress) 2 "" "" false false 1 UNSET false $DEFAULTRIT
+ADDRGEN1=$(e1-cli getnewaddress)
+ADDRGEN2=$(e2-cli getnewaddress)
+e1-cli generatetoaddress 101 $ADDRGEN1
+</code></pre>
+
+<p>It is worth noting that addresses in Elements can receive different types of asset, so we could have sent both ‘newasset’ and its reissuance token to the same address.</p>
+
+<p>Send some of the “newasset” to e2, who currently holds none of our default asset or its reissuance tokens. Note that we do not have to specify the type of asset to be sent as the default asset is “newasset”:</p>
+
+<pre><code>e1-cli sendtoaddress $(e2-cli getnewaddress) 500 "" "" false 
+</code></pre>
+
+<p>Send some of the reissuance tokens to e2 and confirm the two transactions:</p>
+
+<pre><code>e1-cli sendtoaddress $(e2-cli getnewaddress) 1 "" "" false false 1 UNSET false $DEFAULTRIT
+e1-cli generatetoaddress 101 $ADDRGEN1
+</code></pre>
+
+<p>Check that the wallet has updated accordingly:</p>
+
+<pre><code>e1-cli getwalletinfo
+e2-cli getwalletinfo
+</code></pre>
+
+<p>Reissue some of the default asset from e1:</p>
+
+<pre><code>e1-cli reissueasset newasset 100
+e1-cli generatetoaddress 101 $ADDRGEN1
+</code></pre>
+
+<p>Check that worked:</p>
+
+<pre><code>e1-cli getwalletinfo
+</code></pre>
+
+<p>Reissue some of the default asset from e2:</p>
+
+<pre><code>e2-cli reissueasset newasset 100
+e2-cli generatetoaddress 101 $ADDRGEN2
+</code></pre>
+
+<p>Check that worked:</p>
+
+<pre><code>e1-cli getwalletinfo
+e2-cli getwalletinfo
+</code></pre>
+
+<p>That’s it! We have set up our own standalone blockchain and checked that basic functionality works as we would expect.</p>
+
+<p>All other operations are the same as in the main sections of the tutorial but will use “newasset” instead of “bitcoin” as the default asset.</p>
+
+<p><a href="https://elementsproject.org/elements-code-tutorial/application-development">Next: Developing applications on Elements</a></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+    <img class="logo-footer" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" />
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list"><li class="footer-links"><a href="https://github.com/ElementsProject/elementsproject.github.io">elementsproject.org github</a></li><li class="footer-links"><a href="https://github.com/ElementsProject/elements">elements github</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Elements - an open source, sidechain-capable blockchain platform.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Confidential Transactions | elementsproject.org</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Confidential Transactions" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<meta property="og:description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<link rel="canonical" href="https://elementsproject.org/elements-code-tutorial/confidential-transactions" />
+<meta property="og:url" content="https://elementsproject.org/elements-code-tutorial/confidential-transactions" />
+<meta property="og:site_name" content="elementsproject.org" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Confidential Transactions" />
+<meta name="google-site-verification" content="googlefba269d56ccb761c.html" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Elements - an open source, sidechain-capable blockchain platform.","headline":"Confidential Transactions","url":"https://elementsproject.org/elements-code-tutorial/confidential-transactions"}</script>
+<!-- End Jekyll SEO tag -->
+<link href='/assets/open-sans.css' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/bootstrap-v3.3.7.min.css">
+  <script src="/assets/jquery-v3.3.1.min.js"></script>
+  <script src="/assets/bootstrap-v3.3.7.min.js"></script>
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://elementsproject.org/feed.xml" title="elementsproject.org" /></head>
+<body><header class="site-header" role="banner">
+
+<div class="wrapper">
+  <img class="logo-float-left" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" /><span><a class="site-title" rel="author" href="/">elementsproject.org</a></span>
+</div>
+
+<nav class="navbar navbar-default navbar-elements-narrow">
+  <div class="container-fluid">
+
+    <!-- Enable mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsing-nav-bar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Nav links for toggling -->
+    <div class="collapse navbar-collapse" id="collapsing-nav-bar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/how-it-works">How it works</a></li>
+        <li><a href="/features">Features</a></li>
+        <li><a href="/community">Community</a></li>
+        <li><a href="/en/doc">RPC Docs</a></li>
+        <li><a href="https://github.com/ElementsProject/elements/releases">Download</a></li>
+
+        <li class="dropdown">
+          <a data-toggle="dropdown" role="button">Code Tutorial<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/elements-code-tutorial/overview">Tutorial Overview</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/installing-bitcoin">Installing Bitcoin</a></li>
+            <li><a href="/elements-code-tutorial/installing-elements">Installing Elements</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/working-environment">Setting up your working environment</a></li>
+            <li><a href="/elements-code-tutorial/basic-operations">Using Elements to perform basic operations</a></li>
+            <li><a href="/elements-code-tutorial/confidential-transactions">Using Confidential Transactions</a></li>
+            <li><a href="/elements-code-tutorial/issuing-assets">Issuing your own assets</a></li>
+            <li><a href="/elements-code-tutorial/reissuing-assets">Reissuing assets</a></li>
+            <li><a href="/elements-code-tutorial/block-creation">Block creation in a Strong Federation</a></li>
+            <li><a href="/elements-code-tutorial/sidechain">Elements as a Sidechain</a></li>
+            <li><a href="/elements-code-tutorial/blockchain">Elements as a standalone Blockchain</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/application-development">Developing applications on Elements</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-python">Desktop application example in Python</a></li>
+            <li><a href="/elements-code-tutorial/web-application">Web application example in Python using Flask</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-dotnetcore">Desktop application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/web-application-dotnetcore">MVC Web application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/other-languages">Node.js, Go, Ruby, Java, Perl examples</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/easy-run-code">An easy way to run the main tutorial code</a></li>
+            <li><a href="/elements-code-tutorial/advanced-examples">Advanced examples</a></li>
+            <li><a href="/elements-code-tutorial/building-elements-from-source">Building Elements from source</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="https://github.com/ElementsProject/elements">Elements on Github</a></li>
+          </ul>
+        </li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<script>
+$(document).ready(function() {
+  // Assign the 'active' class for currently viewed page
+
+  var pathname = window.location.pathname;
+  // Remove trailng '/'
+  if (pathname.charAt(pathname.length - 1) == '/') {
+    pathname = pathname.substr(0, pathname.length - 1);
+  }
+
+  // Sub pages not in sub menu (e.g. features/confidential-transactions)
+  var secondForwardSlashIndex = pathname.indexOf("/", 1);
+  if (-1 != secondForwardSlashIndex)
+  {
+    mainpathname = pathname.substr(0, secondForwardSlashIndex);
+    $('.nav > li > a[href="'+mainpathname+'"]').parent().addClass('active');
+  }
+
+  // Top level nav bar item
+  $('.nav > li > a[href="'+pathname+'"]').parent().addClass('active');
+
+  // Nav bar drop down item - must be linked to with the "/" prefix (e.g. /elements-code-tutorial/) in the menu html above
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().parent().parent().addClass('active');
+
+  // Nav bar drop down sub item
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().addClass('active');
+})
+</script>
+
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <div class="post-content">
+    <h1 id="elements-code-tutorial">Elements code tutorial</h1>
+
+<h2 id="using-confidential-transactions">Using Confidential Transactions</h2>
+
+<p>All addresses in Elements are, by default, blinded using Confidential Transactions. Blinding is the process by which the amount and type of asset being transferred are cryptographically hidden from everyone except the sending and receiving parties. This is done using a blinding key, which we will look at later.</p>
+
+<p>Imagine that our cryptographic friends Alice and Bob are the owners of the Elements nodes we are running and the contents of the wallets they control. Alice owns the e1 wallet and Bob owns e2. We’ll have Bob send some assets to himself using a blinded Elements address as the destination.</p>
+
+<h5 id="note-the-advanced-examples-section-shows-you-how-to-create-and-use-multi-sig-addresses">NOTE: The <a href="https://elementsproject.org/elements-code-tutorial/advanced-examples">Advanced Examples</a> section shows you how to create and use multi-sig addresses.</h5>
+
+<p>First generate a new address and store it in a variable named “ADDR” so we can recall it for use later:</p>
+
+<pre><code>ADDR=$(e2-cli getnewaddress)
+</code></pre>
+
+<p>To see the new address we generated for Bob we can print out the value that was stored in the “ADDR” variable.</p>
+
+<pre><code>echo $ADDR
+</code></pre>
+
+<h5 id="note-we-will-use-the-store-the-value-returned-from-an-rpc-command-in-a-variable-for-future-use-technique-throughout-the-rest-of-the-tutorial-well-print-out-the-contents-of-a-variable-every-now-and-again-when-highlighting-something-that-has-been-returned-you-can-always-just-echo-out-the-contents-of-any-others-as-we-go-along-should-you-want-to">NOTE: We will use the “store the value returned from an RPC command in a variable for future use” technique throughout the rest of the tutorial. We’ll print out the contents of a variable every now and again when highlighting something that has been returned. You can always just echo out the contents of any others as we go along should you want to.</h5>
+
+<p>After running the echo command above you should see something similar to this:</p>
+
+<div class="console-output">Azpr7BwzjwdiB1pNZKcLkk6Esn5NWAE7wtrC4UzEsshpKe3eUZzPQBvfJ7q9wzJLbt9yn8hYZmZDayGG</div>
+
+<h5 id="note-as-of-elements-v017-getnewaddress-defaults-to-creating-p2sh-p2wpkh-addresses-you-can-create-cte-prefixed-addresses-the-elements-pre-017-default-by-calling-getnewaddress-like-this-e1-cli-getnewaddress--legacy-you-can-also-set-the-addresstypelegacy-argument-on-node-startup-or-set-it-in-your-config-file-to-always-get-legacy-addresses-from-getnewaddress-some-commands-require-a-legacy-style-address-in-order-to-work-such-as-message-signing-as-shown-in-the-advanced-examples-section">NOTE: As of Elements v0.17, getnewaddress defaults to creating P2SH-P2WPKH addresses. You can create ‘CTE’ prefixed addresses (the Elements pre-0.17 default) by calling getnewaddress like this: <code>e1-cli getnewaddress "" legacy</code>. You can also set the addresstype=legacy argument on node startup, or set it in your config file to always get legacy addresses from ‘getnewaddress’. Some commands require a ‘legacy’ style address in order to work, such as message signing, as shown in the <a href="https://elementsproject.org/elements-code-tutorial/advanced-examples">Advanced examples</a> section.</h5>
+
+<p>Let’s look at the address in more detail to check that it is indeed a confidential one. To do this we can use the “getaddressinfo” command, passing in the address that we stored in the ADDR variable as a parameter:</p>
+
+<pre><code>e2-cli getaddressinfo $ADDR
+</code></pre>
+
+<p>You should see a long value for the “confidential_key” property. It will look something like this:</p>
+
+<div class="console-output">"confidential_key": "030788da8d9ca229cbe57e346daaf8d94cba3ed548b41922a8abefaec91ff1abb1"</div>
+
+<p>The confidential_key is the public blinding key, which has been added to the address and is the reason why a confidential address is so long. You will also see that the ‘getaddressinfo’ command shows an associated ‘unconfidential’ address, which can be used to receive assets if you don’t want to make use of the Confidential Transaction feature for some reason.</p>
+
+<p>We’ll now send an amount of 1 “bitcoin” from Bob’s wallet to the new address we generated for him:</p>
+
+<pre><code>TXID=$(e2-cli sendtoaddress $ADDR 1)
+</code></pre>
+
+<h5 id="note-to-manually-create-a-transaction-using-the-createrawtransaction-command-please-see-the-advanced-code-examples">NOTE: To manually create a transaction using the createrawtransaction command, please see the <a href="https://elementsproject.org/elements-code-tutorial/advanced-examples">advanced code examples</a>.</h5>
+
+<p>In order to have the transaction confirm we need to generate a block that will include it. As an aside we can now query the mempool of each of our Elements nodes to see the transaction waiting to be added to a block as well as the current block count of each node’s blockchain:</p>
+
+<pre><code>e1-cli getrawmempool
+e2-cli getrawmempool
+e1-cli getblockcount
+e2-cli getblockcount
+</code></pre>
+
+<p>Both should display just one transaction with the same ID as that stored in the “TXID” variable and a block value of 202 (the blocks that we generated by twice running “generate 101” further up). If it does not, wait a few seconds and try the calls again as it may take a moment for the nodes to synchronize. Now let’s generate a block and get the transaction confirmed for Bob:</p>
+
+<pre><code>e2-cli generatetoaddress 1 $ADDRGEN2
+</code></pre>
+
+<p>Checking the mempool again for each client will show that it is now empty:</p>
+
+<pre><code>e1-cli getrawmempool
+e2-cli getrawmempool
+</code></pre>
+
+<p>Checking the block count for each client should show 203.</p>
+
+<pre><code>e1-cli getblockcount
+e2-cli getblockcount
+</code></pre>
+
+<p>Note that although Bob sent an amount of 1 “bitcoin” to himself the net effect is that he now has slightly less than he did before; this is because some of the transaction amount was spent on fees. Although Bob mined the block, and will later collect the fees, he will need to wait until the block has matured before he sees it as spendable within his wallet.</p>
+
+<h5 id="note-sidechain-fees-are-defaulted-to-being-paid-in-bitcoin-this-can-be-changed-using-the-feeasset-startup-parameter">NOTE: Sidechain fees are defaulted to being paid in “bitcoin”. This can be changed using the <strong>feeasset</strong> startup parameter.</h5>
+
+<p>The above shows that the client’s blockchains and mempools are in sync. If they are not, wait a few seconds and try the calls above again as it may take a moment for the nodes to synchronize. They display the same results not because they share a common data file (indeed, they do not), but because they are connected nodes on the same Elements network and broadcast transactions and blocks between each other in very much the same way as Bitcoin nodes do. You can check this for yourself by looking at the separate data files in the following locations and noting that they are separate stores of the same blockchain data:</p>
+
+<div class="console-output">/$HOME/elementsdir1/elementsregtest
+/$HOME/elementsdir2/elementsregtest
+</div>
+
+<p>Now let’s examine the transaction as it is seen by Bob’s wallet and also how it is seen from the point of view of Alice’s wallet. First the view from Bob’s wallet:</p>
+
+<pre><code>e2-cli gettransaction $TXID
+</code></pre>
+
+<p>The output from that initially looks like just a huge random assortment of letters and numbers (the hex value of the transaction), but if you scroll up you will see some more readable content above that.</p>
+
+<p>Looking in the “details” section near the top, you will see that there are two amount values:</p>
+
+<div class="console-output">"details": [
+  {
+    ...
+    "category": "send",
+    "amount": -1.00000000,
+    ...
+  },
+  {
+    ....
+    "category": "receive",
+    "amount": 1.00000000,
+    ...
+  }
+]
+</div>
+
+<p>And so we can confirm that Bob’s wallet can view the actual amounts being sent and received in this transaction. This is because the blinded transaction was sent from Bob’s own wallet and so it has access to the required data to unblind the amount values. You will also see two other properties and their values within the two details sections: “amountblinder” and “assetblinder”. These indicate that both the asset amount and the type of asset were blinded. This ensures that wallets without knowledge of the blinding key are prevented from viewing them.</p>
+
+<p>Looking at the transaction from Alice’s wallet we would expect both amount and type to be unknown. Checking this using Alice’s wallet we initially get an error:</p>
+
+<pre><code>e1-cli gettransaction $TXID
+</code></pre>
+
+<p>The reason that we get an error using this command is that Alice’s wallet will not contain details of the transaction. We can get the raw transaction data from Alice’s node’s copy of the blockchain using the getrawtransaction command like this:</p>
+
+<pre><code>e1-cli getrawtransaction $TXID 1
+</code></pre>
+
+<p>That returns raw transaction details. If you look within the “vout” section you can see that there are three instances. The first two instances are the receiving and change amounts and the third is the transaction fee. Of these three amounts, the fee is the only one in which you can see a value, as the fee itself is unblinded. For the first two instances you will see (amongst others) properties with values similar to this:</p>
+
+<div class="console-output">"value-minimum": 0.00000001,
+"value-maximum": 11258999.06842624,
+"amountcommitment": "0881c61d8a15ad26e6ef621ca99a188ccebbdb348d5285012393459b7e5b1e6113",
+"assetcommitment": "0b1b7a1a4a604f4a68b3277e3a8926d74e86adce7b92e8e6ba67f9c5a8ad2cbcf4",
+</div>
+
+<p>What this shows are the “blinded ranges” of the value amounts and the commitment data that acts as proof of the actual amount and type of asset transacted.</p>
+
+<p>Even if we were to import Bob’s private key into Alice’s wallet it would still not be able to see the amounts and type of asset because it still has no knowledge of the blinding key used.</p>
+
+<p>If we want to let Alice’s wallet view the actual amount details we’ll need to import the address so gettransaction will work, and then import the blinding key so we can see the unblinded amounts. First, import and then view the transaction. Note the use of the second argument, set to true. This tells gettransaction to include watch only addresses, such as the one we imported.</p>
+
+<pre><code>e1-cli importaddress $ADDR
+e1-cli gettransaction $TXID true
+</code></pre>
+
+<p>But because Alice still does not know the blinding key, the amount (towards the top of the output) will show as:</p>
+
+<div class="console-output">"amount": {
+    "bitcoin": 0.00000000
+</div>
+
+<p><a id="blindingkey"></a></p>
+
+<p>Without knowledge of the <strong>Blinding Key</strong>, the amount and type of asset being transacted are hidden.</p>
+
+<p>In order for anyone else (such as an auditor) to view the amount and type of assets being transacted, they need to know the blinding key that was used to generate the blinded address. To show this, we can export the blinding key Bob’s wallet used, import it into Alice’s wallet and try to view the transaction again. Let’s export the key for that particular address from Bob’s wallet and import it into Alice’s in one step:</p>
+
+<pre><code>e1-cli importblindingkey $ADDR $(e2-cli dumpblindingkey $ADDR)
+</code></pre>
+
+<p>Now that Alice’s wallet has knowledge of the blinding key used on that address, we can run the checks we did above from Alice’s wallet, this time expecting to see the actual amount value:</p>
+
+<pre><code>e1-cli gettransaction $TXID true
+</code></pre>
+
+<div class="console-output">"amount": {
+    "bitcoin": 1.00000000
+</div>
+
+<p>Magic! Alice’s wallet now shows the actual value sent in the transaction.</p>
+
+<p>We’ve seen that the use of a blinding key hides the amount and type of assets in an address and that by importing the right blinding key, we can reveal those values. In practical use, a blinding key may be given to an auditor, should there be a need to verify the amounts and types of assets held by a party. The Confidential Transactions feature of Elements also allows for “range proofs” to be performed without the need to expose actual amounts. This allows statements such as “address abc holds at least an amount x of asset y” to be cryptographically proven as true or false.</p>
+
+<p>In the next section we will look at how to issue, label, and re-issue your own assets with Elements.</p>
+
+<p><a href="https://elementsproject.org/elements-code-tutorial/issuing-assets">Next: Issuing your own assets</a></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+    <img class="logo-footer" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" />
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list"><li class="footer-links"><a href="https://github.com/ElementsProject/elementsproject.github.io">elementsproject.org github</a></li><li class="footer-links"><a href="https://github.com/ElementsProject/elements">elements github</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Elements - an open source, sidechain-capable blockchain platform.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

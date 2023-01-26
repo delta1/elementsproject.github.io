@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Issued Assets - Investigation | elementsproject.org</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Issued Assets - Investigation" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<meta property="og:description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<link rel="canonical" href="https://elementsproject.org/features/issued-assets/investigation" />
+<meta property="og:url" content="https://elementsproject.org/features/issued-assets/investigation" />
+<meta property="og:site_name" content="elementsproject.org" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Issued Assets - Investigation" />
+<meta name="google-site-verification" content="googlefba269d56ccb761c.html" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Elements - an open source, sidechain-capable blockchain platform.","headline":"Issued Assets - Investigation","url":"https://elementsproject.org/features/issued-assets/investigation"}</script>
+<!-- End Jekyll SEO tag -->
+<link href='/assets/open-sans.css' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/bootstrap-v3.3.7.min.css">
+  <script src="/assets/jquery-v3.3.1.min.js"></script>
+  <script src="/assets/bootstrap-v3.3.7.min.js"></script>
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://elementsproject.org/feed.xml" title="elementsproject.org" /></head>
+<body><header class="site-header" role="banner">
+
+<div class="wrapper">
+  <img class="logo-float-left" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" /><span><a class="site-title" rel="author" href="/">elementsproject.org</a></span>
+</div>
+
+<nav class="navbar navbar-default navbar-elements-narrow">
+  <div class="container-fluid">
+
+    <!-- Enable mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsing-nav-bar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Nav links for toggling -->
+    <div class="collapse navbar-collapse" id="collapsing-nav-bar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/how-it-works">How it works</a></li>
+        <li><a href="/features">Features</a></li>
+        <li><a href="/community">Community</a></li>
+        <li><a href="/en/doc">RPC Docs</a></li>
+        <li><a href="https://github.com/ElementsProject/elements/releases">Download</a></li>
+
+        <li class="dropdown">
+          <a data-toggle="dropdown" role="button">Code Tutorial<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/elements-code-tutorial/overview">Tutorial Overview</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/installing-bitcoin">Installing Bitcoin</a></li>
+            <li><a href="/elements-code-tutorial/installing-elements">Installing Elements</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/working-environment">Setting up your working environment</a></li>
+            <li><a href="/elements-code-tutorial/basic-operations">Using Elements to perform basic operations</a></li>
+            <li><a href="/elements-code-tutorial/confidential-transactions">Using Confidential Transactions</a></li>
+            <li><a href="/elements-code-tutorial/issuing-assets">Issuing your own assets</a></li>
+            <li><a href="/elements-code-tutorial/reissuing-assets">Reissuing assets</a></li>
+            <li><a href="/elements-code-tutorial/block-creation">Block creation in a Strong Federation</a></li>
+            <li><a href="/elements-code-tutorial/sidechain">Elements as a Sidechain</a></li>
+            <li><a href="/elements-code-tutorial/blockchain">Elements as a standalone Blockchain</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/application-development">Developing applications on Elements</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-python">Desktop application example in Python</a></li>
+            <li><a href="/elements-code-tutorial/web-application">Web application example in Python using Flask</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-dotnetcore">Desktop application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/web-application-dotnetcore">MVC Web application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/other-languages">Node.js, Go, Ruby, Java, Perl examples</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/easy-run-code">An easy way to run the main tutorial code</a></li>
+            <li><a href="/elements-code-tutorial/advanced-examples">Advanced examples</a></li>
+            <li><a href="/elements-code-tutorial/building-elements-from-source">Building Elements from source</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="https://github.com/ElementsProject/elements">Elements on Github</a></li>
+          </ul>
+        </li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<script>
+$(document).ready(function() {
+  // Assign the 'active' class for currently viewed page
+
+  var pathname = window.location.pathname;
+  // Remove trailng '/'
+  if (pathname.charAt(pathname.length - 1) == '/') {
+    pathname = pathname.substr(0, pathname.length - 1);
+  }
+
+  // Sub pages not in sub menu (e.g. features/confidential-transactions)
+  var secondForwardSlashIndex = pathname.indexOf("/", 1);
+  if (-1 != secondForwardSlashIndex)
+  {
+    mainpathname = pathname.substr(0, secondForwardSlashIndex);
+    $('.nav > li > a[href="'+mainpathname+'"]').parent().addClass('active');
+  }
+
+  // Top level nav bar item
+  $('.nav > li > a[href="'+pathname+'"]').parent().addClass('active');
+
+  // Nav bar drop down item - must be linked to with the "/" prefix (e.g. /elements-code-tutorial/) in the menu html above
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().parent().parent().addClass('active');
+
+  // Nav bar drop down sub item
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().addClass('active');
+})
+</script>
+
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <div class="post-content">
+    <h1 id="issued-assets---investigation">Issued Assets - Investigation</h1>
+
+<h2 id="principal-investigator-andrew-poelstra">Principal Investigator: Andrew Poelstra</h2>
+
+<p>The security of any blockchain ledger comes down to public verifiability of
+two properties of every transaction: that they are authorized by all required
+parties, and that they do not affect the total currency supply. In Bitcoin,
+the latter property is so simple to check that it often goes unremarked: add
+up the total output amount and total input amount and compare them. With the
+development of <a href="https://elementsproject.org/features/confidential-transactions/">Confidential Transactions (CT)</a>,
+however, this security property is front and center, as it must be preserved
+despite all amounts being cryptographically blinded.</p>
+
+<p>Several blockchain technologies have gone beyond Bitcoin to support multiple
+asset types on the same chain. This allows a wider set of users to share the
+security properties of the same chain, and also enables new use cases, such
+as multi-asset transactions which effect atomic exchanges. Enabling this is
+as simple as labelling each transaction output with a publicly visible “asset
+tag”; however, this would expose information about users’ financial behavior,
+undermining the privacy benefits of CT. <strong>Confidential Assets (CA)</strong> is a
+technology to support for multiple asset types while blinding all asset tags,
+preserving the privacy of CT while extending the power and expressibility of
+blockchain transactions.</p>
+
+<p>As in CT, Confidential Assets allows anybody to cryptographically verify that
+a transaction is secure: the transaction is authorized by all required parties
+and no asset is created, destroyed or transmuted. However, only the
+participants in the transaction are able to see which asset types were used
+and in what amounts.</p>
+
+<p>In a multi-asset chain, it may make sense in some contexts for assets of a
+specific type to be created or destroyed. This is accomplished by means of
+<em>issuance transactions</em>, which create new asset tags and a specified amount
+of this asset. Later reissuance or deissuance may be done by proving ownership
+of <em>issuance tokens</em>, which are related (but distinct) assets. Issuance tokens
+may be created alongside a given asset type, or not, if the asset should not
+support reissuance.</p>
+
+<p>Issuance transactions are unique in that they are not required to balance to
+zero. However, if they issue a public amount, it is still verifiable that
+exactly this amount, no more and no less, was actually issued.</p>
+
+<h3 id="technology-behind-confidential-assets-asset-tags-and-rangeproofs">Technology Behind Confidential Assets: Asset Tags and Rangeproofs</h3>
+
+<p>To describe the technology behind CA, we start with the (Pedersen commitments
+that form the basis of Confidential Transactions:</p>
+<pre><code>commitment = xG + aH
+</code></pre>
+<p>where <code>G</code> is a standard generator of an elliptic curve and <code>H</code> is a second
+generator for which nobody knows the discrete log with respect to <code>G</code>. We call
+such a generator nothing-up-my-sleeve, or NUMS.</p>
+
+<p>In CT, this was described as committing to <code>a</code> coins with a blinding factor of
+<code>x</code>. We observe that if we refer to the generator <code>H</code> as a coin we can read the
+term <code>aH</code> algebraically as “<code>a</code> coins”. When <code>H</code> is our only generator this is
+merely a semantic trick. But suppose we add another NUMS generator <code>I</code>, and
+consider the two commitments</p>
+<pre><code>commitment_1 = xG + aH
+commitment_2 = xG + aI
+</code></pre>
+<p>Now we can think of <code>H</code> and <code>I</code> as representing two distinct assets, and we see
+that these two commitments, while committing to the same amount, are commitments
+to different assets.</p>
+
+<p>Consider now a complete transaction with two inputs of distinct asset types
+and two outputs, like so</p>
+
+<pre><code>in1 = xG + aH, H --\   /-- uG + cH, H = out1
+                   |---|
+in2 = yG + bI, I --/   \-- vG + dI, I = out2
+</code></pre>
+<p>In CT, where we had only one generator, we required the equation</p>
+<pre><code>out1 + out2 - in1 - in1 = 0
+</code></pre>
+<p>to hold, which it would if and only if the transaction balanced. As it turns
+out, this same equation works even with multiple assets:</p>
+<pre><code>0 = out1 + out2 - in1 - in1
+  = (uG + cH) + (vG + dI) - (xG + aH) - (yG + bI)
+  = (u + v - x - y)G + (c - a)H + (d - b)I
+</code></pre>
+<p>Since <code>H</code> and <code>I</code> are both NUMS points, the only way for this equation to hold
+is if each individual term is 0, and in particular, if <code>c = a</code> and <code>b = d</code>. In
+other words, this equation holds only if the total amount of asset <code>H</code> is the
+same on the input side as on the output side <strong>and</strong> the total amount of asset
+<code>I</code> is the same on the input and output side.</p>
+
+<p>This extends naturally to more than two asset tags; in fact, it is possible to
+support an unlimited number of distinct asset types, as long as each one can
+be assigned a unique NUMS generator.</p>
+
+<p>As in CT, this simple equation is insufficient because it is possible for amounts
+to overflow, effectively allowing negative-valued outputs. As in CT, this can be
+solved by attaching a rangeproof to each output, in exactly the same way. The only
+difference is that the verifier must use the appropriate asset tag in place of
+the fixed generator <code>H</code>.</p>
+
+<h3 id="technology-behind-confidential-assets-blinded-asset-tags-and-asset-surjection-proofs">Technology Behind Confidential Assets: Blinded Asset Tags and Asset Surjection Proofs</h3>
+
+<p>The above discussion assumed every transaction output had a NUMS generator, or
+asset tag, associated to it, and that outputs of the same asset type would use
+the same tag. This does not satisfy our privacy goals because it is visible
+what type of asset every output represents.</p>
+
+<p>This can be solved by replacing each asset tag with a <em>blinded asset tag</em> of
+the form</p>
+<pre><code>A = H + rG
+</code></pre>
+<p>Here <code>H</code> is an asset tag from above and <code>r</code> is a secret random value. Anybody
+who knows <code>r</code> can tell what asset this tag represents, but to anyone else it
+will appear to be a uniformly random elliptic curve point. We see that any
+commitment to a value with <code>A</code> is also a commitment to the same value with
+<code>H</code>, so our “outputs minus inputs equals zero” rule will continue to work
+when validating transactions:</p>
+<pre><code>commitment_A = xG + aA = xG + a(H + rG) = (x + ra)G + aH = commitment_H
+</code></pre>
+<p>The introduction of this blinding factor does not affect the user’s ability
+to produce a rangeproof, though it does make the algebra slightly more
+complicated when constructing the transaction to balance out to zero.</p>
+
+<p>However, since every blinded asset tag looks uniformly random, how can
+verifiers be sure that the underlying asset tags are legitimate? It turns
+out that the “sum to zero” rule is not sufficient to prevent abuse. For
+example, consider the “blinded asset tag”</p>
+<pre><code>A' = -H + rG
+</code></pre>
+<p>Any amount of the blinded asset <code>A'</code> will actually correspond to a <em>negative</em>
+amount of asset <code>H</code>, which an attacker could use to offset an illegal
+increase of the money supply.</p>
+
+<p>To solve this problem we introduce an <em>asset surjection proof</em>, which is a
+cryptographic proof that within a transaction, every output asset type is
+the same as some input asset type, while blinding which outputs correspond
+to which inputs.</p>
+
+<p>The way this works is simple. If <code>A</code> and <code>B</code> are blinded asset tags which
+commit to the same asset tag <code>H</code>, say, then</p>
+<pre><code>A - B = (H + aG) - (H + bG) = (a - b)G
+</code></pre>
+<p>will be a signature key with corresponding secret key <code>a - b</code>. So for a
+transaction output <code>out1</code>, we can use a ring signature (proof that one of
+several secret keys is known that keeps secret which one) with the keys
+<code>out1 - in1</code>, <code>out1 - in2</code>, and so on for every input in the transaction.
+If <code>out1</code> has the same asset tag as one of the inputs, the transaction
+signer will know the secret key corresponding to one of these differences,
+and be able to produce the ring signature.</p>
+
+<p>The asset surjection proof consists of this ring signature.</p>
+
+<h3 id="future-work">Future Work</h3>
+
+<p>Because algebraically, Confidential Assets is such a straightforward
+extension of Confidential Transactions, many of the tools developed for
+use with CT can be used with few modifications with CA, giving them the
+power to confidently and confidentially handle multi-asset transactions.
+Examples of such technologies are:</p>
+
+<ul>
+  <li><a href="http://diyhpl.us/~bryan/papers2/bitcoin/mimblewimble.txt">MimbleWimble</a></li>
+  <li><a href="https://download.wpsoftware.net/bitcoin/wizardry/mw-slides/2017-03-mit-bitcoin-expo/slides.pdf">Scriptless Scripts</a></li>
+</ul>
+
+<p>We are looking forward to the future, as many exciting developments
+continue to appear.</p>
+
+<h3 id="find-out-more-about-issued-assets">Find out more about Issued Assets</h3>
+
+<p>Try it yourself in the <a href="https://elementsproject.org/elements-code-tutorial/issuing-assets">Elements Code Tutorial</a>.</p>
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+    <img class="logo-footer" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" />
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list"><li class="footer-links"><a href="https://github.com/ElementsProject/elementsproject.github.io">elementsproject.org github</a></li><li class="footer-links"><a href="https://github.com/ElementsProject/elements">elements github</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Elements - an open source, sidechain-capable blockchain platform.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

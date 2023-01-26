@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>How it works | elementsproject.org</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="How it works" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<meta property="og:description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<link rel="canonical" href="https://elementsproject.org/how-it-works" />
+<meta property="og:url" content="https://elementsproject.org/how-it-works" />
+<meta property="og:site_name" content="elementsproject.org" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="How it works" />
+<meta name="google-site-verification" content="googlefba269d56ccb761c.html" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Elements - an open source, sidechain-capable blockchain platform.","headline":"How it works","url":"https://elementsproject.org/how-it-works"}</script>
+<!-- End Jekyll SEO tag -->
+<link href='/assets/open-sans.css' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/bootstrap-v3.3.7.min.css">
+  <script src="/assets/jquery-v3.3.1.min.js"></script>
+  <script src="/assets/bootstrap-v3.3.7.min.js"></script>
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://elementsproject.org/feed.xml" title="elementsproject.org" /></head>
+<body><header class="site-header" role="banner">
+
+<div class="wrapper">
+  <img class="logo-float-left" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" /><span><a class="site-title" rel="author" href="/">elementsproject.org</a></span>
+</div>
+
+<nav class="navbar navbar-default navbar-elements-narrow">
+  <div class="container-fluid">
+
+    <!-- Enable mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsing-nav-bar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Nav links for toggling -->
+    <div class="collapse navbar-collapse" id="collapsing-nav-bar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/how-it-works">How it works</a></li>
+        <li><a href="/features">Features</a></li>
+        <li><a href="/community">Community</a></li>
+        <li><a href="/en/doc">RPC Docs</a></li>
+        <li><a href="https://github.com/ElementsProject/elements/releases">Download</a></li>
+
+        <li class="dropdown">
+          <a data-toggle="dropdown" role="button">Code Tutorial<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/elements-code-tutorial/overview">Tutorial Overview</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/installing-bitcoin">Installing Bitcoin</a></li>
+            <li><a href="/elements-code-tutorial/installing-elements">Installing Elements</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/working-environment">Setting up your working environment</a></li>
+            <li><a href="/elements-code-tutorial/basic-operations">Using Elements to perform basic operations</a></li>
+            <li><a href="/elements-code-tutorial/confidential-transactions">Using Confidential Transactions</a></li>
+            <li><a href="/elements-code-tutorial/issuing-assets">Issuing your own assets</a></li>
+            <li><a href="/elements-code-tutorial/reissuing-assets">Reissuing assets</a></li>
+            <li><a href="/elements-code-tutorial/block-creation">Block creation in a Strong Federation</a></li>
+            <li><a href="/elements-code-tutorial/sidechain">Elements as a Sidechain</a></li>
+            <li><a href="/elements-code-tutorial/blockchain">Elements as a standalone Blockchain</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/application-development">Developing applications on Elements</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-python">Desktop application example in Python</a></li>
+            <li><a href="/elements-code-tutorial/web-application">Web application example in Python using Flask</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-dotnetcore">Desktop application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/web-application-dotnetcore">MVC Web application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/other-languages">Node.js, Go, Ruby, Java, Perl examples</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/easy-run-code">An easy way to run the main tutorial code</a></li>
+            <li><a href="/elements-code-tutorial/advanced-examples">Advanced examples</a></li>
+            <li><a href="/elements-code-tutorial/building-elements-from-source">Building Elements from source</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="https://github.com/ElementsProject/elements">Elements on Github</a></li>
+          </ul>
+        </li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<script>
+$(document).ready(function() {
+  // Assign the 'active' class for currently viewed page
+
+  var pathname = window.location.pathname;
+  // Remove trailng '/'
+  if (pathname.charAt(pathname.length - 1) == '/') {
+    pathname = pathname.substr(0, pathname.length - 1);
+  }
+
+  // Sub pages not in sub menu (e.g. features/confidential-transactions)
+  var secondForwardSlashIndex = pathname.indexOf("/", 1);
+  if (-1 != secondForwardSlashIndex)
+  {
+    mainpathname = pathname.substr(0, secondForwardSlashIndex);
+    $('.nav > li > a[href="'+mainpathname+'"]').parent().addClass('active');
+  }
+
+  // Top level nav bar item
+  $('.nav > li > a[href="'+pathname+'"]').parent().addClass('active');
+
+  // Nav bar drop down item - must be linked to with the "/" prefix (e.g. /elements-code-tutorial/) in the menu html above
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().parent().parent().addClass('active');
+
+  // Nav bar drop down sub item
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().addClass('active');
+})
+</script>
+
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <div class="post-content">
+    <h1 id="how-elements-works-and-the-roles-of-network-participants">How Elements works and the roles of network participants</h1>
+
+<h2 id="elements-provides-a-technical-solution-to-problems-blockchain-users-face-daily-transaction-latency-lack-of-privacy-and-risk-to-fungibility">Elements provides a technical solution to problems blockchain users face daily; transaction latency, lack of privacy, and risk to fungibility</h2>
+
+<p>Elements overcomes these problems through its use of Federated Block Signing and Confidential Transactions.</p>
+
+<p>Unlike the Bitcoin network, the process of block signing within Elements is not reliant on Dynamic Membership Multiparty Signatures (DMMS) and Proof of Work (PoW). Instead, Elements uses a <strong>Strong Federation</strong> of signatories, called <strong>Block Signers</strong>, who sign and create blocks in a reliable and timely manner. This removes the transaction latency of the PoW mining process, which is subject to large block time variance due to its random poisson distribution. The Federated Block Signing process achieves reliable block creation without introducing the need for third party trust.</p>
+
+<p>When Elements is being run as a sidechain, the Strong Federation will also contain members who enable the secure and controlled transfer of assets between a main chain and the Elements sidechain. Members who perform this role are called <strong>Watchmen</strong>. Next, we will look at the different roles played by members of the Strong Federation.</p>
+
+<hr />
+
+<h3 id="strong-federations">Strong Federations</h3>
+
+<p>Elements uses a consensus model proposed by Blockstream, called <a href="https://blockstream.com/strong-federations.pdf">Strong Federations</a>. A Strong Federation does not need Proof of Work and instead relies on the collective actions of a group of mutually-distrusting participants, called Functionaries.</p>
+
+<p>The roles a Functionary can fulfill within a Strong Federation are…</p>
+
+<ul>
+  <li>
+    <p><strong>Block Signers</strong> - required in either setup, Block Signers participate in creating blocks by adding their signature to count towards a threshold needed to validate proposed blocks, thereby defining the consensus history of transactions.</p>
+  </li>
+  <li>
+    <p><strong>Watchmen</strong> - in a sidechain setup, Watchmen participate in moving assets in and out of the sidechain by signing multi-signature transactions.</p>
+  </li>
+</ul>
+
+<p>These actions are split between two distinct roles in order to enhance security and limit the damage an attacker can cause. The Watchmen role is only required if Elements is running as a sidechain, the Block Signer role is required in either sidechain or standalone blockchain setups.</p>
+
+<p>When combined, the roles of these participants allows Elements to deliver both rapid block creation (faster and final transaction confirmation) and assured, transferable assets (pegged assets directly linkable to another blockchain).</p>
+
+<p>We’ll begin by seeing how Watchmen enforce something called a Federated Peg, which allows the 1-to-1 transfer of assets between an Elements sidechain and another blockchain, typically Bitcoin.</p>
+
+<hr />
+<p><a id="federatedpeg"></a></p>
+<h3 id="the-role-of-watchmen-in-a-strong-federation">The role of Watchmen in a Strong Federation</h3>
+
+<p>In order for a sidechain to operate in a trustworthy manner it must allow participants to verify that the supply of assets is controlled and verifiable. An Elements sidechain uses a <strong>2-Way Federated Peg</strong> to enable the two way transfer of assets in and out of an Elements blockchain. This satisfies the requirements of provable issuance and inter-chain transfers. The Federated 2-way Peg feature allows an asset to be interoperable with other blockchains and representative of another blockchain’s native asset. By pegging your blockchain to another, you can extend the capabilities of the main chain and overcome some of its inherent limitations.</p>
+
+<p>At a high level, transfers into the sidechain occur when someone sends main chain assets to an address controlled by a multi-signature Watchmen wallet. This effectively freezes the assets on the main chain. Watchmen then validate the transaction and releases the same amount of the associated asset within the sidechain. The released assets are sent to a sidechain wallet that can prove claim to the original main chain assets. This process effectively moves assets from the parent chain to the sidechain.</p>
+
+<p><strong>Diagram showing how Watchmen enable the transfer of assets into an Elements sidechain:</strong></p>
+
+<p><img src="https://elementsproject.org/images/peg-in.png" alt="watchmen" /></p>
+
+<p><br /></p>
+
+<p>In order to transfer assets back to the main chain, a user makes a special peg-out transaction on the sidechain. This transaction is checked by Watchmen who then sign a transaction spending from the multi-signature wallet they control on the main chain. A threshold number of participants in the federation must sign before the main chain transaction becomes valid. When the Watchmen send an asset back to the main chain they also destroy the corresponding amount on the sidechain, effectively transferring the assets between blockchains.</p>
+
+<p><strong>Diagram showing how Watchmen enable the transfer of assets out of an Elements sidechain:</strong></p>
+
+<p><img src="https://elementsproject.org/images/peg-out.png" alt="watchmen" /></p>
+
+<p><br /></p>
+
+<p>The Watchmen observe both the main blockchain and the Elements sidechain in order to validate asset transfers between them. A set of geographically and jurisdictionally distributed servers are preferred, creating a compromise-resistant network of Functionaries.</p>
+
+<p>This network retains a number of the beneficial properties of a fully decentralized security model without introducing the need for a trusted 3rd party or single point of failure.</p>
+
+<hr />
+<p><a id="signedblocks"></a></p>
+<h3 id="the-role-of-block-signers-in-a-strong-federation">The role of Block Signers in a Strong Federation</h3>
+
+<p>We have already mentioned how a federation of Watchmen control the transfer of assets between blockchains and we will now look at how Block Signers perform their role within the Strong Federation.</p>
+
+<p>A blockchain like Bitcoin’s is extended when anyone forming part of a dynamic group of block signers extends the chain by demonstrating proof of work expended. The dynamic nature of the set introduces the latency issues inherent to such systems.</p>
+
+<p>By using a fixed signer set a Federated model replaces the dynamic set with a known set, multi-signature scheme. Reducing the number of participants needed to extend the blockchain increases the speed and scalability of the system, while validation by all parties ensures integrity of the transaction history.</p>
+
+<p>Federated block signing consists of several phases:</p>
+
+<p><strong>Step 1</strong> - Block Signers propose candidate blocks in a round-robin fashion to all other participating Block Signers.</p>
+
+<p><strong>Step 2</strong> - Each Block Signer signals their intent by pre-committing to sign the given candidate block.</p>
+
+<p><strong>Step 3</strong> - If the given threshold for pre-commitment is met, each Block Signer signs the block.</p>
+
+<p><strong>Step 4</strong> - If the signature threshold (which may be different from that of step 3) is met, the block is accepted and sent to the network. The Strong Federation has reached consensus on the latest block of transactions.</p>
+
+<p><strong>Step 5</strong> - The next block is then proposed by the next Block Signer in the round-robin and the process repeats.</p>
+
+<p>Because a Strong Federation’s block generation is not probabilistic and is based on a fixed set of signers, it will never be subject to multi-block reorganizations. This allows for a significant reduction in the wait time associated with confirming transactions. It also removes the incentive to mine for profit (i.e. the block rewards) and replaces it with an incentive to productively participate in a network where all participants have the same shared goal; ensuring the network continues to function in a manner that is beneficial to all. It does this without introducing a single point of failure or higher trust requirements.</p>
+
+<hr />
+
+<h3 id="asset-issuance-asset-reissuance-and-destroying-assets">Asset Issuance, Asset Reissuance and destroying Assets</h3>
+
+<p>When run in either sidechain or standalone blockchain mode, Elements allows for the issuance of new asset types. The issuance of new asset types is open to all network nodes. Anyone can destroy an asset if they hold at least the amount they are destroying in their wallet.</p>
+
+<p>The re-issuance of additional amounts of existing assets are controlled by reissuance tokens. These tokens act as a verifiable right to increase the circulating amount of an asset and are exchangeable and verifiable amongst participants in the network. Reissuance tokens can only be created with the initial issuance of an asset.</p>
+
+<p>Elements allows for use-cases such as token issuance, digitizable collectables, reward points, and attested assets (for example gold coins) to be realized on a blockchain. With Elements, you can issue and transact as many different asset types as you like.</p>
+
+<p>Every asset type optionally benefits from features such as Confidential Transactions, which provides privacy over the amount and type of asset being transferred. This allows different assets to be given different privacy properties depending on the requirements of the asset use-case.</p>
+
+<h4 id="whether-your-elements-project-is-set-up-to-operate-as-a-standalone-blockchain-or-as-a-sidechain-strong-federations-technology-provides-compelling-features-while-retaining-the-properties-of-a-trust-minimized-system">Whether your Elements project is set up to operate as a standalone blockchain or as a sidechain, Strong Federations technology provides compelling features, while retaining the properties of a trust-minimized system.</h4>
+
+<hr />
+
+<p><a id="blockchain-or-sidechain"></a></p>
+<h1 id="the-correct-approach-to-deploying-a-solution-built-on-elements">The correct approach to deploying a solution built on Elements</h1>
+
+<h2 id="elements-can-operate-as-a-general-purpose-standalone-blockchain-or-as-a-pegged-sidechain">Elements can operate as a general purpose, standalone Blockchain or as a pegged Sidechain</h2>
+
+<p>A general purpose blockchain built on Elements acts as a standalone blockchain which has no dependency on another blockchain for its asset issuance.</p>
+
+<p>In the context of the Elements platform, a Sidechain is an extension to an existing blockchain. Assets are transferable between chains allowing the main chain to benefit from the enhanced features of the sidechain, such as rapid transfer finality and confidential transactions. While a sidechain is aware of the main chain and its transaction history, the main chain has no awareness of the sidechain, and none is required for its operation. This enables sidechains to innovate without restriction or the delays associated with main chain protocol improvement proposals. Indeed, rather than trying to alter it directly, extending the main protocol with a sidechain allows the main chain itself to remain secure and specialized, underpinning the smooth operation of the sidechain.</p>
+
+<p>An example of an Elements based sidechain in production use is Blockstream’s Liquid; a sidechain with different features, capabilities, and benefits than the main Bitcoin blockchain. By extending the functionality of Bitcoin and leveraging its underlying security, the Liquid network is able to provide new functionality that was previously not available to Bitcoin users. Liquid was designed to address the needs of exchanges, brokers and OTC trading desks. It enables the rapid, confidential and secure transfer of funds between participants and provides a solution to the inherent problem of delayed transaction finality on the Bitcoin network. Every Liquid bitcoin held within the sidechain is pegged to bitcoin on the main chain using a Federated 2-way Peg. This allows bitcoin to be deposited in the sidechain whilst retaining the ability to withdraw assets back to the main Bitcoin blockchain.</p>
+
+<p>Elements provides the tools needed to prototype and deploy your own blockchains and sidechains in a cost effective and timely manner.</p>
+
+<h3 id="when-to-use-a-blockchain">When to use a Blockchain</h3>
+
+<p>A blockchain is an inherently inefficient means of data storage when compared to centralized database solutions. This inefficiency is a price worth paying only if you genuinly require the properties that a blockchain offers. It is important to correctly evaluate the requirements of your proposed system before deciding on a blockchain based solution.</p>
+
+<h5 id="note-if-your-requirements-do-not-necessitate-it-implementing-a-blockchain-based-system-will-be-counterproductive">Note: If your requirements do not necessitate it, implementing a blockchain based system will be counterproductive.</h5>
+
+<p>When should you use a blockchain as a solution?</p>
+
+<ul>
+  <li>
+    <p>No central or single party should have sole authority to write data entries.</p>
+  </li>
+  <li>
+    <p>A group of participants need to be able to access and audit data and be sure that it is cryptographically protected against tampering.</p>
+  </li>
+  <li>
+    <p>Speed of transaction is not a key requirement. Note that Elements’ Federated Block Signing process is still much faster than Dynamic-Membership Multi-party Signature (DMMS) Proof of Work (PoW) as found in Bitcoin though.</p>
+  </li>
+  <li>
+    <p>Immutability (the inability to adjust confirmed transactions) is required.</p>
+  </li>
+  <li>
+    <p>Security and redundancy with no single point of failure is required.</p>
+  </li>
+  <li>
+    <p>Participants have the same incentives to participate.</p>
+  </li>
+</ul>
+
+<h5 id="deciding-if-a-blockchain-is-an-appropriate-way-to-deliver-your-project-is-a-very-important-process-as-blockchains-only-provide-solutions-to-very-specific-types-of-problem">Deciding if a blockchain is an appropriate way to deliver your project is a very important process as Blockchains only provide solutions to very specific types of problem.</h5>
+
+<h3 id="in-the-code-tutorial">In the Code Tutorial</h3>
+
+<p>Learn how to run Elements as a <a href="https://elementsproject.org/elements-code-tutorial/blockchain">standalone blockchain</a></p>
+
+<p>Learn how to run Elements as a <a href="https://elementsproject.org/elements-code-tutorial/sidechain">sidechain</a></p>
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+    <img class="logo-footer" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" />
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list"><li class="footer-links"><a href="https://github.com/ElementsProject/elementsproject.github.io">elementsproject.org github</a></li><li class="footer-links"><a href="https://github.com/ElementsProject/elements">elements github</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Elements - an open source, sidechain-capable blockchain platform.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

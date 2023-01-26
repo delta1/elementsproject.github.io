@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Working environment | elementsproject.org</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Working environment" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<meta property="og:description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<link rel="canonical" href="https://elementsproject.org/elements-code-tutorial/working-environment" />
+<meta property="og:url" content="https://elementsproject.org/elements-code-tutorial/working-environment" />
+<meta property="og:site_name" content="elementsproject.org" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Working environment" />
+<meta name="google-site-verification" content="googlefba269d56ccb761c.html" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Elements - an open source, sidechain-capable blockchain platform.","headline":"Working environment","url":"https://elementsproject.org/elements-code-tutorial/working-environment"}</script>
+<!-- End Jekyll SEO tag -->
+<link href='/assets/open-sans.css' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/bootstrap-v3.3.7.min.css">
+  <script src="/assets/jquery-v3.3.1.min.js"></script>
+  <script src="/assets/bootstrap-v3.3.7.min.js"></script>
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://elementsproject.org/feed.xml" title="elementsproject.org" /></head>
+<body><header class="site-header" role="banner">
+
+<div class="wrapper">
+  <img class="logo-float-left" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" /><span><a class="site-title" rel="author" href="/">elementsproject.org</a></span>
+</div>
+
+<nav class="navbar navbar-default navbar-elements-narrow">
+  <div class="container-fluid">
+
+    <!-- Enable mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsing-nav-bar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Nav links for toggling -->
+    <div class="collapse navbar-collapse" id="collapsing-nav-bar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/how-it-works">How it works</a></li>
+        <li><a href="/features">Features</a></li>
+        <li><a href="/community">Community</a></li>
+        <li><a href="/en/doc">RPC Docs</a></li>
+        <li><a href="https://github.com/ElementsProject/elements/releases">Download</a></li>
+
+        <li class="dropdown">
+          <a data-toggle="dropdown" role="button">Code Tutorial<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/elements-code-tutorial/overview">Tutorial Overview</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/installing-bitcoin">Installing Bitcoin</a></li>
+            <li><a href="/elements-code-tutorial/installing-elements">Installing Elements</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/working-environment">Setting up your working environment</a></li>
+            <li><a href="/elements-code-tutorial/basic-operations">Using Elements to perform basic operations</a></li>
+            <li><a href="/elements-code-tutorial/confidential-transactions">Using Confidential Transactions</a></li>
+            <li><a href="/elements-code-tutorial/issuing-assets">Issuing your own assets</a></li>
+            <li><a href="/elements-code-tutorial/reissuing-assets">Reissuing assets</a></li>
+            <li><a href="/elements-code-tutorial/block-creation">Block creation in a Strong Federation</a></li>
+            <li><a href="/elements-code-tutorial/sidechain">Elements as a Sidechain</a></li>
+            <li><a href="/elements-code-tutorial/blockchain">Elements as a standalone Blockchain</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/application-development">Developing applications on Elements</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-python">Desktop application example in Python</a></li>
+            <li><a href="/elements-code-tutorial/web-application">Web application example in Python using Flask</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-dotnetcore">Desktop application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/web-application-dotnetcore">MVC Web application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/other-languages">Node.js, Go, Ruby, Java, Perl examples</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/easy-run-code">An easy way to run the main tutorial code</a></li>
+            <li><a href="/elements-code-tutorial/advanced-examples">Advanced examples</a></li>
+            <li><a href="/elements-code-tutorial/building-elements-from-source">Building Elements from source</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="https://github.com/ElementsProject/elements">Elements on Github</a></li>
+          </ul>
+        </li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<script>
+$(document).ready(function() {
+  // Assign the 'active' class for currently viewed page
+
+  var pathname = window.location.pathname;
+  // Remove trailng '/'
+  if (pathname.charAt(pathname.length - 1) == '/') {
+    pathname = pathname.substr(0, pathname.length - 1);
+  }
+
+  // Sub pages not in sub menu (e.g. features/confidential-transactions)
+  var secondForwardSlashIndex = pathname.indexOf("/", 1);
+  if (-1 != secondForwardSlashIndex)
+  {
+    mainpathname = pathname.substr(0, secondForwardSlashIndex);
+    $('.nav > li > a[href="'+mainpathname+'"]').parent().addClass('active');
+  }
+
+  // Top level nav bar item
+  $('.nav > li > a[href="'+pathname+'"]').parent().addClass('active');
+
+  // Nav bar drop down item - must be linked to with the "/" prefix (e.g. /elements-code-tutorial/) in the menu html above
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().parent().parent().addClass('active');
+
+  // Nav bar drop down sub item
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().addClass('active');
+})
+</script>
+
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <div class="post-content">
+    <h1 id="elements-code-tutorial">Elements code tutorial</h1>
+
+<h2 id="setting-up-your-working-environment">Setting up your working environment</h2>
+
+<p>First we need to set up our working directories. Start by moving to the home directory:</p>
+
+<pre><code>cd
+</code></pre>
+
+<p>We’ll create some test directories to hold the data used by our Bitcoin node and also two instances of an Elements node. First we’ll try and remove any files and directories that might be left over from running through this tutorial previously. Don’t worry if the first 3 lines throw errors, it just means the directories are not there and can’t be removed.</p>
+
+<pre><code>rm -r ~/bitcoindir
+rm -r ~/elementsdir1
+rm -r ~/elementsdir2
+mkdir ~/bitcoindir
+mkdir ~/elementsdir1
+mkdir ~/elementsdir2
+</code></pre>
+
+<p>We need to set up our config files now. We’ll do that by writing some settings to the working directories we just created.</p>
+
+<p>The Bitcoin config file:</p>
+<pre><code>echo "regtest=1
+txindex=1
+daemon=1
+rpcuser=user3
+rpcpassword=password3
+fallbackfee=0.0002
+[regtest]
+rpcport=18888
+port=18889
+
+" &gt; ~/bitcoindir/bitcoin.conf
+</code></pre>
+
+<p>Elements 1 config file:</p>
+<pre><code>echo "chain=elementsregtest
+rpcuser=user1
+rpcpassword=password1
+daemon=1
+server=1
+listen=1
+txindex=1
+validatepegin=1
+mainchainrpcport=18888
+mainchainrpcuser=user3
+mainchainrpcpassword=password3
+initialfreecoins=2100000000000000
+fallbackfee=0.0002
+[elementsregtest]
+rpcport=18884
+port=18886
+anyonecanspendaremine=1
+connect=localhost:18887
+
+" &gt; ~/elementsdir1/elements.conf
+</code></pre>
+
+<p>Elements 2 config file:</p>
+<pre><code>echo "chain=elementsregtest
+rpcuser=user2
+rpcpassword=password2
+daemon=1
+server=1
+listen=1
+txindex=1
+mainchainrpcport=18888
+mainchainrpcuser=user3
+mainchainrpcpassword=password3
+initialfreecoins=2100000000000000
+fallbackfee=0.0002
+[elementsregtest]
+rpcport=18885
+port=18887
+anyonecanspendaremine=1
+connect=localhost:18886
+
+" &gt; ~/elementsdir2/elements.conf
+</code></pre>
+
+<p>If you take a quick look in each of the 3 config files you will see that they contain a flag to tell the nodes to operate in “regtest” mode. They also contain RPC information such as port, username and password. The Elements config files also contain details of the Bitcoin node’s RPC authentication data. They need access to this information in order to authenticate and make calls to the Bitcoin node later.</p>
+
+<p>By using a different port for each Element daemon we can run more than one node at a time on a single machine. This is useful for the purposes of our tutorial.</p>
+
+<p>Before we start running our nodes we’ll take the time to configure some terminal aliases. These will let us pass commands to each node’s client in a much simpler way.</p>
+
+<p>Before we do that it is worth noting how the set up of a daemon and client works for both Bitcoin and Elements.</p>
+
+<p><strong>The Bitcoin and Elements node software (bitcoind, elementsd) both run as daemons, executing code as background services that can be remotely accessed using the Bitcoin and Elements client software (bitcoin-cli, elements-cli). The clients simplify the process of sending commands to their associated daemon and receiving the returned output data.</strong></p>
+
+<h4 id="note-once-our-bitcoin-and-elements-daemons-have-been-started-we-will-only-interact-with-them-through-the-use-of-the-clients-which-will-use-the-same-config-file-as-their-associated-daemon-enabling-them-to-pass-authentication-checks-when-making-rpc-calls">Note: Once our Bitcoin and Elements daemons have been started we will only interact with them through the use of the clients, which will use the same config file as their associated daemon, enabling them to pass authentication checks when making RPC calls.</h4>
+
+<p>Now let’s create the terminal aliases for our Bitcoin and Elements daemons, clients and the Elements QT front end:</p>
+
+<pre><code>cd elements
+cd src
+shopt -s expand_aliases
+alias b-dae="bitcoind -datadir=$HOME/bitcoindir"
+alias b-cli="bitcoin-cli -datadir=$HOME/bitcoindir"
+alias e1-dae="elementsd -datadir=$HOME/elementsdir1"
+alias e1-cli="elements-cli -datadir=$HOME/elementsdir1"
+alias e2-dae="elementsd -datadir=$HOME/elementsdir2"
+alias e2-cli="elements-cli -datadir=$HOME/elementsdir2"
+alias e1-qt="elements-qt -datadir=$HOME/elementsdir1"
+alias e2-qt="elements-qt -datadir=$OME/elementsdir2"
+</code></pre>
+
+<p>You’ll need to ensure that the directories containing <code>bitcoind</code>, <code>bitcoin-cli</code>, <code>elements-cli</code>, <code>elementsd</code>, and <code>elements-qt</code> are in the PATH environment variable.</p>
+
+<p>We now have an easy way to start each daemon and the Elements QT front end and make simple calls to the clients. Instead of having to type “elements-cli -datadir=$HOME/elementsdir1” every time we want to make a call to the Elements client, we can just use the “e1-cli” alias for example.</p>
+
+<h4 id="note-if-you-want-to-skip-ahead-to-running-a-non-sidechain-elements-based-blockchain-you-can-move-to-the-elements-as-a-standalone-blockchain-section-now-you-can-return-to-the-using-elements-to-perform-basic-operations-section-after-that-but-you-may-have-to-amend-the-commands-used-occasionally">Note: If you want to skip ahead to running a non-sidechain Elements based blockchain you can move to the <a href="https://elementsproject.org/elements-code-tutorial/blockchain">Elements as a standalone Blockchain</a> section now. You can return to the <a href="https://elementsproject.org/elements-code-tutorial/basic-operations">Using Elements to perform basic operations</a> section after that, but you may have to amend the commands used occasionally.</h4>
+
+<p>If you want to run a few examples of your own after following this tutorial you can add the aliases above to your ‘bashrc’ file which means that they will be available to you in every new terminal window you open. To do this run “nano ~/.bashrc” and paste the 8 alias lines above into the file, save and exit. The next time you open a new terminal window the aliases will have already been set.</p>
+
+<h4 id="note-we-wont-be-using-the-elements-qt-front-end-in-this-tutorial-but-you-can-start-it-using-the-alias-we-created-above-eg-e1-qt-if-you-want-at-any-point-to-see-a-gui-for-your-wallet-note-that-you-cannot-run-the-daemon-and-qt-at-the-same-time-as-they-will-both-be-trying-to-access-the-same-data-directory">Note: We won’t be using the Elements QT front end in this tutorial but you can start it using the alias we created above (e.g. e1-qt) if you want at any point to see a GUI for your wallet. Note that you cannot run the daemon and QT at the same time as they will both be trying to access the same data directory.</h4>
+
+<p><strong>We don’t need to do this now</strong> but if at any point you need to exit the tutorial and start again you should run the following commands to shut down the Bitcoin and Elements daemons first before restarting:</p>
+
+<pre><code>b-cli stop
+e1-cli stop
+e2-cli stop
+</code></pre>
+
+<p>If we now try and execute a simple command using the Bitcoin RPC client it will error as we haven’t started the Bitcoin daemon yet:</p>
+
+<pre><code>b-cli getblockcount
+</code></pre>
+
+<p>That gives us an error, but we were expecting that. Let’s start the Bitcoin daemon:</p>
+
+<pre><code>b-dae
+</code></pre>
+
+<p>Give it a few seconds to start up, and then try again:</p>
+
+<pre><code>b-cli getblockcount
+</code></pre>
+
+<p>That should work! It doesn’t matter what the number returned is, and it may well be zero, as long as you get a response.</p>
+
+<p>Now let’s create a default wallet:</p>
+
+<pre><code>b-cli createwallet ""
+</code></pre>
+
+<h4 id="note-if-you-are-running-bitcoin-core-version-0210-or-newer-you-will-have-to-create-a-new-wallet-like-we-have-done-for-previous-releases-a-new-wallet-is-automatically-created-on-startup">Note: If you are running Bitcoin Core version 0.21.0 or newer, you will have to create a new wallet like we have done. For previous releases, a new wallet is automatically created on startup.</h4>
+
+<p>We can check the balance using:</p>
+
+<pre><code>b-cli getwalletinfo
+</code></pre>
+
+<p>So now we have the Bitcoin daemon running we need to start our Elements daemons. Remember that we are able to run two instances on the same machine because we are using different configuration files with different ports and RPC permissions set. Start the daemons:</p>
+
+<pre><code>e1-dae
+e2-dae
+</code></pre>
+
+<p>Give them a few seconds to start up and then create the default wallets for each node. We also call rescanblockchain so the nodes are aware the new wallets can access the initial free coins set within the config files.</p>
+
+<pre><code>e1-cli createwallet ""
+e2-cli createwallet ""
+e1-cli rescanblockchain
+e2-cli rescanblockchain
+</code></pre>
+
+<p>Then check the balances using:</p>
+
+<pre><code>e1-cli getwalletinfo
+e2-cli getwalletinfo
+</code></pre>
+
+<p>A quick query of the running processes should also list them as active:</p>
+
+<pre><code>ps -A | grep elementsd
+</code></pre>
+
+<p>The two instances should show in the list.</p>
+
+<p><a href="https://elementsproject.org/elements-code-tutorial/basic-operations">Next: Using Elements to perform basic operations</a></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+    <img class="logo-footer" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" />
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list"><li class="footer-links"><a href="https://github.com/ElementsProject/elementsproject.github.io">elementsproject.org github</a></li><li class="footer-links"><a href="https://github.com/ElementsProject/elements">elements github</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Elements - an open source, sidechain-capable blockchain platform.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Elements Tutorial | elementsproject.org</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Elements Tutorial" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<meta property="og:description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<link rel="canonical" href="https://elementsproject.org/elements-code-tutorial/overview" />
+<meta property="og:url" content="https://elementsproject.org/elements-code-tutorial/overview" />
+<meta property="og:site_name" content="elementsproject.org" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Elements Tutorial" />
+<meta name="google-site-verification" content="googlefba269d56ccb761c.html" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Elements - an open source, sidechain-capable blockchain platform.","headline":"Elements Tutorial","url":"https://elementsproject.org/elements-code-tutorial/overview"}</script>
+<!-- End Jekyll SEO tag -->
+<link href='/assets/open-sans.css' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/bootstrap-v3.3.7.min.css">
+  <script src="/assets/jquery-v3.3.1.min.js"></script>
+  <script src="/assets/bootstrap-v3.3.7.min.js"></script>
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://elementsproject.org/feed.xml" title="elementsproject.org" /></head>
+<body><header class="site-header" role="banner">
+
+<div class="wrapper">
+  <img class="logo-float-left" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" /><span><a class="site-title" rel="author" href="/">elementsproject.org</a></span>
+</div>
+
+<nav class="navbar navbar-default navbar-elements-narrow">
+  <div class="container-fluid">
+
+    <!-- Enable mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsing-nav-bar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Nav links for toggling -->
+    <div class="collapse navbar-collapse" id="collapsing-nav-bar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/how-it-works">How it works</a></li>
+        <li><a href="/features">Features</a></li>
+        <li><a href="/community">Community</a></li>
+        <li><a href="/en/doc">RPC Docs</a></li>
+        <li><a href="https://github.com/ElementsProject/elements/releases">Download</a></li>
+
+        <li class="dropdown">
+          <a data-toggle="dropdown" role="button">Code Tutorial<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/elements-code-tutorial/overview">Tutorial Overview</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/installing-bitcoin">Installing Bitcoin</a></li>
+            <li><a href="/elements-code-tutorial/installing-elements">Installing Elements</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/working-environment">Setting up your working environment</a></li>
+            <li><a href="/elements-code-tutorial/basic-operations">Using Elements to perform basic operations</a></li>
+            <li><a href="/elements-code-tutorial/confidential-transactions">Using Confidential Transactions</a></li>
+            <li><a href="/elements-code-tutorial/issuing-assets">Issuing your own assets</a></li>
+            <li><a href="/elements-code-tutorial/reissuing-assets">Reissuing assets</a></li>
+            <li><a href="/elements-code-tutorial/block-creation">Block creation in a Strong Federation</a></li>
+            <li><a href="/elements-code-tutorial/sidechain">Elements as a Sidechain</a></li>
+            <li><a href="/elements-code-tutorial/blockchain">Elements as a standalone Blockchain</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/application-development">Developing applications on Elements</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-python">Desktop application example in Python</a></li>
+            <li><a href="/elements-code-tutorial/web-application">Web application example in Python using Flask</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-dotnetcore">Desktop application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/web-application-dotnetcore">MVC Web application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/other-languages">Node.js, Go, Ruby, Java, Perl examples</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/easy-run-code">An easy way to run the main tutorial code</a></li>
+            <li><a href="/elements-code-tutorial/advanced-examples">Advanced examples</a></li>
+            <li><a href="/elements-code-tutorial/building-elements-from-source">Building Elements from source</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="https://github.com/ElementsProject/elements">Elements on Github</a></li>
+          </ul>
+        </li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<script>
+$(document).ready(function() {
+  // Assign the 'active' class for currently viewed page
+
+  var pathname = window.location.pathname;
+  // Remove trailng '/'
+  if (pathname.charAt(pathname.length - 1) == '/') {
+    pathname = pathname.substr(0, pathname.length - 1);
+  }
+
+  // Sub pages not in sub menu (e.g. features/confidential-transactions)
+  var secondForwardSlashIndex = pathname.indexOf("/", 1);
+  if (-1 != secondForwardSlashIndex)
+  {
+    mainpathname = pathname.substr(0, secondForwardSlashIndex);
+    $('.nav > li > a[href="'+mainpathname+'"]').parent().addClass('active');
+  }
+
+  // Top level nav bar item
+  $('.nav > li > a[href="'+pathname+'"]').parent().addClass('active');
+
+  // Nav bar drop down item - must be linked to with the "/" prefix (e.g. /elements-code-tutorial/) in the menu html above
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().parent().parent().addClass('active');
+
+  // Nav bar drop down sub item
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().addClass('active');
+})
+</script>
+
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <div class="post-content">
+    <h1 id="a-simple-guide-to-setting-up-an-elements-blockchain-or-sidechain-solution">A simple guide to setting up an Elements Blockchain or Sidechain solution</h1>
+
+<h2 id="this-guide-will-take-you-step-by-step-through-the-process-of-installing-and-using-elements">This guide will take you step-by-step through the process of installing and using Elements</h2>
+
+<h3 id="the-code-examples-will-show-you-how-to">The code examples will show you how to</h3>
+
+<ul>
+  <li>
+    <p>Configure two nodes that can send transactions between one another.</p>
+  </li>
+  <li>
+    <p>Use some basic wallet functionality to send assets between nodes, query balances, view transactions etc.</p>
+  </li>
+  <li>
+    <p>Understand how Confidential Transactions work and how to view amounts and asset types sent between two participants by unblinding them.</p>
+  </li>
+  <li>
+    <p>Issue your own native blockchain assets.</p>
+  </li>
+  <li>
+    <p>Send the new assets between network participants.</p>
+  </li>
+  <li>
+    <p>Reissue more of the assets.</p>
+  </li>
+  <li>
+    <p>Destroy an amount of the assets.</p>
+  </li>
+  <li>
+    <p>Create blocks using the Strong Federation block signing process.</p>
+  </li>
+</ul>
+
+<h3 id="if-you-choose-to-run-elements-as-a-sidechain">If you choose to run Elements as a sidechain</h3>
+
+<ul>
+  <li>
+    <p>Send assets from a main chain (Bitcoin) to an Elements blockchain using the Federated 2-Way Peg feature.</p>
+  </li>
+  <li>
+    <p>Send assets from an Elements blockchain back to the Bitcoin main chain.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h4 id="note-once-you-have-followed-the-code-tutorial-through-you-can-run-all-the-code-within-it-again-without-having-to-typecopy-and-paste-it-in-line-by-line-by-following-the-instructions-in-the-an-easy-way-to-run-the-main-tutorial-code-section-that-contains-the-same-code-as-the-tutorial-grouped-into-one-code-block-that-can-be-executed-one-line-at-a-time-the-advanced-examples-section-shows-you-how-to-manually-issue-an-asset-using-the-rawissueasset-command-how-to-prove-that-you-were-the-one-who-issued-the-asset-using-the-contract-hash-parameter-and-how-to-issue-to-and-spend-from-a-multi-sig-address">Note: Once you have followed the code tutorial through, you can run all the code within it again without having to type/copy and paste it in line-by-line by following the instructions in the <a href="https://elementsproject.org/elements-code-tutorial/easy-run-code">An easy way to run the main tutorial code</a> section. That contains the same code as the tutorial, grouped into one code block, that can be executed one line at a time. The <a href="https://elementsproject.org/elements-code-tutorial/advanced-examples">Advanced Examples</a> section shows you how to manually issue an asset using the rawissueasset command, how to prove that you were the one who issued the asset using the contract hash parameter, and how to issue to and spend from a multi-sig address.</h4>
+
+<h3 id="the-tutorial-is-divided-up-into-logical-parts">The tutorial is divided up into logical parts</h3>
+
+<p><a href="https://elementsproject.org/elements-code-tutorial/installing-bitcoin">Installing Bitcoin</a></p>
+
+<p><a href="https://elementsproject.org/elements-code-tutorial/installing-elements">Installing Elements</a></p>
+
+<p><a href="https://elementsproject.org/elements-code-tutorial/working-environment">Setting up your working environment</a></p>
+
+<p><a href="https://elementsproject.org/elements-code-tutorial/basic-operations">Using Elements to perform basic operations</a></p>
+
+<p><a href="https://elementsproject.org/elements-code-tutorial/confidential-transactions">Using Confidential Transactions</a></p>
+
+<p><a href="https://elementsproject.org/elements-code-tutorial/issuing-assets">Issuing your own assets</a></p>
+
+<p><a href="https://elementsproject.org/elements-code-tutorial/reissuing-assets">Reissuing assets</a></p>
+
+<p><a href="https://elementsproject.org/elements-code-tutorial/block-creation">Block creation in a Strong Federation</a></p>
+
+<p><a href="https://elementsproject.org/elements-code-tutorial/sidechain">Elements as a Sidechain</a></p>
+
+<p><a href="https://elementsproject.org/elements-code-tutorial/blockchain">Elements as a standalone Blockchain</a></p>
+
+<p><a href="https://elementsproject.org/elements-code-tutorial/application-development">Developing applications on Elements</a></p>
+
+<p><a href="https://elementsproject.org/elements-code-tutorial/desktop-application-python">Desktop application example in Python</a></p>
+
+<p><a href="https://elementsproject.org/elements-code-tutorial/web-application">Web application example in Python using Flask</a></p>
+
+<p><a href="https://elementsproject.org/elements-code-tutorial/desktop-application-dotnetcore">Desktop application example in C# using .NET Core</a></p>
+
+<p><a href="https://elementsproject.org/elements-code-tutorial/web-application-dotnetcore">MVC Web application example in C# using .NET Core</a></p>
+
+<p><a href="https://elementsproject.org/elements-code-tutorial/easy-run-code">An easy way to run the main tutorial code</a></p>
+
+<hr />
+
+<h4 id="if-you-want-to-just-run-the-code-and-not-follow-the-tutorial-you-can-skip-to-the-an-easy-way-to-run-the-main-tutorial-code-section-although-this-code-is-not-annotated-and-steps-are-not-explained">If you want to just run the code and not follow the tutorial you can skip to the <a href="https://elementsproject.org/elements-code-tutorial/easy-run-code">An easy way to run the main tutorial code</a> section, although this code is not annotated and steps are not explained.</h4>
+
+<p>The instructions have been tested against newly installed Ubuntu 16.04, 17.10.1 and 18.04.1 machines using the “Minimal Installation” Ubuntu install option.</p>
+
+<p>Please note that the <code>terminal commands</code> used within the tutorial may wrap over more than one line and that each line should be run in its entirety.</p>
+
+<p>By following the guide through to completion you should have enough knowledge to build and deploy your own Elements based blockchain.</p>
+
+<p><a href="https://elementsproject.org/elements-code-tutorial/installing-bitcoin">Get started: Installing Bitcoin</a></p>
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+    <img class="logo-footer" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" />
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list"><li class="footer-links"><a href="https://github.com/ElementsProject/elementsproject.github.io">elementsproject.org github</a></li><li class="footer-links"><a href="https://github.com/ElementsProject/elements">elements github</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Elements - an open source, sidechain-capable blockchain platform.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

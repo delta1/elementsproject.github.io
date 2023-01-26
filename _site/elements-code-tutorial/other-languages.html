@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Elements - Other Languages | elementsproject.org</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Elements - Other Languages" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<meta property="og:description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<link rel="canonical" href="https://elementsproject.org/elements-code-tutorial/other-languages" />
+<meta property="og:url" content="https://elementsproject.org/elements-code-tutorial/other-languages" />
+<meta property="og:site_name" content="elementsproject.org" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Elements - Other Languages" />
+<meta name="google-site-verification" content="googlefba269d56ccb761c.html" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Elements - an open source, sidechain-capable blockchain platform.","headline":"Elements - Other Languages","url":"https://elementsproject.org/elements-code-tutorial/other-languages"}</script>
+<!-- End Jekyll SEO tag -->
+<link href='/assets/open-sans.css' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/bootstrap-v3.3.7.min.css">
+  <script src="/assets/jquery-v3.3.1.min.js"></script>
+  <script src="/assets/bootstrap-v3.3.7.min.js"></script>
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://elementsproject.org/feed.xml" title="elementsproject.org" /></head>
+<body><header class="site-header" role="banner">
+
+<div class="wrapper">
+  <img class="logo-float-left" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" /><span><a class="site-title" rel="author" href="/">elementsproject.org</a></span>
+</div>
+
+<nav class="navbar navbar-default navbar-elements-narrow">
+  <div class="container-fluid">
+
+    <!-- Enable mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsing-nav-bar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Nav links for toggling -->
+    <div class="collapse navbar-collapse" id="collapsing-nav-bar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/how-it-works">How it works</a></li>
+        <li><a href="/features">Features</a></li>
+        <li><a href="/community">Community</a></li>
+        <li><a href="/en/doc">RPC Docs</a></li>
+        <li><a href="https://github.com/ElementsProject/elements/releases">Download</a></li>
+
+        <li class="dropdown">
+          <a data-toggle="dropdown" role="button">Code Tutorial<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/elements-code-tutorial/overview">Tutorial Overview</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/installing-bitcoin">Installing Bitcoin</a></li>
+            <li><a href="/elements-code-tutorial/installing-elements">Installing Elements</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/working-environment">Setting up your working environment</a></li>
+            <li><a href="/elements-code-tutorial/basic-operations">Using Elements to perform basic operations</a></li>
+            <li><a href="/elements-code-tutorial/confidential-transactions">Using Confidential Transactions</a></li>
+            <li><a href="/elements-code-tutorial/issuing-assets">Issuing your own assets</a></li>
+            <li><a href="/elements-code-tutorial/reissuing-assets">Reissuing assets</a></li>
+            <li><a href="/elements-code-tutorial/block-creation">Block creation in a Strong Federation</a></li>
+            <li><a href="/elements-code-tutorial/sidechain">Elements as a Sidechain</a></li>
+            <li><a href="/elements-code-tutorial/blockchain">Elements as a standalone Blockchain</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/application-development">Developing applications on Elements</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-python">Desktop application example in Python</a></li>
+            <li><a href="/elements-code-tutorial/web-application">Web application example in Python using Flask</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-dotnetcore">Desktop application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/web-application-dotnetcore">MVC Web application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/other-languages">Node.js, Go, Ruby, Java, Perl examples</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/easy-run-code">An easy way to run the main tutorial code</a></li>
+            <li><a href="/elements-code-tutorial/advanced-examples">Advanced examples</a></li>
+            <li><a href="/elements-code-tutorial/building-elements-from-source">Building Elements from source</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="https://github.com/ElementsProject/elements">Elements on Github</a></li>
+          </ul>
+        </li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<script>
+$(document).ready(function() {
+  // Assign the 'active' class for currently viewed page
+
+  var pathname = window.location.pathname;
+  // Remove trailng '/'
+  if (pathname.charAt(pathname.length - 1) == '/') {
+    pathname = pathname.substr(0, pathname.length - 1);
+  }
+
+  // Sub pages not in sub menu (e.g. features/confidential-transactions)
+  var secondForwardSlashIndex = pathname.indexOf("/", 1);
+  if (-1 != secondForwardSlashIndex)
+  {
+    mainpathname = pathname.substr(0, secondForwardSlashIndex);
+    $('.nav > li > a[href="'+mainpathname+'"]').parent().addClass('active');
+  }
+
+  // Top level nav bar item
+  $('.nav > li > a[href="'+pathname+'"]').parent().addClass('active');
+
+  // Nav bar drop down item - must be linked to with the "/" prefix (e.g. /elements-code-tutorial/) in the menu html above
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().parent().parent().addClass('active');
+
+  // Nav bar drop down sub item
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().addClass('active');
+})
+</script>
+
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <div class="post-content">
+    <h1 id="elements-code-tutorial">Elements code tutorial</h1>
+
+<h2 id="other-language-examples">Other language examples</h2>
+
+<p>Our aim for each language example is to make simple calls to elementsd using RPC. The examples are very basic but provide a way to get to get a functioning setup which you can use as a building block for further development.</p>
+
+<p><a id="ruby"></a></p>
+<h3 id="ruby">Ruby</h3>
+
+<p>You can check if Ruby is installed on your operating system, and install it if not, by following the steps <a href="https://www.ruby-lang.org/en/documentation/installation/">here</a>.</p>
+
+<p>Create a new file named ‘elementsrpcruby.rb’ and paste the code below into it:</p>
+
+<pre><code>require 'net/http'
+require 'uri'
+require 'json'
+
+class ElementsRPC
+  def initialize(service_url)
+    @uri = URI.parse(service_url)
+  end
+
+  def method_missing(name, *args)
+    post_body = { 'method' =&gt; name, 'params' =&gt; args, 'id' =&gt; 'jsonrpc' }.to_json
+    resp = JSON.parse( http_post_request(post_body) )
+    raise JSONRPCError, resp['error'] if resp['error']
+    resp['result']
+  end
+
+  def http_post_request(post_body)
+    http    = Net::HTTP.new(@uri.host, @uri.port)
+    request = Net::HTTP::Post.new(@uri.request_uri)
+    request.basic_auth @uri.user, @uri.password
+    request.content_type = 'application/json'
+    request.body = post_body
+    http.request(request).body
+  end
+
+  class JSONRPCError &lt; RuntimeError; end
+end
+
+if $0 == __FILE__
+  elements = ElementsRPC.new('http://user1:password1@127.0.0.1:18884')
+ 
+  p elements.getblockcount
+end
+</code></pre>
+
+<p>Execute the code from the command line:</p>
+
+<pre><code>ruby elementsrpcruby.rb
+</code></pre>
+
+<p>The output will show the current block count.</p>
+
+<hr />
+
+<p><a id="java"></a></p>
+<h3 id="java">Java</h3>
+
+<p>The example code doesn’t require any external dependencies, but you do need the Java compiler (javac) as well as the Java runtime environment itself. These can be installed on Ubuntu using the command:</p>
+
+<pre><code>sudo apt install default-jdk
+</code></pre>
+
+<p>Create a new file named ‘elementsrpcjava.java’ and paste the code below into it:</p>
+
+<pre><code>import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.Authenticator;
+import java.net.PasswordAuthentication;
+
+public class elementsrpcjava {
+	
+	public static void main (String []args) throws IOException{
+		URL url = new URL ("http://127.0.0.1:18884");
+		String rpcuser ="user1";
+		String rpcpassword ="password1";
+		
+		Authenticator.setDefault(new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication (rpcuser, rpcpassword.toCharArray());
+            }
+        });
+  
+		HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+		conn.setRequestMethod("POST");
+		conn.setRequestProperty("Content-Type", "application/json; utf-8");
+		conn.setRequestProperty("Accept", "application/json");
+		conn.setDoOutput(true);
+				
+		String json = "{\"method\": \"getwalletinfo\", \"jsonrpc\": \"2.0\"}";
+		
+		try(OutputStream os = conn.getOutputStream()){
+			byte[] input = json.getBytes("utf-8");
+			os.write(input, 0, input.length);			
+		}
+		
+		try(BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"))){
+			StringBuilder sb = new StringBuilder();
+			String line = null;
+			
+			while ((line = br.readLine()) != null) {
+				sb.append(line.trim());
+			}
+			
+			System.out.println(sb.toString());
+		}
+	}
+}
+</code></pre>
+
+<p>Compile and run the code from the command line:</p>
+
+<pre><code>javac elementsrpcjava.java
+java elementsrpcjava
+</code></pre>
+
+<p>The output will show wallet information.</p>
+
+<hr />
+
+<p><a id="nodejs"></a></p>
+<h3 id="nodejs">Node.js</h3>
+
+<p>Create a project directory for the Node.js example and move into it:</p>
+
+<pre><code>mkdir elementsrpcnodejs
+cd elementsrpcnodejs
+</code></pre>
+
+<p>Generate package.json and install the request package:</p>
+
+<pre><code>npm init --yes
+npm install request --save
+</code></pre>
+
+<p>Create a new file named ‘elementsrpcnode.js’ and paste the code below into it:</p>
+
+<pre><code>const request = require('request');
+
+let username = "user1";
+let password = "password1";
+
+let options = {
+    url: "http://localhost:18884",
+    method: "post",
+    headers:
+    { 
+     "content-type": "text/plain"
+    },
+    auth: {
+        user: username,
+        pass: password
+    },
+    body: JSON.stringify( {"jsonrpc": "2.0", "id": "rpctest", "method": "getwalletinfo", "params": [] })
+};
+
+request(options, (error, response, body) =&gt; {
+    if (error) {
+        console.error('An error occurred: ', error);
+    } else {
+        json = JSON.parse(body);
+        console.log(json.result.balance.bitcoin);
+    }
+});
+
+</code></pre>
+
+<p>Run the code from the command line:</p>
+
+<pre><code>node elementsrpcnode.js
+</code></pre>
+
+<p>The output will show the bitcoin balance returned by getwalletinfo.</p>
+
+<hr />
+
+<p><a id="go"></a></p>
+<h3 id="go">Go</h3>
+
+<p>To install Go: <a href="https://golang.org">https://golang.org</a>. Note the importance of setting the PATH environment variable.</p>
+
+<p>Create a directory src/elements inside your Go workspace directory (probably %HOME/go) so that the full path is: $HOME/go/src/elements</p>
+
+<p>With that directory create a file named ‘elementsrpcgo.go’ and past the following into it:</p>
+
+<pre><code>package main
+
+import (
+    "log"
+    "bytes"
+    "net/http"
+    "io/ioutil"
+    "encoding/json"
+)
+
+func main() {
+    url := "http://user1:password1@localhost:18884"
+    
+    var jsonStr = []byte(`{"jsonrpc":"1.0","method":"getblockcount","params":[]}`)
+
+    request, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
+    
+    request.Header.Set("Content-Type", "application/json")
+
+    client := &amp;http.Client{}
+    
+    response, err := client.Do(request)
+    
+    if err != nil {
+        panic(err)
+    }
+    defer response.Body.Close()
+    
+    body, _ := ioutil.ReadAll(response.Body)
+    
+    log.Println(string(body))
+    
+    //Use as JSON...
+    var dat map[string]interface{}
+    
+    if err := json.Unmarshal(body, &amp;dat); err != nil {
+        panic(err)
+    }
+    
+    blocks := dat["result"].(float64)
+    log.Println(blocks)
+}
+</code></pre>
+
+<p>Compile and run the code:</p>
+
+<pre><code>go build
+./elements
+</code></pre>
+
+<p>The code prints out the current block count.</p>
+
+<hr />
+
+<p><a id="perl"></a></p>
+<h3 id="perl">Perl</h3>
+
+<p>Perl can be installed from <a href="https://www.perl.org">https://www.perl.org</a> and comes pre-installed on Ubuntu.</p>
+
+<p>We will be using the <a href="https://metacpan.org/pod/release/MAKAMAKA/JSON-RPC-0.95/lib/JSON/RPC/Client.pm">JSON::RPC::Client</a> Perl implementation of a JSON-RPC client which will make the rpc calls and results handling simpler.</p>
+
+<p>To install JSON::RPC::Client open the CPAN tool:</p>
+
+<pre><code>perl -MCPAN -e shell
+</code></pre>
+
+<p>And from within the cpan console, install the RPC Client:</p>
+
+<pre><code>install JSON::RPC::Client
+</code></pre>
+
+<p>And then exit the cpan tool:</p>
+
+<pre><code>quit
+</code></pre>
+
+<p>You must close the terminal window so that when we run the code below it will pick up the new environment variables written.</p>
+
+<p>Create a new file named ‘elementsrpcperl.pl’ and paste the code below into it:</p>
+
+<pre><code>use JSON::RPC::Client;
+use Data::Dumper;
+
+my $client = new JSON::RPC::Client;
+
+$client-&gt;ua-&gt;credentials(
+    'localhost:18884', 'jsonrpc', 'user1' =&gt; 'password1'
+    );
+
+my $uri = 'http://localhost:18884/';
+my $obj = {
+    method  =&gt; 'getwalletinfo',
+    params  =&gt; [],
+};
+
+my $res = $client-&gt;call( $uri, $obj );
+
+if ($res){
+    if ($res-&gt;is_error) { print "Error : ", $res-&gt;error_message; }
+    else { print Dumper($res-&gt;result); }
+} else {
+    print $client-&gt;status_line;
+}
+</code></pre>
+
+<p>Run the code from the command line (remember that this must be a new terminal window from the one we used before to install the RPC Client):</p>
+
+<pre><code>perl elementsrpcperl.pl
+</code></pre>
+
+<p>The output will show wallet information.</p>
+
+<p><a href="https://elementsproject.org/elements-code-tutorial/easy-run-code">Next: An easy way to run the main tutorial code</a></p>
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+    <img class="logo-footer" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" />
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list"><li class="footer-links"><a href="https://github.com/ElementsProject/elementsproject.github.io">elementsproject.org github</a></li><li class="footer-links"><a href="https://github.com/ElementsProject/elements">elements github</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Elements - an open source, sidechain-capable blockchain platform.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

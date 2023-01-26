@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Confidential Transactions - Addresses | elementsproject.org</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Confidential Transactions - Addresses" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<meta property="og:description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<link rel="canonical" href="https://elementsproject.org/features/confidential-transactions/addresses" />
+<meta property="og:url" content="https://elementsproject.org/features/confidential-transactions/addresses" />
+<meta property="og:site_name" content="elementsproject.org" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Confidential Transactions - Addresses" />
+<meta name="google-site-verification" content="googlefba269d56ccb761c.html" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Elements - an open source, sidechain-capable blockchain platform.","headline":"Confidential Transactions - Addresses","url":"https://elementsproject.org/features/confidential-transactions/addresses"}</script>
+<!-- End Jekyll SEO tag -->
+<link href='/assets/open-sans.css' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/bootstrap-v3.3.7.min.css">
+  <script src="/assets/jquery-v3.3.1.min.js"></script>
+  <script src="/assets/bootstrap-v3.3.7.min.js"></script>
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://elementsproject.org/feed.xml" title="elementsproject.org" /></head>
+<body><header class="site-header" role="banner">
+
+<div class="wrapper">
+  <img class="logo-float-left" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" /><span><a class="site-title" rel="author" href="/">elementsproject.org</a></span>
+</div>
+
+<nav class="navbar navbar-default navbar-elements-narrow">
+  <div class="container-fluid">
+
+    <!-- Enable mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsing-nav-bar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Nav links for toggling -->
+    <div class="collapse navbar-collapse" id="collapsing-nav-bar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/how-it-works">How it works</a></li>
+        <li><a href="/features">Features</a></li>
+        <li><a href="/community">Community</a></li>
+        <li><a href="/en/doc">RPC Docs</a></li>
+        <li><a href="https://github.com/ElementsProject/elements/releases">Download</a></li>
+
+        <li class="dropdown">
+          <a data-toggle="dropdown" role="button">Code Tutorial<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/elements-code-tutorial/overview">Tutorial Overview</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/installing-bitcoin">Installing Bitcoin</a></li>
+            <li><a href="/elements-code-tutorial/installing-elements">Installing Elements</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/working-environment">Setting up your working environment</a></li>
+            <li><a href="/elements-code-tutorial/basic-operations">Using Elements to perform basic operations</a></li>
+            <li><a href="/elements-code-tutorial/confidential-transactions">Using Confidential Transactions</a></li>
+            <li><a href="/elements-code-tutorial/issuing-assets">Issuing your own assets</a></li>
+            <li><a href="/elements-code-tutorial/reissuing-assets">Reissuing assets</a></li>
+            <li><a href="/elements-code-tutorial/block-creation">Block creation in a Strong Federation</a></li>
+            <li><a href="/elements-code-tutorial/sidechain">Elements as a Sidechain</a></li>
+            <li><a href="/elements-code-tutorial/blockchain">Elements as a standalone Blockchain</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/application-development">Developing applications on Elements</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-python">Desktop application example in Python</a></li>
+            <li><a href="/elements-code-tutorial/web-application">Web application example in Python using Flask</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-dotnetcore">Desktop application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/web-application-dotnetcore">MVC Web application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/other-languages">Node.js, Go, Ruby, Java, Perl examples</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/easy-run-code">An easy way to run the main tutorial code</a></li>
+            <li><a href="/elements-code-tutorial/advanced-examples">Advanced examples</a></li>
+            <li><a href="/elements-code-tutorial/building-elements-from-source">Building Elements from source</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="https://github.com/ElementsProject/elements">Elements on Github</a></li>
+          </ul>
+        </li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<script>
+$(document).ready(function() {
+  // Assign the 'active' class for currently viewed page
+
+  var pathname = window.location.pathname;
+  // Remove trailng '/'
+  if (pathname.charAt(pathname.length - 1) == '/') {
+    pathname = pathname.substr(0, pathname.length - 1);
+  }
+
+  // Sub pages not in sub menu (e.g. features/confidential-transactions)
+  var secondForwardSlashIndex = pathname.indexOf("/", 1);
+  if (-1 != secondForwardSlashIndex)
+  {
+    mainpathname = pathname.substr(0, secondForwardSlashIndex);
+    $('.nav > li > a[href="'+mainpathname+'"]').parent().addClass('active');
+  }
+
+  // Top level nav bar item
+  $('.nav > li > a[href="'+pathname+'"]').parent().addClass('active');
+
+  // Nav bar drop down item - must be linked to with the "/" prefix (e.g. /elements-code-tutorial/) in the menu html above
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().parent().parent().addClass('active');
+
+  // Nav bar drop down sub item
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().addClass('active');
+})
+</script>
+
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <div class="post-content">
+    <h1 id="confidential-transactions---confidential-addresses">Confidential Transactions - Confidential Addresses</h1>
+
+<h2 id="the-most-visible-property-of-confidential-transactions-is-the-introduction-of-a-new-default-address-type-the-confidential-address">The most visible property of Confidential Transactions is the introduction of a new default address type, the Confidential Address</h2>
+
+<p>An example of a Confidential Address is shown below:</p>
+
+<pre><code>CTEoaMTWgfUKoST1fkitVWuHHueqiL4EcUjrwJXuZW9RWKbSzYNq8ttd8KzJr3KBMzxh6HC83CgroNLR
+</code></pre>
+
+<p>The most obvious differences are that it starts with <code>CTE</code> and is longer than usual. This is due to the inclusion of a public blinding key prepended to the base address. In the Elements Wallet, the blinding key is derived by using the wallet’s master blinding key and unblinded P2PKH address. Therefore the receiver alone can decrypt the sent amount, and can hand it to auditors if needed. On the sender’s side, <code>sendtoaddress</code> will use this pubkey to transmit the necessary info to the receiver, encrypted, and inside the transaction itself. The sender’s wallet will also record the amount and hold this in the <code>wallet.dat</code> metadata as well as the <code>audit.log</code> file.</p>
+
+<p>You can use the validateaddress command to show details of a Confidential Address:</p>
+
+<pre><code>elements-cli validateaddress CTEoaMTWgfUKoST1fkitVWuHHueqiL4EcUjrwJXuZW9RWKbSzYNq8ttd8KzJr3KBMzxh6HC83CgroNLR
+</code></pre>
+
+<p>The output of which will look something like:</p>
+
+<div class="console-output">
+CTEoaMTWgfUKoST1fkitVWuHHueqiL4EcUjrwJXuZW9RWKbSzYNq8ttd8KzJr3KBMzxh6HC83CgroNLR
+{
+  "isvalid": true,
+  "address": "CTEoaMTWgfUKoST1fkitVWuHHueqiL4EcUjrwJXuZW9RWKbSzYNq8ttd8KzJr3KBMzxh6HC83CgroNLR",
+  "scriptPubKey": "76a914f5b3992c73d1bee5844d840bbb30fe00f989c1fc88ac",
+  "confidential_key": "028fafda60c741b4735c9b14fc768dbda05762f0355a09ceb8fcdd4da114c415bd",
+  "unconfidential": "2dwpu6ECUS2NHMwwAmqCGJ6uNESr6tUmAS9",
+  "ismine": true,
+  "iswatchonly": false,
+  "isscript": false,
+  "pubkey": "02e232e5ec38bb4081915eff2bd00d81b1ef2168d095a9111f245e3e586c2b08ba",
+  "iscompressed": true,
+  "account": "",
+  "timestamp": 1544461265,
+  "hdkeypath": "m/0'/0'/2'",
+  "hdmasterkeyid": "fff01863811e38af701d29f2a719cae80df7be23"
+}
+
+</div>
+
+<p>As you can see, the unconfidential (unblinded) P2PKH address starts with a <code>2</code>.</p>
+
+<p>Confidential P2SH addresses start with <code>Azp</code>, and unconfidential (unblinded) P2SH addresses start with <code>X</code>.</p>
+
+<p>We can check this by first creating a 2-of-2 multisignature address:</p>
+<pre><code>elements-cli createmultisig 2 '["0222c31615e457119c2cb33821c150585c8b6a571a511d3cd07d27e7571e02c76e", "039bac374a8cd040ed137d0ce837708864e70012ad5766030aee1eb2f067b43d7f"]'
+</code></pre>
+
+<p>Which gives us the unconfidential address:</p>
+
+<div class="console-output">
+{
+  "address": "XCSVzf6jD4p3GUg1XLxTYkzZvH1CHrjvDA",
+  "redeemScript": "52210222c31615e457119c2cb33821c150585c8b6a571a511d3cd07d27e7571e02c76e21039bac374a8cd040ed137d0ce837708864e70012ad5766030aee1eb2f067b43d7f52ae"
+}
+
+</div>
+
+<p>And then creating a confidential address by adding a blinding pubkey to it.
+(Note that each confidential address should use a unique blinding pubkey, for the same reason that address reuse is discouraged)</p>
+
+<pre><code>elements-cli createblindedaddress XCSVzf6jD4p3GUg1XLxTYkzZvH1CHrjvDA 02b0d67f275cc93ca2ac507375a1112982e8b50a627c3becb66a2ff27bc4fad0ac
+</code></pre>
+
+<p>We get a confidential P2SH address as a result:</p>
+
+<div class="console-output">
+Azpom1jJ3mGZzLwiB1bqkvAiRn1givCZ8WhWuY2BmUQMqqjq4uzbF9SNWy5icEq2yqsQCUd8u2epStKL
+
+</div>
+
+<p>If we convert these addresses from base58 encoding to hexadecimal,</p>
+
+<p><code>XCSVzf6jD4p3GUg1XLxTYkzZvH1CHrjvDA</code> –&gt; 4b<strong>0bf6d977a489e1ebb4b7963c8a28a08bd70b85ed</strong>
+<code>Azpom1jJ3mGZzLwiB1bqkvAiRn1givCZ8WhWuY2BmUQMqqjq4uzbF9SNWy5icEq2yqsQCUd8u2epStKL</code> –&gt; 04<strong>4b</strong>02b0d67f275cc93ca2ac507375a1112982e8b50a627c3becb66a2ff27bc4fad0ac<strong>0bf6d977a489e1ebb4b7963c8a28a08bd70b85ed</strong></p>
+
+<p>We can see that the confidential address is comprised of confidential address prefix <code>04</code>,
+followed by unblinded P2SH address prefix <code>4b</code>, then followed by the blinding pubkey, and then the
+rest of the bytes from the unblinded address.</p>
+
+<p>You <strong>must</strong> use the confidential address in <code>sendtoaddress</code>, <code>sendfrom</code>, <code>sendmany</code> and <code>createrawtransaction</code> if you want to create confidential transactions. Therefore, when you want to receive confidential transactions you must give the <em>confidential</em> address to the sender. For all other RPC’s except <code>dumpblindingkey</code> it does not matter whether the confidential or unconfidential address is provided.</p>
+
+<h3 id="find-out-more-about-confidential-transactions">Find out more about Confidential Transactions</h3>
+
+<p>Gregory Maxwell’s <a href="https://elementsproject.org/features/confidential-transactions/investigation">original investigation</a> into Confidential Transactions.</p>
+
+<p>Try it yourself in the <a href="https://elementsproject.org/elements-code-tutorial/confidential-transactions">Elements Code Tutorial</a>.</p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+    <img class="logo-footer" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" />
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list"><li class="footer-links"><a href="https://github.com/ElementsProject/elementsproject.github.io">elementsproject.org github</a></li><li class="footer-links"><a href="https://github.com/ElementsProject/elements">elements github</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Elements - an open source, sidechain-capable blockchain platform.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

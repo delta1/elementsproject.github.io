@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Installing Elements | elementsproject.org</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Installing Elements" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<meta property="og:description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<link rel="canonical" href="https://elementsproject.org/elements-code-tutorial/installing-elements" />
+<meta property="og:url" content="https://elementsproject.org/elements-code-tutorial/installing-elements" />
+<meta property="og:site_name" content="elementsproject.org" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Installing Elements" />
+<meta name="google-site-verification" content="googlefba269d56ccb761c.html" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Elements - an open source, sidechain-capable blockchain platform.","headline":"Installing Elements","url":"https://elementsproject.org/elements-code-tutorial/installing-elements"}</script>
+<!-- End Jekyll SEO tag -->
+<link href='/assets/open-sans.css' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/bootstrap-v3.3.7.min.css">
+  <script src="/assets/jquery-v3.3.1.min.js"></script>
+  <script src="/assets/bootstrap-v3.3.7.min.js"></script>
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://elementsproject.org/feed.xml" title="elementsproject.org" /></head>
+<body><header class="site-header" role="banner">
+
+<div class="wrapper">
+  <img class="logo-float-left" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" /><span><a class="site-title" rel="author" href="/">elementsproject.org</a></span>
+</div>
+
+<nav class="navbar navbar-default navbar-elements-narrow">
+  <div class="container-fluid">
+
+    <!-- Enable mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsing-nav-bar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Nav links for toggling -->
+    <div class="collapse navbar-collapse" id="collapsing-nav-bar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/how-it-works">How it works</a></li>
+        <li><a href="/features">Features</a></li>
+        <li><a href="/community">Community</a></li>
+        <li><a href="/en/doc">RPC Docs</a></li>
+        <li><a href="https://github.com/ElementsProject/elements/releases">Download</a></li>
+
+        <li class="dropdown">
+          <a data-toggle="dropdown" role="button">Code Tutorial<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/elements-code-tutorial/overview">Tutorial Overview</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/installing-bitcoin">Installing Bitcoin</a></li>
+            <li><a href="/elements-code-tutorial/installing-elements">Installing Elements</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/working-environment">Setting up your working environment</a></li>
+            <li><a href="/elements-code-tutorial/basic-operations">Using Elements to perform basic operations</a></li>
+            <li><a href="/elements-code-tutorial/confidential-transactions">Using Confidential Transactions</a></li>
+            <li><a href="/elements-code-tutorial/issuing-assets">Issuing your own assets</a></li>
+            <li><a href="/elements-code-tutorial/reissuing-assets">Reissuing assets</a></li>
+            <li><a href="/elements-code-tutorial/block-creation">Block creation in a Strong Federation</a></li>
+            <li><a href="/elements-code-tutorial/sidechain">Elements as a Sidechain</a></li>
+            <li><a href="/elements-code-tutorial/blockchain">Elements as a standalone Blockchain</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/application-development">Developing applications on Elements</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-python">Desktop application example in Python</a></li>
+            <li><a href="/elements-code-tutorial/web-application">Web application example in Python using Flask</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-dotnetcore">Desktop application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/web-application-dotnetcore">MVC Web application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/other-languages">Node.js, Go, Ruby, Java, Perl examples</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/easy-run-code">An easy way to run the main tutorial code</a></li>
+            <li><a href="/elements-code-tutorial/advanced-examples">Advanced examples</a></li>
+            <li><a href="/elements-code-tutorial/building-elements-from-source">Building Elements from source</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="https://github.com/ElementsProject/elements">Elements on Github</a></li>
+          </ul>
+        </li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<script>
+$(document).ready(function() {
+  // Assign the 'active' class for currently viewed page
+
+  var pathname = window.location.pathname;
+  // Remove trailng '/'
+  if (pathname.charAt(pathname.length - 1) == '/') {
+    pathname = pathname.substr(0, pathname.length - 1);
+  }
+
+  // Sub pages not in sub menu (e.g. features/confidential-transactions)
+  var secondForwardSlashIndex = pathname.indexOf("/", 1);
+  if (-1 != secondForwardSlashIndex)
+  {
+    mainpathname = pathname.substr(0, secondForwardSlashIndex);
+    $('.nav > li > a[href="'+mainpathname+'"]').parent().addClass('active');
+  }
+
+  // Top level nav bar item
+  $('.nav > li > a[href="'+pathname+'"]').parent().addClass('active');
+
+  // Nav bar drop down item - must be linked to with the "/" prefix (e.g. /elements-code-tutorial/) in the menu html above
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().parent().parent().addClass('active');
+
+  // Nav bar drop down sub item
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().addClass('active');
+})
+</script>
+
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <div class="post-content">
+    <h1 id="elements-code-tutorial">Elements code tutorial</h1>
+
+<h2 id="installing-elements">Installing Elements</h2>
+
+<p>To run this tutorial, you will need to have the elements executables installed locally.</p>
+
+<p>Elements can be installed from packages, or <a href="building-elements-from-source">built and run locally from the source code.</a></p>
+
+<p>Signed elements packages are published with each release on <a href="https://github.com/elementsproject/elements/releases">Github</a>.</p>
+
+<p>For this tutorial, you will need to download the latest <code>.tar.gz</code> or <code>.zip</code> file for your platform.
+You should also download the <code>SHA256SUMS.asc</code> file, in order to verify the integrity of the package.</p>
+
+<p>The file extensions for each platform are as follows:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Platform</th>
+      <th>Package Extension</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Linux 64-bit on Intel or AMD</td>
+      <td><code>-x86_64-linux-gnu.tar.gz</code></td>
+    </tr>
+    <tr>
+      <td>macOS (Intel and Apple Silion)</td>
+      <td><code>-osx-64.tar.gz</code></td>
+    </tr>
+    <tr>
+      <td>Windows 64-bit</td>
+      <td><code>-win64.zip</code></td>
+    </tr>
+    <tr>
+      <td>64-bit Raspberry Pi and 64 bit ARM Linux</td>
+      <td><code>-aarch64-linux-gnu.tar.gz</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Note that if you are following this tutorial on a Windows computer, you will need to have a version of bash for Windows.</p>
+
+<p>Once you have downloaded the package and the <code>SHA256SUMS.asc</code> file, verify the package hash. For example, on Linux:</p>
+
+<pre><code>$ sha256sum --ignore-missing --check SHA256SUMS.asc 
+elements-elements-0.21.0.2-x86_64-linux-gnu.tar.gz: OK
+sha256sum: WARNING: 19 lines are improperly formatted
+</code></pre>
+
+<p>You can verify the gpg signature of the hashes as follows:</p>
+
+<pre><code>$ gpg --keyserver keyserver.ubuntu.com --recv-keys DE10E82629A8CAD55B700B972F2A88D7F8D68E87
+gpg: key 2A57E0A610D7F19C: public key "Steven Roose &lt;steven@stevenroose.org&gt;" imported
+gpg: Total number processed: 1
+gpg:               imported: 1
+$ gpg --verify SHA256SUMS.asc 
+gpg: Signature made Thu 03 Mar 2022 06:02:41 AM PST
+gpg:                using RSA key DE10E82629A8CAD55B700B972F2A88D7F8D68E87
+gpg: Good signature from "Steven Roose &lt;steven@stevenroose.org&gt;" [unknown]
+gpg:                 aka "Steven Roose (Jabber) &lt;steven@konuro.net&gt;" [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: 8CC9 74D9 CFD0 34DC EED2  13B0 2A57 E0A6 10D7 F19C
+     Subkey fingerprint: DE10 E826 29A8 CAD5 5B70  0B97 2F2A 88D7 F8D6 8E87
+</code></pre>
+
+<p>Extract the archive, and copy the <code>elementsd</code>, <code>elements-cli</code>, and <code>elements-qt</code> executables to <code>/usr/local/bin</code>.</p>
+
+<p>Check that you can run the packages, using the <code>-version</code> option:</p>
+
+<pre><code>$ elementsd -version
+Elements Core version elements-0.21.0.2
+...
+
+$ elements-cli -version
+Elements Core RPC client version elements-0.21.0.2
+</code></pre>
+
+<p>You are now ready to proceed with the tutorial.</p>
+
+<p><a href="https://elementsproject.org/elements-code-tutorial/working-environment">Next: Setting up your working environment</a></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+    <img class="logo-footer" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" />
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list"><li class="footer-links"><a href="https://github.com/ElementsProject/elementsproject.github.io">elementsproject.org github</a></li><li class="footer-links"><a href="https://github.com/ElementsProject/elements">elements github</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Elements - an open source, sidechain-capable blockchain platform.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

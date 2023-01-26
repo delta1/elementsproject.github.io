@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Walletcreatefundedpsbt | elementsproject.org</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Walletcreatefundedpsbt" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="walletcreatefundedpsbt [{“txid”:”hex”,”vout”:n,”sequence”:n},…] [{“address”:amount},{“data”:”hex”},…] ( locktime options bip32derivs )" />
+<meta property="og:description" content="walletcreatefundedpsbt [{“txid”:”hex”,”vout”:n,”sequence”:n},…] [{“address”:amount},{“data”:”hex”},…] ( locktime options bip32derivs )" />
+<link rel="canonical" href="https://elementsproject.org/en/doc/0.18.1.11/rpc/wallet/walletcreatefundedpsbt/" />
+<meta property="og:url" content="https://elementsproject.org/en/doc/0.18.1.11/rpc/wallet/walletcreatefundedpsbt/" />
+<meta property="og:site_name" content="elementsproject.org" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-01-26T05:35:39-06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Walletcreatefundedpsbt" />
+<meta name="google-site-verification" content="googlefba269d56ccb761c.html" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-01-26T05:35:39-06:00","datePublished":"2023-01-26T05:35:39-06:00","description":"walletcreatefundedpsbt [{“txid”:”hex”,”vout”:n,”sequence”:n},…] [{“address”:amount},{“data”:”hex”},…] ( locktime options bip32derivs )","headline":"Walletcreatefundedpsbt","mainEntityOfPage":{"@type":"WebPage","@id":"https://elementsproject.org/en/doc/0.18.1.11/rpc/wallet/walletcreatefundedpsbt/"},"url":"https://elementsproject.org/en/doc/0.18.1.11/rpc/wallet/walletcreatefundedpsbt/"}</script>
+<!-- End Jekyll SEO tag -->
+<link href='/assets/open-sans.css' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/bootstrap-v3.3.7.min.css">
+  <script src="/assets/jquery-v3.3.1.min.js"></script>
+  <script src="/assets/bootstrap-v3.3.7.min.js"></script>
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://elementsproject.org/feed.xml" title="elementsproject.org" /></head>
+<body><header class="site-header" role="banner">
+
+<div class="wrapper">
+  <img class="logo-float-left" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" /><span><a class="site-title" rel="author" href="/">elementsproject.org</a></span>
+</div>
+
+<nav class="navbar navbar-default navbar-elements-narrow">
+  <div class="container-fluid">
+
+    <!-- Enable mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsing-nav-bar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Nav links for toggling -->
+    <div class="collapse navbar-collapse" id="collapsing-nav-bar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/how-it-works">How it works</a></li>
+        <li><a href="/features">Features</a></li>
+        <li><a href="/community">Community</a></li>
+        <li><a href="/en/doc">RPC Docs</a></li>
+        <li><a href="https://github.com/ElementsProject/elements/releases">Download</a></li>
+
+        <li class="dropdown">
+          <a data-toggle="dropdown" role="button">Code Tutorial<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/elements-code-tutorial/overview">Tutorial Overview</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/installing-bitcoin">Installing Bitcoin</a></li>
+            <li><a href="/elements-code-tutorial/installing-elements">Installing Elements</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/working-environment">Setting up your working environment</a></li>
+            <li><a href="/elements-code-tutorial/basic-operations">Using Elements to perform basic operations</a></li>
+            <li><a href="/elements-code-tutorial/confidential-transactions">Using Confidential Transactions</a></li>
+            <li><a href="/elements-code-tutorial/issuing-assets">Issuing your own assets</a></li>
+            <li><a href="/elements-code-tutorial/reissuing-assets">Reissuing assets</a></li>
+            <li><a href="/elements-code-tutorial/block-creation">Block creation in a Strong Federation</a></li>
+            <li><a href="/elements-code-tutorial/sidechain">Elements as a Sidechain</a></li>
+            <li><a href="/elements-code-tutorial/blockchain">Elements as a standalone Blockchain</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/application-development">Developing applications on Elements</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-python">Desktop application example in Python</a></li>
+            <li><a href="/elements-code-tutorial/web-application">Web application example in Python using Flask</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-dotnetcore">Desktop application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/web-application-dotnetcore">MVC Web application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/other-languages">Node.js, Go, Ruby, Java, Perl examples</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/easy-run-code">An easy way to run the main tutorial code</a></li>
+            <li><a href="/elements-code-tutorial/advanced-examples">Advanced examples</a></li>
+            <li><a href="/elements-code-tutorial/building-elements-from-source">Building Elements from source</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="https://github.com/ElementsProject/elements">Elements on Github</a></li>
+          </ul>
+        </li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<script>
+$(document).ready(function() {
+  // Assign the 'active' class for currently viewed page
+
+  var pathname = window.location.pathname;
+  // Remove trailng '/'
+  if (pathname.charAt(pathname.length - 1) == '/') {
+    pathname = pathname.substr(0, pathname.length - 1);
+  }
+
+  // Sub pages not in sub menu (e.g. features/confidential-transactions)
+  var secondForwardSlashIndex = pathname.indexOf("/", 1);
+  if (-1 != secondForwardSlashIndex)
+  {
+    mainpathname = pathname.substr(0, secondForwardSlashIndex);
+    $('.nav > li > a[href="'+mainpathname+'"]').parent().addClass('active');
+  }
+
+  // Top level nav bar item
+  $('.nav > li > a[href="'+pathname+'"]').parent().addClass('active');
+
+  // Nav bar drop down item - must be linked to with the "/" prefix (e.g. /elements-code-tutorial/) in the menu html above
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().parent().parent().addClass('active');
+
+  // Nav bar drop down sub item
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().addClass('active');
+})
+</script>
+
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        
+
+<article class="page">
+  <h1>walletcreatefundedpsbt (0.18.1.11 RPC)</h1>
+  <div class="article-wrap">
+
+    
+
+      <p></p>
+      <span class="doc">
+        <figure class="highlight"><pre><code class="language-text" data-lang="text">walletcreatefundedpsbt [{"txid":"hex","vout":n,"sequence":n},...] [{"address":amount},{"data":"hex"},...] ( locktime options bip32derivs )
+
+Creates and funds a transaction in the Partially Signed Transaction format. Inputs will be added if supplied inputs are not enough
+Implements the Creator and Updater roles.
+
+Arguments:
+1. inputs                             (json array, required) A json array of json objects
+     [
+       {                              (json object)
+         "txid": "hex",               (string, required) The transaction id
+         "vout": n,                   (numeric, required) The output number
+         "sequence": n,               (numeric, required) The sequence number
+       },
+       ...
+     ]
+2. outputs                            (json array, required) a json array with outputs (key-value pairs), where none of the keys are duplicated.
+                                      That is, each address can only appear once and there can only be one 'data' object.
+                                      For compatibility reasons, a dictionary, which holds the key-value pairs directly, is also
+                                      accepted as second parameter.
+     [
+       {                              (json object)
+         "address": amount,           (numeric or string, required) A key-value pair. The key (string) is the address, the value (float or string) is the amount in BTC
+       },
+       {                              (json object)
+         "data": "hex",               (string, required) A key-value pair. The key must be "data", the value is hex-encoded data
+       },
+       ...
+     ]
+3. locktime                           (numeric, optional, default=0) Raw locktime. Non-0 value also locktime-activates inputs
+4. options                            (json object, optional)
+     {
+       "changeAddress": "hex",        (string, optional, default=pool address) The address to receive the change
+       "changePosition": n,           (numeric, optional, default=random) The index of the change output
+       "change_type": "str",          (string, optional, default=set by -changetype) The output type to use. Only valid if changeAddress is not specified. Options are "legacy", "p2sh-segwit", and "bech32".
+       "includeWatching": bool,       (boolean, optional, default=false) Also select inputs which are watch only
+       "lockUnspents": bool,          (boolean, optional, default=false) Lock selected unspent outputs
+       "feeRate": amount,             (numeric or string, optional, default=not set: makes wallet determine the fee) Set a specific fee rate in BTC/kB
+       "subtractFeeFromOutputs": [    (json array, optional, default=empty array) A json array of integers.
+                                      The fee will be equally deducted from the amount of each specified output.
+                                      Those recipients will receive less bitcoins than you enter in their corresponding amount field.
+                                      If no outputs are specified here, the sender pays the fee.
+         vout_index,                  (numeric) The zero-based output index, before a change output is added.
+         ...
+       ],
+       "replaceable": bool,           (boolean, optional, default=wallet default) Marks this transaction as BIP125 replaceable.
+                                      Allows this transaction to be replaced by a transaction with higher fees
+       "conf_target": n,              (numeric, optional, default=Fallback to wallet's confirmation target) Confirmation target (in blocks)
+       "estimate_mode": "str",        (string, optional, default=UNSET) The fee estimate mode, must be one of:
+                                      "UNSET"
+                                      "ECONOMICAL"
+                                      "CONSERVATIVE"
+     }
+5. bip32derivs                        (boolean, optional, default=false) If true, includes the BIP 32 derivation paths for public keys if we know them
+
+Result:
+{
+  "psbt": "value",        (string)  The resulting raw transaction (base64-encoded string)
+  "fee":       n,         (numeric) Fee in BTC the resulting transaction pays
+  "changepos": n          (numeric) The position of the added change output, or -1
+}
+
+Examples:
+
+Create a transaction with no inputs
+&gt; elements-cli walletcreatefundedpsbt "[{\"txid\":\"myid\",\"vout\":0}]" "[{\"data\":\"00010203\"}]"</code></pre></figure>
+      </span>
+
+    
+  </div><!-- /.article-wrap -->
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+    <img class="logo-footer" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" />
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list"><li class="footer-links"><a href="https://github.com/ElementsProject/elementsproject.github.io">elementsproject.org github</a></li><li class="footer-links"><a href="https://github.com/ElementsProject/elements">elements github</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Elements - an open source, sidechain-capable blockchain platform.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Getblocktemplate | elementsproject.org</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Getblocktemplate" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="getblocktemplate “template_request”" />
+<meta property="og:description" content="getblocktemplate “template_request”" />
+<link rel="canonical" href="https://elementsproject.org/en/doc/0.18.1.8/rpc/mining/getblocktemplate/" />
+<meta property="og:url" content="https://elementsproject.org/en/doc/0.18.1.8/rpc/mining/getblocktemplate/" />
+<meta property="og:site_name" content="elementsproject.org" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-01-26T05:35:39-06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Getblocktemplate" />
+<meta name="google-site-verification" content="googlefba269d56ccb761c.html" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-01-26T05:35:39-06:00","datePublished":"2023-01-26T05:35:39-06:00","description":"getblocktemplate “template_request”","headline":"Getblocktemplate","mainEntityOfPage":{"@type":"WebPage","@id":"https://elementsproject.org/en/doc/0.18.1.8/rpc/mining/getblocktemplate/"},"url":"https://elementsproject.org/en/doc/0.18.1.8/rpc/mining/getblocktemplate/"}</script>
+<!-- End Jekyll SEO tag -->
+<link href='/assets/open-sans.css' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/bootstrap-v3.3.7.min.css">
+  <script src="/assets/jquery-v3.3.1.min.js"></script>
+  <script src="/assets/bootstrap-v3.3.7.min.js"></script>
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://elementsproject.org/feed.xml" title="elementsproject.org" /></head>
+<body><header class="site-header" role="banner">
+
+<div class="wrapper">
+  <img class="logo-float-left" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" /><span><a class="site-title" rel="author" href="/">elementsproject.org</a></span>
+</div>
+
+<nav class="navbar navbar-default navbar-elements-narrow">
+  <div class="container-fluid">
+
+    <!-- Enable mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsing-nav-bar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Nav links for toggling -->
+    <div class="collapse navbar-collapse" id="collapsing-nav-bar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/how-it-works">How it works</a></li>
+        <li><a href="/features">Features</a></li>
+        <li><a href="/community">Community</a></li>
+        <li><a href="/en/doc">RPC Docs</a></li>
+        <li><a href="https://github.com/ElementsProject/elements/releases">Download</a></li>
+
+        <li class="dropdown">
+          <a data-toggle="dropdown" role="button">Code Tutorial<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/elements-code-tutorial/overview">Tutorial Overview</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/installing-bitcoin">Installing Bitcoin</a></li>
+            <li><a href="/elements-code-tutorial/installing-elements">Installing Elements</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/working-environment">Setting up your working environment</a></li>
+            <li><a href="/elements-code-tutorial/basic-operations">Using Elements to perform basic operations</a></li>
+            <li><a href="/elements-code-tutorial/confidential-transactions">Using Confidential Transactions</a></li>
+            <li><a href="/elements-code-tutorial/issuing-assets">Issuing your own assets</a></li>
+            <li><a href="/elements-code-tutorial/reissuing-assets">Reissuing assets</a></li>
+            <li><a href="/elements-code-tutorial/block-creation">Block creation in a Strong Federation</a></li>
+            <li><a href="/elements-code-tutorial/sidechain">Elements as a Sidechain</a></li>
+            <li><a href="/elements-code-tutorial/blockchain">Elements as a standalone Blockchain</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/application-development">Developing applications on Elements</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-python">Desktop application example in Python</a></li>
+            <li><a href="/elements-code-tutorial/web-application">Web application example in Python using Flask</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-dotnetcore">Desktop application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/web-application-dotnetcore">MVC Web application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/other-languages">Node.js, Go, Ruby, Java, Perl examples</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/easy-run-code">An easy way to run the main tutorial code</a></li>
+            <li><a href="/elements-code-tutorial/advanced-examples">Advanced examples</a></li>
+            <li><a href="/elements-code-tutorial/building-elements-from-source">Building Elements from source</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="https://github.com/ElementsProject/elements">Elements on Github</a></li>
+          </ul>
+        </li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<script>
+$(document).ready(function() {
+  // Assign the 'active' class for currently viewed page
+
+  var pathname = window.location.pathname;
+  // Remove trailng '/'
+  if (pathname.charAt(pathname.length - 1) == '/') {
+    pathname = pathname.substr(0, pathname.length - 1);
+  }
+
+  // Sub pages not in sub menu (e.g. features/confidential-transactions)
+  var secondForwardSlashIndex = pathname.indexOf("/", 1);
+  if (-1 != secondForwardSlashIndex)
+  {
+    mainpathname = pathname.substr(0, secondForwardSlashIndex);
+    $('.nav > li > a[href="'+mainpathname+'"]').parent().addClass('active');
+  }
+
+  // Top level nav bar item
+  $('.nav > li > a[href="'+pathname+'"]').parent().addClass('active');
+
+  // Nav bar drop down item - must be linked to with the "/" prefix (e.g. /elements-code-tutorial/) in the menu html above
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().parent().parent().addClass('active');
+
+  // Nav bar drop down sub item
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().addClass('active');
+})
+</script>
+
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        
+
+<article class="page">
+  <h1>getblocktemplate (0.18.1.8 RPC)</h1>
+  <div class="article-wrap">
+
+    
+
+      <p></p>
+      <span class="doc">
+        <figure class="highlight"><pre><code class="language-text" data-lang="text">getblocktemplate "template_request"
+
+If the request parameters include a 'mode' key, that is used to explicitly select between the default 'template' request or a 'proposal'.
+It returns data needed to construct a block to work on.
+For full specification, see BIPs 22, 23, 9, and 145:
+    https://github.com/bitcoin/bips/blob/master/bip-0022.mediawiki
+    https://github.com/bitcoin/bips/blob/master/bip-0023.mediawiki
+    https://github.com/bitcoin/bips/blob/master/bip-0009.mediawiki#getblocktemplate_changes
+    https://github.com/bitcoin/bips/blob/master/bip-0145.mediawiki
+
+Arguments:
+1. template_request         (json object, required) A json object in the following spec
+     {
+       "mode": "str",       (string, optional) This must be set to "template", "proposal" (see BIP 23), or omitted
+       "capabilities": [    (json array, optional) A list of strings
+         "support",         (string) client side supported feature, 'longpoll', 'coinbasetxn', 'coinbasevalue', 'proposal', 'serverlist', 'workid'
+         ...
+       ],
+       "rules": [           (json array, required) A list of strings
+         "support",         (string) client side supported softfork deployment
+         ...
+       ],
+     }
+
+Result:
+{
+  "version" : n,                    (numeric) The preferred block version
+  "rules" : [ "rulename", ... ],    (array of strings) specific block rules that are to be enforced
+  "vbavailable" : {                 (json object) set of pending, supported versionbit (BIP 9) softfork deployments
+      "rulename" : bitnumber          (numeric) identifies the bit number as indicating acceptance and readiness for the named softfork rule
+      ,...
+  },
+  "vbrequired" : n,                 (numeric) bit mask of versionbits the server requires set in submissions
+  "previousblockhash" : "xxxx",     (string) The hash of current highest block
+  "transactions" : [                (array) contents of non-coinbase transactions that should be included in the next block
+      {
+         "data" : "xxxx",             (string) transaction data encoded in hexadecimal (byte-for-byte)
+         "txid" : "xxxx",             (string) transaction id encoded in little-endian hexadecimal
+         "hash" : "xxxx",             (string) hash encoded in little-endian hexadecimal (including witness data)
+         "depends" : [                (array) array of numbers 
+             n                          (numeric) transactions before this one (by 1-based index in 'transactions' list) that must be present in the final block if this one is
+             ,...
+         ],
+         "fee": n,                    (numeric) difference in value between transaction inputs and outputs (in satoshis); for coinbase transactions, this is a negative Number of the total collected block fees (ie, not including the block subsidy); if key is not present, fee is unknown and clients MUST NOT assume there isn't one
+         "sigops" : n,                (numeric) total SigOps cost, as counted for purposes of block limits; if key is not present, sigop cost is unknown and clients MUST NOT assume it is zero
+         "weight" : n,                (numeric) total transaction weight, as counted for purposes of block limits
+      }
+      ,...
+  ],
+  "coinbaseaux" : {                 (json object) data that should be included in the coinbase's scriptSig content
+      "flags" : "xx"                  (string) key name is to be ignored, and value included in scriptSig
+  },
+  "coinbasevalue" : n,              (numeric) maximum allowable input to coinbase transaction, including the generation award and transaction fees (in satoshis)
+  "coinbasetxn" : { ... },          (json object) information for coinbase transaction
+  "target" : "xxxx",                (string) The hash target
+  "mintime" : xxx,                  (numeric) The minimum timestamp appropriate for next block time in seconds since epoch (Jan 1 1970 GMT)
+  "mutable" : [                     (array of string) list of ways the block template may be changed 
+     "value"                          (string) A way the block template may be changed, e.g. 'time', 'transactions', 'prevblock'
+     ,...
+  ],
+  "noncerange" : "00000000ffffffff",(string) A range of valid nonces
+  "sigoplimit" : n,                 (numeric) limit of sigops in blocks
+  "sizelimit" : n,                  (numeric) limit of block size
+  "weightlimit" : n,                (numeric) limit of block weight
+  "curtime" : ttt,                  (numeric) current timestamp in seconds since epoch (Jan 1 1970 GMT)
+  "bits" : "xxxxxxxx",              (string) compressed target of next block
+  "height" : n                      (numeric) The height of the next block
+}
+
+Examples:
+&gt; elements-cli getblocktemplate {"rules": ["segwit"]}
+&gt; curl --user myusername --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getblocktemplate", "params": [{"rules": ["segwit"]}] }' -H 'content-type: text/plain;' http://127.0.0.1:7041/</code></pre></figure>
+      </span>
+
+    
+  </div><!-- /.article-wrap -->
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+    <img class="logo-footer" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" />
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list"><li class="footer-links"><a href="https://github.com/ElementsProject/elementsproject.github.io">elementsproject.org github</a></li><li class="footer-links"><a href="https://github.com/ElementsProject/elements">elements github</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Elements - an open source, sidechain-capable blockchain platform.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

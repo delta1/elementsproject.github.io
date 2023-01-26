@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Elements Sidechain | elementsproject.org</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Elements Sidechain" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<meta property="og:description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<link rel="canonical" href="https://elementsproject.org/elements-code-tutorial/sidechain" />
+<meta property="og:url" content="https://elementsproject.org/elements-code-tutorial/sidechain" />
+<meta property="og:site_name" content="elementsproject.org" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Elements Sidechain" />
+<meta name="google-site-verification" content="googlefba269d56ccb761c.html" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Elements - an open source, sidechain-capable blockchain platform.","headline":"Elements Sidechain","url":"https://elementsproject.org/elements-code-tutorial/sidechain"}</script>
+<!-- End Jekyll SEO tag -->
+<link href='/assets/open-sans.css' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/bootstrap-v3.3.7.min.css">
+  <script src="/assets/jquery-v3.3.1.min.js"></script>
+  <script src="/assets/bootstrap-v3.3.7.min.js"></script>
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://elementsproject.org/feed.xml" title="elementsproject.org" /></head>
+<body><header class="site-header" role="banner">
+
+<div class="wrapper">
+  <img class="logo-float-left" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" /><span><a class="site-title" rel="author" href="/">elementsproject.org</a></span>
+</div>
+
+<nav class="navbar navbar-default navbar-elements-narrow">
+  <div class="container-fluid">
+
+    <!-- Enable mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsing-nav-bar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Nav links for toggling -->
+    <div class="collapse navbar-collapse" id="collapsing-nav-bar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/how-it-works">How it works</a></li>
+        <li><a href="/features">Features</a></li>
+        <li><a href="/community">Community</a></li>
+        <li><a href="/en/doc">RPC Docs</a></li>
+        <li><a href="https://github.com/ElementsProject/elements/releases">Download</a></li>
+
+        <li class="dropdown">
+          <a data-toggle="dropdown" role="button">Code Tutorial<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/elements-code-tutorial/overview">Tutorial Overview</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/installing-bitcoin">Installing Bitcoin</a></li>
+            <li><a href="/elements-code-tutorial/installing-elements">Installing Elements</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/working-environment">Setting up your working environment</a></li>
+            <li><a href="/elements-code-tutorial/basic-operations">Using Elements to perform basic operations</a></li>
+            <li><a href="/elements-code-tutorial/confidential-transactions">Using Confidential Transactions</a></li>
+            <li><a href="/elements-code-tutorial/issuing-assets">Issuing your own assets</a></li>
+            <li><a href="/elements-code-tutorial/reissuing-assets">Reissuing assets</a></li>
+            <li><a href="/elements-code-tutorial/block-creation">Block creation in a Strong Federation</a></li>
+            <li><a href="/elements-code-tutorial/sidechain">Elements as a Sidechain</a></li>
+            <li><a href="/elements-code-tutorial/blockchain">Elements as a standalone Blockchain</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/application-development">Developing applications on Elements</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-python">Desktop application example in Python</a></li>
+            <li><a href="/elements-code-tutorial/web-application">Web application example in Python using Flask</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-dotnetcore">Desktop application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/web-application-dotnetcore">MVC Web application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/other-languages">Node.js, Go, Ruby, Java, Perl examples</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/easy-run-code">An easy way to run the main tutorial code</a></li>
+            <li><a href="/elements-code-tutorial/advanced-examples">Advanced examples</a></li>
+            <li><a href="/elements-code-tutorial/building-elements-from-source">Building Elements from source</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="https://github.com/ElementsProject/elements">Elements on Github</a></li>
+          </ul>
+        </li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<script>
+$(document).ready(function() {
+  // Assign the 'active' class for currently viewed page
+
+  var pathname = window.location.pathname;
+  // Remove trailng '/'
+  if (pathname.charAt(pathname.length - 1) == '/') {
+    pathname = pathname.substr(0, pathname.length - 1);
+  }
+
+  // Sub pages not in sub menu (e.g. features/confidential-transactions)
+  var secondForwardSlashIndex = pathname.indexOf("/", 1);
+  if (-1 != secondForwardSlashIndex)
+  {
+    mainpathname = pathname.substr(0, secondForwardSlashIndex);
+    $('.nav > li > a[href="'+mainpathname+'"]').parent().addClass('active');
+  }
+
+  // Top level nav bar item
+  $('.nav > li > a[href="'+pathname+'"]').parent().addClass('active');
+
+  // Nav bar drop down item - must be linked to with the "/" prefix (e.g. /elements-code-tutorial/) in the menu html above
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().parent().parent().addClass('active');
+
+  // Nav bar drop down sub item
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().addClass('active');
+})
+</script>
+
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <div class="post-content">
+    <h1 id="elements-code-tutorial">Elements code tutorial</h1>
+
+<h2 id="elements-as-a-sidechain---federated-two-way-peg">Elements as a Sidechain - Federated Two-Way Peg</h2>
+
+<p>Elements is a general purpose blockchain platform that can also be “pegged” to an existing blockchain (such as Bitcoin) in order to enable the two way transfer of assets from one chain to the other. Implementing Elements as a sidechain allows you to work around some of the inherent properties of the main chain, while retaining a good degree of the security provided by assets secured on the main chain.</p>
+
+<p>While a sidechain is aware of the main chain and its transaction history, the main chain has no awareness of the sidechain and none is required for its operation. This enables sidechains to innovate without restriction or the delays associated with main chain protocol improvement proposals. Rather than trying to alter it directly, extending the main protocol allows the main chain itself to remain secure and specialised, underpinning the smooth operation of the sidechain.</p>
+
+<p>An example of an Elements based sidechain in production use is Liquid.</p>
+
+<p>Liquid is an implementation of a federated sidechain, a blockchain with different features, capabilities, and benefits than the main Bitcoin blockchain.</p>
+
+<p>By extending the functionality of Bitcoin and leveraging its underlying security, the Liquid network is able to provide new functionality that was previously not available to Bitcoin users.</p>
+
+<p>Liquid was designed to address the needs of exchanges, brokers and traders and enables the rapid, confidential and secure transfer of funds between participants and providing a solution to the inherent problem of delayed transaction finality on the Bitcoin network.</p>
+
+<p>Every Liquid bitcoin held within the sidechain is pegged to bitcoin on the main chain using a Federated 2-Way Peg. This allows bitcoin to be deposited in the sidechain whilst retaining the ability to withdraw assets back to the main Bitcoin blockchain. Apart from peg-out, everything related to running Elements as a sidechain can be done using the Elements daemon and client. This is because peg-out requires the actions of ‘Watchmen’ to control the multisignature release of funds on the Bitcoin blockchain, the use of which is not covered in this tutorial.</p>
+
+<p>In this section we will look at how to send bitcoin from our bitcoin regtest chain into our Elements blockchain, which will be operating as a sidechain.</p>
+
+<p>First we need to wipe out the chain and wallet to get started with a new genesis block:</p>
+
+<pre><code>rm -r ~/elementsdir1/elementsregtest/blocks
+rm -r ~/elementsdir1/elementsregtest/chainstate
+rm ~/elementsdir1/elementsregtest/wallets/wallet.dat
+rm -r ~/elementsdir2/elementsregtest/blocks
+rm -r ~/elementsdir2/elementsregtest/chainstate
+rm ~/elementsdir2/elementsregtest/wallets/wallet.dat
+</code></pre>
+
+<p>We will not require “n of m” block signing in this section so that we can keep the code brief, instead we will return to using “OP_TRUE” block creation. If you implement your own federated sidechain you can of course use the “n of m” signing method outlined earlier in the tutorial.</p>
+
+<p>In order to enable peg-in and peg-out we need to pass a valid “fedpegscript” to our node as a startup parameter. Alternatively, this can be set within the config file of each node.</p>
+
+<pre><code>FEDPEGARG="-fedpegscript=5221$(echo $PUBKEY1)21$(echo $PUBKEY2)52ae"
+e1-dae $FEDPEGARG
+e2-dae $FEDPEGARG
+</code></pre>
+
+<h5 id="note-the-characters-outside-the-public-keys-are-delimiters-that-indicate-public-key-and-n-of-m-requirements-for-example-the-template-for-a-1-of-1-fedpegscript-would-be-5121pubkey51ae-when-testing-you-can-also-use-the-op_true-script--fedpegscript51-so-that-you-do-not-have-to-provide-any-pubkey-values-as-we-have-above">NOTE: The characters outside the public keys are delimiters that indicate public key and ‘n of m’ requirements. For example, the template for a 1-of-1 fedpegscript would be <code>5121&lt;pubkey&gt;51ae</code>. When testing, you can also use the OP_TRUE script <code>-fedpegscript=51</code> so that you do not have to provide any pubkey values as we have above.</h5>
+
+<p>Create the default wallet and rescan the blockchain:</p>
+
+<pre><code>e1-cli createwallet ""
+e2-cli createwallet ""
+e1-cli rescanblockchain
+e2-cli rescanblockchain
+</code></pre>
+
+<p>Create some generate receiving addresses (as we deleted the wallets associated with them above) and mature some outputs on each chain:</p>
+
+<pre><code>ADDRGEN1=$(e1-cli getnewaddress)
+ADDRGEN2=$(e2-cli getnewaddress)
+e1-cli generatetoaddress 101 $ADDRGEN1
+b-cli generatetoaddress 101 $ADDRGENB
+</code></pre>
+
+<p>If we generate a peg-in address from Alice’s daemon you’ll notice the returned data contains two properties:</p>
+
+<pre><code>e1-cli getpeginaddress
+</code></pre>
+
+<p>This returns something like:</p>
+
+<div class="console-output">"mainchain_address": "2N5T7PThhbY3umZEjyaERrwct8rdevFCK1n",
+"claim_script": "0014ba382e7ebe74d2ed16201aeb21ee83bf4448906b"
+</div>
+
+<p>If we execute the command again you’ll notice that the returned data changes:</p>
+
+<pre><code>e1-cli getpeginaddress
+</code></pre>
+
+<p>The reason is that  each time we generate a new peg-in address we are asking the daemon to create a new mainchain address, as well as a new script that will need satisfying in order to claim the peg-in.</p>
+
+<p>A user would send coins from their Bitcoin wallet to the “mainchain_address” value returned from the command as shown below. Like getnewaddress, getpeginaddress adds new secrets to wallet.dat, necessitating backup on a regular basis.</p>
+
+<p>With that established, let’s store the data returned in some variables for use later:</p>
+
+<pre><code>ADDRS=$(e1-cli getpeginaddress)
+MAINCHAIN=$(echo $ADDRS | jq -r '.mainchain_address')
+CLAIMSCRIPT=$(echo $ADDRS | jq -r '.claim_script')
+</code></pre>
+
+<p>We’ll be moving bitcoin to this address so we’ll check existing balances in our Bitcoin wallet first:</p>
+
+<pre><code>b-cli getwalletinfo
+</code></pre>
+
+<p>That shows a current balance of 50 bitcoin:</p>
+
+<div class="console-output">"balance": 50.00000000,
+</div>
+
+<p>Now we’ll send funds to our unique <a href="https://elementsproject.org/how-it-works">Watchmen</a> P2SH address:</p>
+
+<pre><code>TXID=$(b-cli sendtoaddress $MAINCHAIN 1)
+</code></pre>
+
+<p>And check that the bitcoin have indeed left our Bitcoin wallet:</p>
+
+<pre><code>b-cli getwalletinfo
+</code></pre>
+
+<p>Which now shows a balance of:</p>
+
+<div class="console-output">"balance": 48.99996240,
+</div>
+
+<p>Note that the reason the balance is not now 49 is because fees were also deducted from the wallet in order to send the transaction.</p>
+
+<p>In order to claim the peg-in amount in our sidechain we need to first mature the funding transaction. This rule ensures that the funds being created in our sidechain are not prone to a reorganisation on the main chain.</p>
+
+<h5 id="note-the-peginconfirmationdepth-parameter-can-be-used-to-override-the-default-confirmation-depth-which-is-10-blocks-8-plus-2-for-the-wallet-to-avoid-race-conditions-between-nodes-this-forms-part-of-the-networks-consensus-rules-and-so-it-must-be-set-on-chain-initialization-as-a-guide-liquid-is-a-production-implementation-of-elements-that-is-pegged-to-bitcoin-and-uses-102-100-plus-2-for-the-wallet">NOTE: The ‘peginconfirmationdepth’ parameter can be used to override the default confirmation depth, which is 10 blocks (8 plus 2 for the wallet to avoid race conditions between nodes). This forms part of the network’s consensus rules and so it must be set on chain initialization. As a guide, Liquid is a production implementation of Elements that is pegged to Bitcoin and uses 102 (100 plus 2 for the wallet).</h5>
+
+<pre><code>b-cli generatetoaddress 101 $ADDRGENB
+b-cli getwalletinfo
+</code></pre>
+
+<p>Get the merkel path as proof that the transaction was included in a block:</p>
+
+<pre><code>PROOF=$(b-cli gettxoutproof '''["'''$TXID'''"]''')
+RAW=$(b-cli getrawtransaction $TXID)
+</code></pre>
+
+<p>We will now attempt to claim the funds within our sidechain. The claim takes the form of a transaction and contains the proof returned above:</p>
+
+<h5 id="note-there-is-an-optional-third-argument-of-sidechainaddress-which-can-be-provided-to-claimpegin-this-is-not-needed-if-you-are-calling-the-command-from-the-same-wallet-that-owns-the-address">NOTE: There is an optional third argument of “sidechainaddress” which can be provided to “claimpegin”. This is not needed if you are calling the command from the same wallet that “owns” the address.</h5>
+
+<pre><code>CLAIMTXID=$(e1-cli claimpegin $RAW $PROOF $CLAIMSCRIPT)
+</code></pre>
+
+<p>Bob’s node (as well as Alice’s of course) should accept the claim transaction as valid and add it to its mempool. Create a block containing the transaction:</p>
+
+<pre><code>e2-cli generatetoaddress 1 $ADDRGEN2
+</code></pre>
+
+<p>We should be able to see the confirmation:</p>
+
+<pre><code>e1-cli getrawtransaction $CLAIMTXID 1
+</code></pre>
+
+<p>The output of which can be seen below. Note that the asset hex may differ from that below:</p>
+
+<div class="console-output">"value": 0.99992800,
+"asset": "b7c9431837115ba3b8a1753dc227311ab4480c14d97484234f984d361a00c966",
+</div>
+
+<p>Remember that fees will also have been deducted on the sidechain from the amount received above.</p>
+
+<p>As the wallet started with 21 million bitcoin it should have nearly 1 more now (1 minus sidechain fees). To check:</p>
+
+<pre><code>e1-cli getwalletinfo
+</code></pre>
+
+<p>Which returns the claimed amount in the “unconfirmed_balance” value (minus fee)::</p>
+
+<div class="console-output">"unconfirmed_balance": {
+    "bitcoin": 0.99992800
+  },
+</div>
+
+<p>Now that we have sent assets into our sidechain (peg-in) we will now peg-out and send assets representing bitcoin back from our sidechain to the main chain:</p>
+
+<pre><code>e1-cli sendtomainchain $(b-cli getnewaddress) 1
+e1-cli generatetoaddress 1 $ADDRGEN1
+e1-cli getwalletinfo
+</code></pre>
+
+<p>The results of which show:</p>
+
+<div class="console-output">“balance”: {
+    "bitcoin": 20999999.99987460
+},
+</div>
+
+<p>Which is the amount before peg-out plus the (now confirmed) “unconfirmed_balance” balance we saw above, minus the 1 we pegged out. Remember that sidechain fees have also been deducted so we return to just under the original 21 million. These fees actually show in the “immature_balance” for Alice’s wallet, as she mined the block and collected her own fees:</p>
+
+<div class="console-output">”immature_balance”: {
+    “bitcoin”: 0.00012540
+},
+</div>
+
+<p>Checking this manually:</p>
+
+<div class="console-output">20999999.99987460 + 0.00012540 = 21000000
+</div>
+
+<p>We’ll now shut down our daemons.</p>
+
+<pre><code>e1-cli stop
+e2-cli stop
+b-cli stop
+</code></pre>
+
+<p>Now that we have run through the code step-by-step you should have a good understanding of how Elements works.</p>
+
+<p>If you would like to run through the code again there is a much easier way to do this rather than typing out or copying/pasting the code from the tutorial pages each time. How to do this is detailed in the <a href="https://elementsproject.org/elements-code-tutorial/easy-run-code">An easy way to run the main tutorial code</a> section. This lets you run the code line by line or automatically execute it up until a point you are interested in looking at in more detail.</p>
+
+<p><a href="https://elementsproject.org/elements-code-tutorial/blockchain">Next: Elements as a standalone Blockchain</a></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+    <img class="logo-footer" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" />
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list"><li class="footer-links"><a href="https://github.com/ElementsProject/elementsproject.github.io">elementsproject.org github</a></li><li class="footer-links"><a href="https://github.com/ElementsProject/elements">elements github</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Elements - an open source, sidechain-capable blockchain platform.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

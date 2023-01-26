@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Elements advanced examples | elementsproject.org</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Elements advanced examples" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<meta property="og:description" content="Elements - an open source, sidechain-capable blockchain platform." />
+<link rel="canonical" href="https://elementsproject.org/elements-code-tutorial/advanced-examples" />
+<meta property="og:url" content="https://elementsproject.org/elements-code-tutorial/advanced-examples" />
+<meta property="og:site_name" content="elementsproject.org" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Elements advanced examples" />
+<meta name="google-site-verification" content="googlefba269d56ccb761c.html" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Elements - an open source, sidechain-capable blockchain platform.","headline":"Elements advanced examples","url":"https://elementsproject.org/elements-code-tutorial/advanced-examples"}</script>
+<!-- End Jekyll SEO tag -->
+<link href='/assets/open-sans.css' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/bootstrap-v3.3.7.min.css">
+  <script src="/assets/jquery-v3.3.1.min.js"></script>
+  <script src="/assets/bootstrap-v3.3.7.min.js"></script>
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://elementsproject.org/feed.xml" title="elementsproject.org" /></head>
+<body><header class="site-header" role="banner">
+
+<div class="wrapper">
+  <img class="logo-float-left" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" /><span><a class="site-title" rel="author" href="/">elementsproject.org</a></span>
+</div>
+
+<nav class="navbar navbar-default navbar-elements-narrow">
+  <div class="container-fluid">
+
+    <!-- Enable mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsing-nav-bar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Nav links for toggling -->
+    <div class="collapse navbar-collapse" id="collapsing-nav-bar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/how-it-works">How it works</a></li>
+        <li><a href="/features">Features</a></li>
+        <li><a href="/community">Community</a></li>
+        <li><a href="/en/doc">RPC Docs</a></li>
+        <li><a href="https://github.com/ElementsProject/elements/releases">Download</a></li>
+
+        <li class="dropdown">
+          <a data-toggle="dropdown" role="button">Code Tutorial<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/elements-code-tutorial/overview">Tutorial Overview</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/installing-bitcoin">Installing Bitcoin</a></li>
+            <li><a href="/elements-code-tutorial/installing-elements">Installing Elements</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/working-environment">Setting up your working environment</a></li>
+            <li><a href="/elements-code-tutorial/basic-operations">Using Elements to perform basic operations</a></li>
+            <li><a href="/elements-code-tutorial/confidential-transactions">Using Confidential Transactions</a></li>
+            <li><a href="/elements-code-tutorial/issuing-assets">Issuing your own assets</a></li>
+            <li><a href="/elements-code-tutorial/reissuing-assets">Reissuing assets</a></li>
+            <li><a href="/elements-code-tutorial/block-creation">Block creation in a Strong Federation</a></li>
+            <li><a href="/elements-code-tutorial/sidechain">Elements as a Sidechain</a></li>
+            <li><a href="/elements-code-tutorial/blockchain">Elements as a standalone Blockchain</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/application-development">Developing applications on Elements</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-python">Desktop application example in Python</a></li>
+            <li><a href="/elements-code-tutorial/web-application">Web application example in Python using Flask</a></li>
+            <li><a href="/elements-code-tutorial/desktop-application-dotnetcore">Desktop application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/web-application-dotnetcore">MVC Web application example in C# using .NET Core</a></li>
+            <li><a href="/elements-code-tutorial/other-languages">Node.js, Go, Ruby, Java, Perl examples</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/elements-code-tutorial/easy-run-code">An easy way to run the main tutorial code</a></li>
+            <li><a href="/elements-code-tutorial/advanced-examples">Advanced examples</a></li>
+            <li><a href="/elements-code-tutorial/building-elements-from-source">Building Elements from source</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="https://github.com/ElementsProject/elements">Elements on Github</a></li>
+          </ul>
+        </li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<script>
+$(document).ready(function() {
+  // Assign the 'active' class for currently viewed page
+
+  var pathname = window.location.pathname;
+  // Remove trailng '/'
+  if (pathname.charAt(pathname.length - 1) == '/') {
+    pathname = pathname.substr(0, pathname.length - 1);
+  }
+
+  // Sub pages not in sub menu (e.g. features/confidential-transactions)
+  var secondForwardSlashIndex = pathname.indexOf("/", 1);
+  if (-1 != secondForwardSlashIndex)
+  {
+    mainpathname = pathname.substr(0, secondForwardSlashIndex);
+    $('.nav > li > a[href="'+mainpathname+'"]').parent().addClass('active');
+  }
+
+  // Top level nav bar item
+  $('.nav > li > a[href="'+pathname+'"]').parent().addClass('active');
+
+  // Nav bar drop down item - must be linked to with the "/" prefix (e.g. /elements-code-tutorial/) in the menu html above
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().parent().parent().addClass('active');
+
+  // Nav bar drop down sub item
+  $('.nav > li > ul> li > a[href="'+pathname+'"]').parent().addClass('active');
+})
+</script>
+
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <div class="post-content">
+    <h1 id="elements-code-tutorial">Elements code tutorial</h1>
+
+<h2 id="advanced-examples">Advanced examples</h2>
+
+<p><a href="#raw">Example 1</a></p>
+
+<p>Manually creating a transaction, manually issuing an asset, using asset contract hash and asset registration.</p>
+
+<p><a href="#multi">Example 2</a></p>
+
+<p>Issuing an asset to a multi-sig, spending from a multi-sig and reissuing from a multi-sig.</p>
+
+<p><a href="#registry">Example 3</a></p>
+
+<p>Issuing an asset and using the <code>issueasset</code> command’s contract hash argument to enable registration with the Blockstream Liquid Asset Registry.</p>
+
+<p><a href="#verify">Example 4</a></p>
+
+<p>Verify an output’s asset and amount values using the blinding factors.</p>
+
+<p>You can use this example to prove to parties not involved in the transaction that an Elements Confidential Transaction sent a certain amount of a certain asset.</p>
+
+<p>You can do this using the Blockstream Explorer or by using the provided script. The script reveals the values are correct by using an Elements node as a trusted source.</p>
+
+<hr />
+
+<p><a id="raw"></a></p>
+<h3 id="example-1-manually-creating-a-transaction-manually-issuing-an-asset">Example 1: Manually creating a transaction, manually issuing an asset.</h3>
+
+<p>The code below shows you how to carry out the following actions within Elements:</p>
+
+<ul>
+  <li>
+    <p>Creating a transaction manually (createrawtransaction) using an Issued Asset.</p>
+  </li>
+  <li>
+    <p>Creating an asset issuance manually (rawissueasset).</p>
+  </li>
+</ul>
+
+<p>Save the code below in a file named <strong>advancedexamplesraw.sh</strong> and place it in your home directory.</p>
+
+<p>To run the code, open a terminal in your $HOME directory and run:</p>
+
+<pre><code>bash advancedexamplesraw.sh
+</code></pre>
+
+<p>You can run each of the examples individualy by passing in the following command line arguments:</p>
+
+<p>‘RTIA’ for raw transaction using an issued asset</p>
+
+<p>‘RIA’ for raw issuance of an asset</p>
+
+<p>For example, to run the raw issuance example only:</p>
+<pre><code>bash advancedexamplesraw.sh RIA
+</code></pre>
+
+<p>If you do not pass an argument in, both examples will run.</p>
+
+<p>The examples have been tested with version 0.18.1.12 of Elements.</p>
+
+<h5 id="note-if-you-want-to-run-some-of-the-steps-automatically-and-then-have-execution-stop-and-wait-for-you-to-press-enter-before-continuing-one-line-at-a-time-move-the-trap-read-debug-statement-down-so-that-it-is-above-the-line-you-want-to-stop-at-execution-will-run-each-line-automatically-and-stop-when-that-line-is-reached-it-will-then-switch-to-executing-one-line-at-a-time-waiting-for-you-to-press-return-before-executing-the-next-command-remove-it-to-run-without-stoppingyou-will-see-that-occasionally-we-will-use-the-sleep-command-to-pause-execution-this-allows-the-daemons-time-to-do-things-like-stop-start-and-sync-mempoolsthere-is-a-chance-that-the--and--characters-may-not-paste-into-your-advancedexamplesrawsh-file-correctly-so-type-over-them-yourself-if-you-come-across-any-issues-executing-the-code">Note: If you want to run some of the steps automatically and then have execution stop and wait for you to press enter before continuing one line at a time: move the <strong>trap read debug</strong> statement down so that it is above the line you want to stop at. Execution will run each line automatically and stop when that line is reached. It will then switch to executing one line at a time, waiting for you to press return before executing the next command. Remove it to run without stopping.<br /><br />You will see that occasionally we will use the <strong>sleep</strong> command to pause execution. This allows the daemons time to do things like stop, start and sync mempools.<br /><br />There is a chance that the “ and ‘ characters may not paste into your <strong>advancedexamplesraw.sh</strong> file correctly, so type over them yourself if you come across any issues executing the code.</h5>
+
+<pre><code>#!/bin/bash
+set -x
+
+#
+# Save this code in a file named advancedexamplesraw.sh and place it in your home directory.
+#
+# To run this code just open a terminal in your home directory and run:
+# bash advancedexamplesraw.sh
+#
+# You can run each of the examples individualy by passing in the following command line arguments:
+# 'RTIA' for raw transaction using an issued asset
+# 'RIA' for raw issuance of an asset
+# For example, to run the raw issuance example only:
+# bash advancedexamplesraw.sh RIA
+# 
+# If you do not pass an argument in, both examples will run.
+#
+# If you want to run some of the steps automatically and then have execution stop
+# and wait for you to press enter before continuing one line at a time: uncomment 
+# and move the 'trap read debug' statement down so that it is above the line you want
+# to stop at. Execution will run each line automatically and stop when that line is 
+# reached. It will then switch to executing one line at a time, waiting for you 
+# to press return before executing the next command.
+#
+# You will see that occasionally we will use the **sleep** command to pause execution.
+# This allows the daemons time to do things like stop, start and sync mempools. You
+# can probably decrease the sleeps without issue. The numbers used below are so a low
+# powered machine like a Raspberry Pi can run without incident.
+#
+
+if [ "$1" != "" ]; then
+    EXAMPLETYPE=$1
+    echo "Running '$EXAMPLETYPE' example"
+else
+    EXAMPLETYPE="ALL"
+    echo "Running all examples"
+fi
+
+##############################################
+#                                            #
+#  RESET CHAIN STATE AND SET UP ENVIRONMENT  #
+#                                            #
+##############################################
+
+# RESET CHAIN STATE AND SET UP ENVIRONMENT &gt;&gt;&gt;
+
+shopt -s expand_aliases
+
+# Before running this script, change the following variables to point to: your local Elements binaries directory, the directory you'll use to store node data (note that the script will delete the $DATA_DIR/elementsregtest directory when run, so back up anything you might already have in there before running).
+
+ELEMENTS_DIR="$HOME/elements"
+DATA_DIR1="$HOME/elementsdir1"
+DATA_DIR2="$HOME/elementsdir2"
+
+BINDIR="$ELEMENTS_DIR/src"
+
+alias e1-dae="$BINDIR/elementsd -datadir=$DATA_DIR1 -validatepegin=0 -chain=elementsregtest -daemon=1"
+alias e1-cli="$BINDIR/elements-cli -datadir=$DATA_DIR1 -chain=elementsregtest"
+
+alias e2-dae="$BINDIR/elementsd -datadir=$DATA_DIR2 -validatepegin=0 -chain=elementsregtest -daemon=1"
+alias e2-cli="$BINDIR/elements-cli -datadir=$DATA_DIR2 -chain=elementsregtest"
+
+# Ignore error
+set +o errexit
+
+# The following lines may error without issue if the daemons are not already running
+e1-cli stop
+e2-cli stop
+sleep 15
+
+# The following lines may error without issue
+rm -r $DATA_DIR1 ; rm -r $DATA_DIR2
+mkdir $DATA_DIR1 ; mkdir $DATA_DIR2
+
+cp $ELEMENTS_DIR/contrib/assets_tutorial/elements1.conf $DATA_DIR1/elements.conf
+cp $ELEMENTS_DIR/contrib/assets_tutorial/elements2.conf $DATA_DIR2/elements.conf
+
+e1-dae
+e2-dae
+
+sleep 10
+
+# Create the default wallets for each node
+e1-cli createwallet ""
+e2-cli createwallet ""
+# Call rescanblockchain so the nodes are aware the new wallets can access the initial free coins set within the config files
+e1-cli rescanblockchain
+e2-cli rescanblockchain
+
+
+# Wait for e1 node to finish startup and respond to commands
+until e1-cli getwalletinfo
+do
+  echo "Waiting for e1 to finish loading..."
+  sleep 2
+done
+
+# Wait for e2 node to finish startup and respond to commands
+until e2-cli getwalletinfo
+do
+  echo "Waiting for e2 to finish loading..."
+  sleep 2
+done
+
+# Exit on error
+set -o errexit
+
+ADDRGEN1=$(e1-cli getnewaddress)
+
+e1-cli sendtoaddress $(e1-cli getnewaddress) 21000000 "" "" true
+e1-cli generatetoaddress 101 $ADDRGEN1
+sleep 5
+
+# &lt;&lt;&lt; RESET CHAIN STATE AND SET UP ENVIRONMENT
+
+
+###########################################
+#                                         #
+#  RAW TRANSACTION USING AN ISSUED ASSET  #
+#                                         #
+###########################################
+
+# RAW TRANSACTION USING AN ISSUED ASSET &gt;&gt;&gt;
+
+if [ "RTIA" = $EXAMPLETYPE ] || [ "ALL" = $EXAMPLETYPE ] ; then
+
+    # Issue an asset and get the asset hex so we can send some
+    ISSUE=$(e1-cli issueasset 100 1)
+
+    ASSET=$(echo $ISSUE | jq -r '.asset')
+
+    # Check the asset shows up in our wallet
+    e1-cli getwalletinfo
+
+    # Get a list of unspent we can use as inputs - referenced via transaction id, vout and amount
+    UTXO=$(e1-cli listunspent 0 0 [] true '''{"''asset''":"'''$ASSET'''"}''')
+
+    TXID=$(echo $UTXO | jq -r '.[0].txid' )
+    VOUT=$(echo $UTXO | jq -r '.[0].vout' )
+    AMOUNT=$(echo $UTXO | jq -r '.[0].amount' )
+
+    # Get an address to send the asset to - we'll use unconfidential
+    ADDR=$(e1-cli getnewaddress)
+
+    VALIDATEADDR=$(e1-cli validateaddress $ADDR)
+
+    UNCONADDR=$(echo $VALIDATEADDR | jq -r '.unconfidential')
+
+    # Build the raw transaction (send 3 of the asset)
+    SENDAMOUNT="3.00"
+
+    RAWTX=$(e1-cli createrawtransaction '''[{"''txid''":"'''$TXID'''", "''vout''":'$VOUT', "''asset''":"'''$ASSET'''"}]''' '''[{"'''$UNCONADDR'''":'$SENDAMOUNT'}]''' 0 false)
+
+    # Fund the tx
+    FRT=$(e1-cli fundrawtransaction $RAWTX)
+
+    # blind and sign the tx
+    HEXFRT=$(echo $FRT | jq -r '.hex')
+
+    BRT=$(e1-cli blindrawtransaction $HEXFRT)
+
+    SRT=$(e1-cli signrawtransactionwithwallet $BRT)
+
+    HEXSRT=$(echo $SRT | jq -r '.hex')
+
+    # Send the raw tx and confirm
+    TX=$(e1-cli sendrawtransaction $HEXSRT)
+
+    e1-cli generatetoaddress 101 $ADDRGEN1
+    sleep 5
+
+    # Decode the raw transaction so we can see the amount of the asset sent and the address it went to
+    GRT=$(e1-cli getrawtransaction $TX)
+
+    DRT=$(e1-cli decoderawtransaction $GRT)
+
+    echo "An amount of" $SENDAMOUNT "of the '"$ASSET"' asset was sent to address '"$UNCONADDR"'"
+
+    echo "END OF 'RTIA' EXAMPLE"
+    
+fi
+# &lt;&lt;&lt; RAW TRANSACTION USING AN ISSUED ASSET
+
+
+###########################################
+#                                         #
+#             RAW ISSUE ASSET             #
+#                                         #
+###########################################
+
+# RAW ISSUE ASSET &gt;&gt;&gt;
+
+if [ "RIA" = $EXAMPLETYPE ] || [ "ALL" = $EXAMPLETYPE ] ; then
+
+    # Get an address to issue the asset to...
+    ASSET_ADDR=$(e1-cli getnewaddress "" legacy)
+
+      # Get an address to issue the reissuance token to...
+    TOKEN_ADDR=$(e1-cli getnewaddress "" legacy)
+
+    # Create the raw transaction and fund it
+    RAWTX=$(e1-cli createrawtransaction '''[]''' '''[{"''data''":"''00''"}]''')
+    FRT=$(e1-cli fundrawtransaction $RAWTX)
+    HEXFRT=$(echo $FRT | jq -r '.hex')
+
+    # Create the raw issuance
+    RIA=$(e1-cli rawissueasset $HEXFRT '''[{"''asset_amount''":33, "''asset_address''":"'''$ASSET_ADDR'''", "''token_amount''":7, "''token_address''":"'''$TOKEN_ADDR'''", "''blind''":false}]''')
+
+    # The results of which include... 
+    HEXRIA=$(echo $RIA | jq -r '.[0].hex')
+    ASSET=$(echo $RIA | jq -r '.[0].asset')
+    ENTROPY=$(echo $RIA | jq -r '.[0].entropy')
+    TOKEN=$(echo $RIA | jq -r '.[0].token')
+
+    # Blind, sign and send the transaction that creates the asset issuance...
+    BRT=$(e1-cli blindrawtransaction $HEXRIA true '''[]''' false)
+
+    SRT=$(e1-cli signrawtransactionwithwallet $BRT)
+    
+    HEXSRT=$(echo $SRT | jq -r '.hex')
+
+    ISSUETX=$(e1-cli sendrawtransaction $HEXSRT)
+
+    e1-cli generatetoaddress 101 $ADDRGEN1
+    sleep 5
+
+    # Check that worked...
+    e1-cli getwalletinfo
+
+    e1-cli listissuances      
+  
+    echo "END OF 'RIA' EXAMPLE"
+  
+fi
+
+# &lt;&lt;&lt; RAW ISSUE ASSET
+
+# CLOSE RUNNING NODES BEFORE EXIT:
+
+e1-cli stop
+e2-cli stop
+sleep 10
+
+echo "Completed without error"
+</code></pre>
+
+<hr />
+
+<p><a id="multi"></a></p>
+<h3 id="example-2-issuing-an-asset-to-a-multi-sig-spending-from-a-multi-sig-and-reissuing-from-a-multi-sig">Example 2: Issuing an asset to a multi-sig, spending from a multi-sig and reissuing from a multi-sig.</h3>
+
+<p>The code below shows you how to carry out the following actions within Elements:</p>
+
+<ul>
+  <li>
+    <p>Create multi-sig addresses and issue an asset and its reissuance token to them.</p>
+  </li>
+  <li>
+    <p>Spend the asset from a multi-sig.</p>
+  </li>
+  <li>
+    <p>Reissue an asset using a reissuance token in a multi-sig.</p>
+  </li>
+</ul>
+
+<p>Save the code below in a file named <strong>advancedexamplesmulti.sh</strong> and place it in your home directory.</p>
+
+<p>To run the code, open a terminal in your $HOME directory and run:</p>
+
+<pre><code>bash advancedexamplesmulti.sh
+</code></pre>
+
+<h5 id="note-the-script-contains-instructions-telling-you-how-to-prepare-the-script-before-running">Note: The script contains instructions telling you how to prepare the script before running.</h5>
+
+<pre><code>#!/bin/bash
+set -x
+
+# This script will create a multi-signature address shared between Wallet 1 and Wallet 2 and issue a new asset to the address. The asset can then only be spent and reissued by Wallet 1 and Wallet 2 signing the spending/reissuance transaction.
+
+####################    BEFORE RUNNING THIS SCRIPT    ####################
+
+# -----
+#   1
+# -----
+
+# Before running this script, change the following variables to point to: your local Elements binaries directory, the directory you'll use to store node data (note that the script will delete the $DATA_DIR/elementsregtest directory when run, so back up anything you might already have in there before running).
+
+BINARY_DIR="$HOME/elements/src"
+DATA_DIR="$HOME/elementsdir1"
+
+# -----
+#   2
+# -----
+
+# Create the directory referenced in DATA_DIR, if it is not already there.
+# Within that directory, create a file named elements.conf, if it is not already there.
+# Add/set the following as the contents of the elements.conf file (remove the # characters).
+
+#daemon=1
+#chain=elementsregtest
+#elementsregtest.wallet=wallet.dat
+#elementsregtest.wallet=wallet_1.dat
+#elementsregtest.wallet=wallet_2.dat
+#elementsregtest.wallet=wallet_3.dat
+#validatepegin=0
+#initialfreecoins=2100000000000000
+
+# The settings will run the daemons in regtest mode, allocate some initial funds and create the required wallets.
+# We will use the 4 wallets to:
+#
+# wallet (w-cli) 
+# Generate blocks and allocate initial funds
+#
+# wallet_1 (w1-cli) and 
+# wallet_2 (w2-cli) 
+# Create and sign multi-signature asset spends (and associated tokens)
+#
+# wallet_3 (w3-cli) 
+# Receive assets (single-signature receive)
+
+# ------
+#  Tips
+# ------
+
+# You will see that occasionally we will use the **sleep** command to pause execution.
+# This allows the daemons time to do things like stop, start and create the wallets. You
+# can probably decrease the sleeps without issue. The numbers used below are so a low
+# powered machine like a Raspberry Pi can run without incident.
+
+# Uncomment and move the following line to any point in the script to stop execution and then continue execution line-by-line by pressing enter.
+#trap read debug
+
+
+####################    SCRIPT PREPARATION    ####################
+
+# Create some aliases to make calling the node/wallet easier
+shopt -s expand_aliases
+# Node
+alias n-dae="$BINARY_DIR/elementsd -datadir=$DATA_DIR"
+# Client wallets
+alias w-cli="$BINARY_DIR/elements-cli -datadir=$DATA_DIR -rpcwallet=wallet.dat"
+alias w1-cli="$BINARY_DIR/elements-cli -datadir=$DATA_DIR -rpcwallet=wallet_1.dat"
+alias w2-cli="$BINARY_DIR/elements-cli -datadir=$DATA_DIR -rpcwallet=wallet_2.dat"
+alias w3-cli="$BINARY_DIR/elements-cli -datadir=$DATA_DIR -rpcwallet=wallet_3.dat"
+
+# We will hash using sha256sum if available, openssl otherwise (other options are available)
+which sha256sum &gt;/dev/null 2&gt;&amp;1 &amp;&amp; alias sha256hash="sha256sum | sed 's/ .*//g'" || alias sha256hash="openssl dgst -sha256 | sed 's/.*= //g'"
+
+
+# The following 'create_multisig' function will be called within the script to create the multisig addresses for the:
+# - Asset Issuance
+# - Asset Reissuance Token
+# - Issuance change
+# - Asset Reissuance
+# - Tokens in Reissuance
+# - Token Reissuance change.
+
+create_multisig () {
+    # Accepts one argument - a label for the multi-signature address to be created
+    local LABEL=$1
+
+    # Get an address from wallet 1 and wallet 2 which we will later use to create a multi-sig
+    # Wallet 1's Address for the multi-sig:
+    ADDRESS_1=$(w1-cli getnewaddress $LABEL)
+    ADDRESS_1_INFO=$(w1-cli getaddressinfo $ADDRESS_1)
+    ADDRESS_1_PUBKEY=$(echo $ADDRESS_1_INFO | jq -r '.pubkey')
+    # We wil use the confidential key from Wallet 1's address to create a blinded address later:
+    ADDRESS_1_CONF_KEY=$(echo $ADDRESS_1_INFO | jq -r '.confidential_key')
+    # We will use the blinding key for Wallet 1's address and import it later so Wallet 1 and Wallet 2 can subsequently see unblinded details
+    BLINDING_KEY=$(w1-cli dumpblindingkey $ADDRESS_1)
+
+    # Wallet 2's Address for the multi-sig:
+    ADDRESS_2=$(w2-cli getnewaddress $LABEL)
+    ADDRESS_2_INFO=$(w2-cli getaddressinfo $ADDRESS_2)
+    ADDRESS_2_PUBKEY=$(echo $ADDRESS_2_INFO | jq -r '.pubkey')
+
+    # Create a multi-sig '2 of 2' address (n of m, where m is the number of public keys provided)
+    N=2
+    MULTISIG=$(w1-cli createmultisig $N '''["'''$ADDRESS_1_PUBKEY'''", "'''$ADDRESS_2_PUBKEY'''"]''')
+    MULTISIG_ADDRESS=$(echo $MULTISIG | jq -r '.address')
+    REDEEM_SCRIPT=$(echo $MULTISIG | jq -r '.redeemScript')
+    
+    # Blind the multi-sig address using the confidential key from Wallet 1 that we stored earlier
+    BLINDED_ADDRESS=$(w1-cli createblindedaddress $MULTISIG_ADDRESS $ADDRESS_1_CONF_KEY)
+
+    # Import the redeem script, blinded address, and the blinding key for the blinded address into both wallets
+    w1-cli importaddress $REDEEM_SCRIPT '' false true
+    w1-cli importaddress $BLINDED_ADDRESS "$LABEL multisig" false
+    w1-cli importblindingkey $BLINDED_ADDRESS $BLINDING_KEY
+    w2-cli importaddress $REDEEM_SCRIPT '' false true
+    w2-cli importaddress $BLINDED_ADDRESS "$LABEL multisig" false
+    w2-cli importblindingkey $BLINDED_ADDRESS $BLINDING_KEY
+    
+    # Return the blinded address and the public key to the function caller (will be extracted by splitting on '|' by the caller)
+    echo "$BLINDED_ADDRESS|$ADDRESS_1_PUBKEY"
+}
+
+
+####################    ENVIRONMENT PREPERATION    ####################
+
+# First clear the existing chain data and wallets 
+# The following lines may error without issue if the node is not already running or the directory does not already exist
+
+# Ignore error
+set +o errexit
+
+w-cli stop
+echo "Wait for the node to stop if it was running..."
+sleep 20
+
+echo "Delete the data directory if it exists..."
+rm -r $DATA_DIR/elementsregtest
+
+# Start the daemon
+n-dae
+sleep 10 
+
+# Wait for node to finish loading all wallets and respond to command to get new address
+until ADDRGEN1=$(w-cli getnewaddress)
+do
+  echo "Waiting for node to finish loading wallets..."
+  sleep 2
+done
+
+# Exit on error
+set -o errexit
+
+# Create an address to generate to
+ADDRGEN1=$(w-cli getnewaddress)
+
+# Move some funds to Wallet 1
+W1_ADDR=$(w1-cli getnewaddress)
+w-cli sendtoaddress $W1_ADDR 1000
+w-cli generatetoaddress 1 $ADDRGEN1
+w1-cli getbalance "*" 0 true
+
+
+####################    MULTI-SIG ISSUANCE    ####################
+
+ASSET_AMOUNT="0.00000020"
+REISSUANCE_TOKEN_AMOUNT="0.00000005"
+# You may need to change the fee rate depending on the environment you run it in:
+FEERATE="0.00003000"
+
+# Create multi-sig address for the asset
+CREATE=$(create_multisig "asset")  
+MULTISIG_ASSET_ADDRESS="$(echo $CREATE | cut -d'|' -f1)"
+PUBKEY="$(echo $CREATE | cut -d'|' -f2)"
+
+# Create multi-sig address for the reissuance token
+
+CREATE=$(create_multisig "reissuance")  
+MULTISIG_REISSUANCE_ADDRESS="$(echo $CREATE | cut -d'|' -f1)"
+
+# Create the base transaction
+BASE=$(w1-cli createrawtransaction '''[]''' '''{"''data''":"''00''"}''')
+
+# Fund the transaction
+FUNDED=$(w1-cli fundrawtransaction $BASE '''{"''feeRate''":'$FEERATE'}''')
+FUNDED_HEX=$(echo $FUNDED | jq -r '.hex')
+
+# Store vin txid and vout
+DECODED=$(w1-cli decoderawtransaction $FUNDED_HEX)
+PREV_TX=$(echo $DECODED | jq -r '.vin[0].txid')
+PREV_VOUT=$(echo $DECODED | jq -r '.vin[0].vout')
+
+# Create the contract for the asset. The hash of the contract will be used to generate the asset id.
+CONTRACT_TEXT="Your contract text. Can be used to bind the asset to a real world asset etc."
+
+CONTRACT_TEXT_HASH=$(echo -n "${CONTRACT_TEXT}" | sha256hash)
+
+# Create the raw issuance (will not yet be complete or broadcast)
+RAW_ISSUE=$(w1-cli rawissueasset $FUNDED_HEX '''[{"''asset_amount''":'$ASSET_AMOUNT', "''asset_address''":"'''$MULTISIG_ASSET_ADDRESS'''", "''token_amount''":'$REISSUANCE_TOKEN_AMOUNT', "''token_address''":"'''$MULTISIG_REISSUANCE_ADDRESS'''", "''blind''":false, "''contract_hash''":"'''$CONTRACT_TEXT_HASH'''"}]''')
+
+# Store details of the issuance for later use
+HEX_RIA=$(echo $RAW_ISSUE | jq -r '.[0].hex')
+ASSET=$(echo $RAW_ISSUE | jq -r '.[0].asset')
+TOKEN=$(echo $RAW_ISSUE | jq -r '.[0].token')
+ENTROPY=$(echo $RAW_ISSUE | jq -r '.[0].entropy')
+
+# Blind the issuance transaction
+BLIND=$(w1-cli blindrawtransaction $HEX_RIA true '''[]''' false)
+
+# Sign the issuance transaction (we only need sign with Wallet 1 - it is subsequent spends that will require multiple signatures)
+SIGNED=$(w1-cli signrawtransactionwithwallet $BLIND)
+HEX_SRT=$(echo $SIGNED | jq -r '.hex')
+DECODED=$(w1-cli decoderawtransaction $HEX_SRT)
+
+# Test the transaction's acceptance into the mempool
+TEST=$(w1-cli testmempoolaccept '''["'$HEX_SRT'"]''')
+ALLOWED=$(echo $TEST | jq -r '.[0].allowed')
+
+# If the transaction is valid
+if [ "true" = $ALLOWED ] ; then
+    # Broadcast the transaction
+    TXID=$(w1-cli sendrawtransaction $HEX_SRT)
+    # Confirm the transaction
+    w-cli generatetoaddress 101 $ADDRGEN1
+    # Check the issuance can be seen by Wallet 1
+    w1-cli listissuances
+    # Wallet 2 won't be able to see the actual amounts just yet
+    w2-cli listissuances
+    # Import the issuance blinding key into Wallet 2 so it can
+    ISSUANCE_BLINDING_KEY=$(w1-cli dumpissuanceblindingkey $TXID 0)    
+    w2-cli importissuanceblindingkey $TXID 0 $ISSUANCE_BLINDING_KEY
+    # Now Wallet 2 will be able to see the amounts
+    w2-cli listissuances
+fi
+
+# Check that both Wallet 1 and Wallet 2 see the asset and reissuance token in their balances
+w1-cli getbalance "*" 0 true
+w2-cli getbalance "*" 0 true
+
+
+####################    MULTI-SIG SPEND    ####################
+
+# Have Wallet 1 and Wallet 2 spend some of the asset held in the multi-sig by sending it to Wallet 3's single-signature address
+
+AMOUNT="0.00000001"
+
+# Get a receiving address from Wallet 3
+RECEIVING_ADDRESS=$(w3-cli getnewaddress "receiving")
+
+# Create a multi-sig address for Wallet 1 and Wallet 2 to receive asset change to
+CREATE=$(create_multisig "change")  
+MULTISIG_ASSET_CHANGE_ADDRESS="$(echo $CREATE | cut -d'|' -f1)"
+
+# Get a change address for the bitcoin return from transaction fee spend
+BITCOIN_CHANGE=$(w1-cli getrawchangeaddress)
+
+# Create the multi-sig spending transaction
+RAW_TX=$(w1-cli createrawtransaction '''[]''' '''{"'''$RECEIVING_ADDRESS'''":'$AMOUNT'}''' 0 false '''{"'''$RECEIVING_ADDRESS'''":"'''$ASSET'''"}''')
+
+# Fund the transaction
+FUNDED_RAW_TX=$(w1-cli fundrawtransaction $RAW_TX '''{"'''includeWatching'''":true, "'''changeAddress'''":{"'''bitcoin'''":"'''$BITCOIN_CHANGE'''", "'''$ASSET'''":"'''$MULTISIG_ASSET_CHANGE_ADDRESS'''"}}''')
+FUNDED_HEX=$(echo $FUNDED_RAW_TX | jq -r '.hex')
+
+# Blind the transaction
+BLINDED_RAW_TX=$(w1-cli blindrawtransaction $FUNDED_HEX)
+
+# Have Wallet 1 sign the transaction
+SIGNED_RAW_TX=$(w1-cli signrawtransactionwithwallet $BLINDED_RAW_TX)
+SIGNED_RAW_TX_HEX=$(echo $SIGNED_RAW_TX | jq -r '.hex')
+
+# Have Wallet 2 sign the transaction
+SIGNED_RAW_TX_2=$(w2-cli signrawtransactionwithwallet $SIGNED_RAW_TX_HEX)
+SIGNED_RAW_TX_2_HEX=$(echo $SIGNED_RAW_TX_2 | jq -r '.hex')
+
+# Test the transaction wil be accepted into the mempool
+TEST=$(w1-cli testmempoolaccept '''["'$SIGNED_RAW_TX_2_HEX'"]''')
+ALLOWED=$(echo $TEST | jq -r '.[0].allowed')
+
+# If the transaction is valid
+if [ "true" = $ALLOWED ] ; then
+    # Broadcast the valid transaction
+    TX=$(w1-cli sendrawtransaction $SIGNED_RAW_TX_2_HEX)
+    # Confirm the transaction
+    w-cli generatetoaddress 1 $ADDRGEN1
+fi
+
+# Check that Wallet 3 received the asset
+w3-cli getbalance
+
+# And the balance of Wallet 1 and Wallet 2 have changed
+w1-cli getbalance "*" 0 true
+w2-cli getbalance "*" 0 true
+
+
+####################    MULTI_SIG REISSUANCE    ####################
+
+# Reissue an asset using a reissunce token held by the multi-sig
+
+# Create a multi-sig address to issue the asset to
+CREATE=$(create_multisig "asset_reissuance")
+MULTISIG_ASSET_REISSUANCE_ADDRESS="$(echo $CREATE | cut -d'|' -f1)"
+
+# Create a multi-sig address for the token
+CREATE=$(create_multisig "token_reissuance")
+REISSUANCE_TOKEN_ADDRESS="$(echo $CREATE | cut -d'|' -f1)"
+
+# Create a multi-sig address for the change
+CREATE=$(create_multisig "token_reissuance_change")
+REISSUANCE_TOKEN_CHANGE_ADDRESS="$(echo $CREATE | cut -d'|' -f1)"
+
+# We'll reissue an amount we can spot easily later when balance checking wallets
+AMOUNT="0.00700000"
+
+REISSUANCE_TOKEN_AMOUNT="0.00000001"
+
+BASE=$(w1-cli createrawtransaction '''[]''' '''{"'''$REISSUANCE_TOKEN_ADDRESS'''":'$REISSUANCE_TOKEN_AMOUNT'}''' 0 false '''{"'''$REISSUANCE_TOKEN_ADDRESS'''":"'''$TOKEN'''"}''')
+
+BITCOIN_CHANGE=$(w1-cli getrawchangeaddress)
+
+FUNDED=$(w1-cli fundrawtransaction $BASE '''{"'''feeRate'''":'$FEERATE', "'''includeWatching'''": true, "'''changeAddress'''": {"'''bitcoin'''": "'''$BITCOIN_CHANGE'''", "'''$TOKEN'''": "'''$REISSUANCE_TOKEN_CHANGE_ADDRESS'''"}}''')
+
+FUNDED_HEX=$(echo $FUNDED | jq -r '.hex')
+
+# Get information about the token's unspent output
+UNSPENTS=$(w1-cli listunspent)
+
+UTXO_COUNTER=0
+UTXO_COUNT=$(echo $UNSPENTS | jq 'length')
+
+while [ $UTXO_COUNTER -lt $UTXO_COUNT ]; do
+  UTXO_ASSET=$(echo $UNSPENTS | jq -r '.['$UTXO_COUNTER'].asset')
+  if [ $TOKEN = $UTXO_ASSET ] ; then    
+    UTXO_INFO_TXID=$(echo $UNSPENTS | jq -r '.['$UTXO_COUNTER'].txid')
+    UTXO_INFO_VOUT=$(echo $UNSPENTS | jq -r '.['$UTXO_COUNTER'].vout')
+    UTXO_INFO_ASSET_BLINDER=$(echo $UNSPENTS | jq -r '.['$UTXO_COUNTER'].assetblinder')
+    break
+  fi
+  let UTXO_COUNTER=UTXO_COUNTER+1
+done
+
+# Get asset commitments
+DECODED=$(w1-cli decoderawtransaction $FUNDED_HEX)
+DECODED_VIN_COUNT=$(echo $DECODED | jq '.vin' | jq 'length')
+
+REISSUANCE_INDEX=-1
+ASSET_COMMITMENTS=""
+
+VIN_COUNTER=0
+
+while [ $VIN_COUNTER -lt $DECODED_VIN_COUNT ]; do
+  TX_INPUT_TXID=$(echo $DECODED | jq -r '.vin['$VIN_COUNTER'].txid')
+  TX_INPUT_VOUT=$(echo $DECODED | jq -r '.vin['$VIN_COUNTER'].vout')
+
+  if [ $TX_INPUT_TXID = $UTXO_INFO_TXID ] &amp;&amp; [ $TX_INPUT_VOUT = $UTXO_INFO_VOUT ]; then    
+    REISSUANCE_INDEX=$VIN_COUNTER
+  fi
+
+  UTXO_COUNTER=0
+  while [ $UTXO_COUNTER -lt $UTXO_COUNT ]; do
+    UNSPENT_TXID=$(echo $UNSPENTS | jq -r '.['$UTXO_COUNTER'].txid')
+    UNSPENT_VOUT=$(echo $UNSPENTS | jq -r '.['$UTXO_COUNTER'].vout')
+    UNSPENT_ASSET_COMMITMENT=$(echo $UNSPENTS | jq -r '.['$UTXO_COUNTER'].assetcommitment')
+
+    if [ $TX_INPUT_TXID = $UNSPENT_TXID ] &amp;&amp; [ $TX_INPUT_VOUT = $UNSPENT_VOUT ]; then   
+      if [ "$ASSET_COMMITMENTS" = "" ]; then
+	ASSET_COMMITMENTS="\"$UNSPENT_ASSET_COMMITMENT\""
+      else
+	ASSET_COMMITMENTS="$ASSET_COMMITMENTS,\"$UNSPENT_ASSET_COMMITMENT\""
+      fi 
+      break
+    fi
+    let UTXO_COUNTER=UTXO_COUNTER+1
+  done
+
+  let VIN_COUNTER=VIN_COUNTER+1
+done
+
+# Create the reissuance transaction using the UTXO info
+REISSUANCE=$(w1-cli rawreissueasset $FUNDED_HEX '''[{"''input_index''":'$REISSUANCE_INDEX', "''asset_amount''":'$AMOUNT', "''asset_address''":"'''$MULTISIG_ASSET_REISSUANCE_ADDRESS'''", "''asset_blinder''":"'''$UTXO_INFO_ASSET_BLINDER'''", "''entropy''":"'''$ENTROPY'''"}]''')
+
+REISSUANCE_HEX=$(echo $REISSUANCE | jq -r '.hex')
+
+# Blind using the asset commitments we found
+BLINDED_RAW_TX=$(w1-cli blindrawtransaction $REISSUANCE_HEX true [$ASSET_COMMITMENTS] false)
+
+# Have Wallet 1 sign the transaction
+SIGNED_RAW_TX=$(w1-cli signrawtransactionwithwallet $BLINDED_RAW_TX)
+SIGNED_RAW_TX_HEX=$(echo $SIGNED_RAW_TX | jq -r '.hex')
+
+# Have Wallet 2 sign the transaction
+SIGNED_RAW_TX_2=$(w2-cli signrawtransactionwithwallet $SIGNED_RAW_TX_HEX)
+SIGNED_RAW_TX_2_HEX=$(echo $SIGNED_RAW_TX_2 | jq -r '.hex')
+
+# Test the transaction wil be accepted into the mempool
+TEST=$(w1-cli testmempoolaccept '''["'$SIGNED_RAW_TX_2_HEX'"]''')
+ALLOWED=$(echo $TEST | jq -r '.[0].allowed')
+
+# If the transaction is valid
+if [ "true" = $ALLOWED ] ; then
+    # Broadcast the valid transaction
+    TX=$(w1-cli sendrawtransaction $SIGNED_RAW_TX_2_HEX)
+    # Confirm the transaction
+    w-cli generatetoaddress 1 $ADDRGEN1
+fi
+
+# Check that worked as expected:
+w1-cli getbalance "*" 0 true
+w2-cli getbalance "*" 0 true
+
+# Stop our node
+w-cli stop
+sleep 10
+
+echo "Completed without error"
+</code></pre>
+
+<hr />
+
+<p><a id="registry"></a></p>
+<h3 id="example-3-issuing-an-asset-and-using-the-contract-hash-argument-to-enable-registration-with-the-blockstream-liquid-asset-registry">Example 3: Issuing an asset and using the contract hash argument to enable registration with the Blockstream Liquid Asset Registry.</h3>
+
+<p>Save the code below in a file named <strong>advancedexamplesregistry.sh</strong> and place it in your home directory and run:</p>
+
+<pre><code>bash advancedexamplesregistry.sh
+</code></pre>
+
+<p>Update the following fields within the script before running it and check the path to your elementsd and elements-cli:</p>
+
+<pre><code>NAME
+TICKER
+DOMAIN
+ASSET_AMOUNT
+TOKEN_AMOUNT
+PRECISION
+</code></pre>
+
+<p>For reference as to how the values should be set please refer to the <a href="https://docs.blockstream.com/liquid/developer-guide/developer-guide-index.html#proof-of-issuance-blockstream-s-liquid-asset-registry" target="_blank">Blockstream docs site</a>.</p>
+
+<h5 id="note-the-following-will-use-the-live-liquid-network-by-default-as-the-datadir-is-set-to-elements-assets-issued-on-elementsregtest-cannot-be-registered">Note: The following will use the live Liquid network by default as the <code>datadir</code> is set to <code>.elements</code>. Assets issued on elementsregtest cannot be registered.</h5>
+
+<pre><code>#!/bin/bash
+set -x
+
+shopt -s expand_aliases
+
+# We don't need to validate pegin for this example so no bitcoin node is used
+alias e1-dae="$HOME/elements/src/elementsd -datadir=$HOME/.elements -validatepegin=0"
+alias e1-cli="$HOME/elements/src/elements-cli -datadir=$HOME/.elements"
+
+# We will hash using sha256sum if available, openssl otherwise (other options are available)
+which sha256sum &gt;/dev/null 2&gt;&amp;1 &amp;&amp; alias sha256hash="sha256sum | sed 's/ .*//g'" || alias sha256hash="openssl dgst -sha256 | sed 's/.*= //g'"
+
+# Ignore error
+set +o errexit
+
+# The following may error without issue if the daemon is not already running
+e1-cli stop
+sleep 15
+
+# Start the daemon
+e1-dae
+sleep 15
+
+# Make sure the node has finished startup and is responding to commands
+until e1-cli getwalletinfo
+do
+  echo "Waiting for e1 to finish loading..."
+  sleep 2
+done
+
+# Exit on error
+set -o errexit
+
+# We will be using the issueasset command and the contract_hash argument:
+# issueasset &lt;assetamount&gt; &lt;tokenamount&gt; &lt;blind&gt; &lt;contract_hash&gt;
+
+NAME="your asset name here"
+TICKER="ticker here"
+DOMAIN="domain.here"
+ASSET_AMOUNT=100
+TOKEN_AMOUNT=1
+PRECISION=0
+
+# Don't change the following:
+VERSION=0 
+
+# As we need to sign the deletion request message later we need
+# a legacy address. If you prefer to generate a pubkey and sign
+# outside of Elements you can use a regular address instead.
+NEWADDR=$(e1-cli getnewaddress "" legacy)
+
+VALIDATEADDR=$(e1-cli getaddressinfo $NEWADDR)
+
+PUBKEY=$(echo $VALIDATEADDR | jq -r '.pubkey')
+
+ASSET_ADDR=$NEWADDR
+
+NEWADDR=$(e1-cli getnewaddress "" legacy)
+
+TOKEN_ADDR=$NEWADDR
+
+# Create the contract and calculate the contract hash
+# The contract is formatted for use in the Blockstream Asset Registry:
+
+CONTRACT='{"entity":{"domain":"'$DOMAIN'"},"issuer_pubkey":"'$PUBKEY'","name":"'$NAME'","precision":'$PRECISION',"ticker":"'$TICKER'","version":'$VERSION'}'
+
+CONTRACT_HASH=$(echo -n "${CONTRACT}" | sha256hash)
+
+# Reverse the hash
+TEMP=$CONTRACT_HASH
+LEN=${#TEMP}
+until [ $LEN -eq "0" ]; do
+    END=${TEMP:(-2)}
+    CONTRACT_HASH_REV="$CONTRACT_HASH_REV$END"
+    TEMP=${TEMP::$((${#TEMP} - 2))}
+    LEN=$((LEN-2))
+done
+
+# Wait for peers to connect (optional)
+sleep 180
+
+# Issue the asset and pass in the contract hash
+IA=$(e1-cli issueasset $ASSET_AMOUNT $TOKEN_AMOUNT false $CONTRACT_HASH_REV)
+
+# Details of the issuance...
+ASSET=$(echo $IA | jq -r '.asset')
+TOKEN=$(echo $IA | jq -r '.token')
+ISSUETX=$(echo $IA | jq -r '.txid')
+
+# Output the proof file - you need to place this on your domain.
+# See the Blockstream docs link above for reference as to where.
+echo "Authorize linking the domain name $DOMAIN to the Liquid asset $ASSET" &gt; liquid-asset-proof-$ASSET
+
+# Create the bash script to run after you have placed the proof file on your domain
+# that will call the registry and request the asset is registered.
+echo "curl https://assets.blockstream.info/ --data-raw '{\"asset_id\":\"$ASSET\",\"contract\":$CONTRACT}'" &gt; register_asset-$ASSET.sh
+
+# Create the bash script to delete the asset from the registry (if needed later)
+PRIV=$(e1-cli dumpprivkey $ASSET_ADDR)
+SIGNED=$(e1-cli signmessagewithprivkey $PRIV "remove $ASSET from registry")
+echo "curl -X DELETE https://assets.blockstream.info/$ASSET -H 'Content-Type: application/json' -d '{\"signature\":\"$SIGNED\"}'" &gt; delete_asset_$ASSET.sh
+
+# Stop the daemon
+e1-cli stop
+sleep 10
+
+echo "Completed without error"
+
+</code></pre>
+
+<p><a id="verify"></a></p>
+<h3 id="example-4-verify-an-outputs-asset-and-amount-values-using-the-blinding-factors">Example 4: Verify an output’s asset and amount values using the blinding factors.</h3>
+
+<p>The Confidential Transaction feature blinds both the asset and the amount sent within a transaction’s outputs. Normally only the sender and receiver know how much of an asset, and which asset, has been sent in any relevant outputs.</p>
+
+<p>In some cases the sender might want to share the unblinded details of the transaction with a third party, such as an auditor or user of a service. This can be done by the sender through the sharing of blinding factors. Each blinding factor applies to a particular output, so the sender can share data at a ‘per output’ level without exposing the values of all outputs in a transaction.</p>
+
+<p>The example below shows you how to carry out the following actions:</p>
+
+<ul>
+  <li>
+    <p>Create a link to the Blockstream Explorer that unblinds an output’s asset and amount values.</p>
+  </li>
+  <li>
+    <p>Use a Python script to allow a third party to verify the asset and amount values using their own Elements node. This can be done if the third party do not want to trust the results from the Blockstream Explorer.</p>
+  </li>
+</ul>
+
+<p>For our example we will be unblinding a transaction made on the live Liquid network (the default network in Elements) so that we can use the Blockstream Explorer’s ability to derive and display values using the blinding factors given.</p>
+
+<p>We’ll also show how the <a href="https://github.com/ElementsProject/libwally-core">libwally-core</a> library can take the blinding factors and use then to unblind transaction data retrieved from an Elements node, so trust in the Explorer is not required.</p>
+
+<p>We will use a transaction with two non-change outputs which was created using the Elements <code>sendmany</code> command.</p>
+
+<h4 id="using-blockstream-explorer">Using Blockstream Explorer</h4>
+
+<p>You can use the transaction ID to view the transaction we will be unblinding in the Blockstream Explorer. You can see that the amount and asset are blinded for each output (note that the fee is always unblinded in Elements):</p>
+
+<p><a href="https://blockstream.info/liquid/tx/1a7f371207ca5a1d13d8ab3dab7fb7a9e05288fe922665e30731adddddd81ecb">https://blockstream.info/liquid/tx/1a7f371207ca5a1d13d8ab3dab7fb7a9e05288fe922665e30731adddddd81ecb</a></p>
+
+<p><img src="https://elementsproject.org/images/confidential.png" alt="confidential" /></p>
+
+<p>To allow somone to view the unblinded values via the Explorer, the sender first needs to get the transaction ID in question and use it to get the transaction details from their Elements node like:</p>
+
+<pre><code>elements-cli gettransaction &lt;txid&gt;
+</code></pre>
+
+<p>That will return data such as that shown below. Only relevant data (the outputs) are shown here:</p>
+
+<pre><code>"details": [
+    {
+      "address": "H2o9NEs7Fz5LKu9oKEJtU9f1Zdd8tdabod",
+      "category": "send",
+      "amount": -0.00000800,
+      "amountblinder": "90fb24aab49dfd862e60161ae621f9dc9679f3197b55e6b1b7454155c94a1b7f",
+      "asset": "6f0279e9ed041c3d710a9f57d0c02928416460c4b722ae3457a11eec381c526d",
+      "assetblinder": "4f07afe0d712e80b91319eaadcb3401ee22e6f88caa1f0faadfd9ea7bc95abfe",
+      "label": "",
+      "vout": 0,
+      "fee": 0.00000665,
+      "abandoned": false
+    },
+    {
+      "address": "GzLAQ46cphBFwHWnEvEgLTj5RZjUeRhp7t",
+      "category": "send",
+      "amount": -0.00000900,
+      "amountblinder": "6ca03a3942ea11ccec276fe5750e2859fe53b33d0a840f71818161620682cca0",
+      "asset": "6f0279e9ed041c3d710a9f57d0c02928416460c4b722ae3457a11eec381c526d",
+      "assetblinder": "a00df580064426065097de14b92023b0da2e900f8607e42fade2da46235edf6b",
+      "label": "",
+      "vout": 1,
+      "fee": 0.00000665,
+      "abandoned": false
+    },
+</code></pre>
+
+<p>Taking the <code>amount</code>, <code>asset</code>, <code>amountblinder</code>, <code>assetblinder</code> from the above and passing it into the URL using the format below. You can provide multiple amount/asset/blinder values at once as we do below. The explorer will loop through each set and match to an output:</p>
+
+<pre><code>https://blockstream.info/liquid/tx/{txid}#blinded={amount},{asset_id},{amount_blinder},{asset_blinder},{amount2},{asset_id2},{amount_blinder2},{asset_blinder2}
+</code></pre>
+
+<p>Doing this with our example outputs we get a URL:</p>
+
+<p><a href="https://blockstream.info/liquid/tx/1a7f371207ca5a1d13d8ab3dab7fb7a9e05288fe922665e30731adddddd81ecb#blinded=800,6f0279e9ed041c3d710a9f57d0c02928416460c4b722ae3457a11eec381c526d,90fb24aab49dfd862e60161ae621f9dc9679f3197b55e6b1b7454155c94a1b7f,4f07afe0d712e80b91319eaadcb3401ee22e6f88caa1f0faadfd9ea7bc95abfe,900,6f0279e9ed041c3d710a9f57d0c02928416460c4b722ae3457a11eec381c526d,6ca03a3942ea11ccec276fe5750e2859fe53b33d0a840f71818161620682cca0,a00df580064426065097de14b92023b0da2e900f8607e42fade2da46235edf6b">https://blockstream.info/liquid/tx/1a7f371207ca5a1d13d8ab3dab7fb7a9e05288fe922665e30731adddddd81ecb#blinded=800,6f0279e9ed041c3d710a9f57d0c02928416460c4b722ae3457a11eec381c526d,90fb24aab49dfd862e60161ae621f9dc9679f3197b55e6b1b7454155c94a1b7f,4f07afe0d712e80b91319eaadcb3401ee22e6f88caa1f0faadfd9ea7bc95abfe,900,6f0279e9ed041c3d710a9f57d0c02928416460c4b722ae3457a11eec381c526d,6ca03a3942ea11ccec276fe5750e2859fe53b33d0a840f71818161620682cca0,a00df580064426065097de14b92023b0da2e900f8607e42fade2da46235edf6b</a></p>
+
+<p>The Explorer uses the blinding factors to derive the actual amount and asset for each of the provided outputs:</p>
+
+<p><img src="https://elementsproject.org/images/unblinded.png" alt="confidential" /></p>
+
+<h4 id="using-the-libwally-core-library">Using the libwally-core library</h4>
+
+<p>Rather than trust the commitment proof provided by the Blockstream Liquid explorer above a user might want to run their own proof of commitments. They can do this using the <a href="https://github.com/Blockstream/verify-elements-commitments">verify-elements-commitments</a> Python script, which itself uses <a href="https://github.com/ElementsProject/libwally-core">Libwally</a>, a cross-platform, cross-language collection of useful primitives for cryptocurrency wallets.</p>
+
+<p>To run the <code>verify-elements-commitments.py</code> Python script the verifying party first needs to install the prerequisites. To do this they would follow the steps below:</p>
+
+<p>From the terminal, create a folder to run the code from and move into it:</p>
+
+<pre><code>mkdir verify_elements_commitments
+cd verify_elements_commitments
+</code></pre>
+
+<p>Then (optionally) initialize a Python virtual environment to install the requirements within:</p>
+
+<pre><code>virtualenv -p python3 venv
+source venv/bin/activate
+</code></pre>
+
+<p>Into this environment you need to install <code>libwally-core</code>. The source code for libwally can be found in the <a href="https://github.com/ElementsProject/libwally-core">Libwally</a> repository but here will will use the pip install command:</p>
+
+<pre><code>pip install wallycore
+</code></pre>
+
+<p>Download the <code>verify-elements-commitments.py</code> file from:</p>
+
+<pre><code>https://github.com/Blockstream/verify-elements-commitments
+</code></pre>
+
+<p>Place the downloaded file in the <code>verify_elements_commitments</code> folder.</p>
+
+<p>Get the relevant transaction hex from an Elements node.</p>
+
+<pre><code>elements-cli getrawtransaction &lt;transaction_id&gt;
+</code></pre>
+
+<p>So for our example you would run:</p>
+
+<pre><code>elements-cli getrawtransaction 1a7f371207ca5a1d13d8ab3dab7fb7a9e05288fe922665e30731adddddd81ecb
+</code></pre>
+
+<p>Save the results of the above to a new file named <code>transaction.txt</code> within the <code>verify_elements_commitments</code> folder.</p>
+
+<p>The sender selects and saves the output blinders they are interested in, using the following format, and saves it to a file named blinders.json that they can provide to the verifying party:</p>
+
+<pre><code>{
+    "inputs":[],
+    "outputs":[
+        {
+            "asset_id_hex": "6f0279e9ed041c3d710a9f57d0c02928416460c4b722ae3457a11eec381c526d",
+            "asset_blinder_hex": "4f07afe0d712e80b91319eaadcb3401ee22e6f88caa1f0faadfd9ea7bc95abfe",
+            "amount_satoshi": 800,
+            "amount_blinder_hex": "90fb24aab49dfd862e60161ae621f9dc9679f3197b55e6b1b7454155c94a1b7f"
+        },
+        {
+            "asset_id_hex": "6f0279e9ed041c3d710a9f57d0c02928416460c4b722ae3457a11eec381c526d",
+            "asset_blinder_hex": "a00df580064426065097de14b92023b0da2e900f8607e42fade2da46235edf6b",
+            "amount_satoshi": 900,
+            "amount_blinder_hex": "6ca03a3942ea11ccec276fe5750e2859fe53b33d0a840f71818161620682cca0"
+        }
+    ]
+}
+</code></pre>
+
+<p>Now the issuer can execute the proof like this, using the transaction data from their own node and the blinders provided by the sender:</p>
+
+<pre><code>python verify-elements-commitments.py --tx transaction.txt --blinded blinders.json
+</code></pre>
+
+<p>Which, in our example case, will output:</p>
+
+<pre><code>{
+  "txid": "1a7f371207ca5a1d13d8ab3dab7fb7a9e05288fe922665e30731adddddd81ecb",
+  "inputs": [],
+  "outputs": [
+    {
+      "vout": 0,
+      "asset": "6f0279e9ed041c3d710a9f57d0c02928416460c4b722ae3457a11eec381c526d",
+      "satoshi": 800
+    },
+    {
+      "vout": 1,
+      "asset": "6f0279e9ed041c3d710a9f57d0c02928416460c4b722ae3457a11eec381c526d",
+      "satoshi": 900
+    }
+  ]
+}
+</code></pre>
+
+<p>We’ve seen how a third party can use the <code>verify-elements-commitments.py</code> Python script to verify the the asset and amount values without having to trust the Blockstream Explorer’s implementation of the same process.</p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+    <img class="logo-footer" alt="" src="https://elementsproject.org/images/elements_logo_no_border.svg" />
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list"><li class="footer-links"><a href="https://github.com/ElementsProject/elementsproject.github.io">elementsproject.org github</a></li><li class="footer-links"><a href="https://github.com/ElementsProject/elements">elements github</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Elements - an open source, sidechain-capable blockchain platform.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
