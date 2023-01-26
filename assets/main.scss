@@ -410,7 +410,8 @@ strong {
     color: $blue2;
   }
 
-  .site-title {
+  .site-title a ,
+  .site-title a:visited {
     color: $gray1;
   }
 
@@ -445,7 +446,9 @@ strong {
     color: $white;
   }
 
-  .navbar-nav > .active > a {
+  .navbar-default .navbar-nav > .open > a,
+  .navbar-default .navbar-nav > .open > a:focus,
+  .navbar-default .navbar-nav > .open > a:hover {
     background-color: $blue4;
     color: $black5;
   }
@@ -496,6 +499,7 @@ strong {
   .navbar-default .navbar-nav > .open > a:focus,
   .navbar-default .navbar-nav > .open > a:hover {
     color: $white;
+    background-color: $blue4;
   }
 
   table {
