@@ -361,10 +361,10 @@ DATA_DIR="$HOME/elementsdir1"
 
 #daemon=1
 #chain=elementsregtest
-#elementsregtest.wallet=wallet.dat
-#elementsregtest.wallet=wallet_1.dat
-#elementsregtest.wallet=wallet_2.dat
-#elementsregtest.wallet=wallet_3.dat
+#elementsregtest.wallet=wallet
+#elementsregtest.wallet=wallet_1
+#elementsregtest.wallet=wallet_2
+#elementsregtest.wallet=wallet_3
 #validatepegin=0
 #initialfreecoins=2100000000000000
 
@@ -401,10 +401,11 @@ shopt -s expand_aliases
 # Node
 alias n-dae="$BINARY_DIR/elementsd -datadir=$DATA_DIR"
 # Client wallets
-alias w-cli="$BINARY_DIR/elements-cli -datadir=$DATA_DIR -rpcwallet=wallet.dat"
-alias w1-cli="$BINARY_DIR/elements-cli -datadir=$DATA_DIR -rpcwallet=wallet_1.dat"
-alias w2-cli="$BINARY_DIR/elements-cli -datadir=$DATA_DIR -rpcwallet=wallet_2.dat"
-alias w3-cli="$BINARY_DIR/elements-cli -datadir=$DATA_DIR -rpcwallet=wallet_3.dat"
+alias w-cli-no-wallet="$BINARY_DIR/elements-cli -datadir=$DATA_DIR"
+alias w-cli="$BINARY_DIR/elements-cli -datadir=$DATA_DIR -rpcwallet=wallet"
+alias w1-cli="$BINARY_DIR/elements-cli -datadir=$DATA_DIR -rpcwallet=wallet_1"
+alias w2-cli="$BINARY_DIR/elements-cli -datadir=$DATA_DIR -rpcwallet=wallet_2"
+alias w3-cli="$BINARY_DIR/elements-cli -datadir=$DATA_DIR -rpcwallet=wallet_3"
 
 # We will hash using sha256sum if available, openssl otherwise (other options are available)
 which sha256sum >/dev/null 2>&1 && alias sha256hash="sha256sum | sed 's/ .*//g'" || alias sha256hash="openssl dgst -sha256 | sed 's/.*= //g'"
@@ -467,7 +468,7 @@ create_multisig () {
 # Ignore error
 set +o errexit
 
-w-cli stop
+w-cli-no-wallet stop
 echo "Wait for the node to stop if it was running..."
 sleep 20
 
@@ -477,6 +478,12 @@ rm -r $DATA_DIR/elementsregtest
 # Start the daemon
 n-dae
 sleep 10 
+
+w-cli-no-wallet createwallet "wallet"
+w-cli-no-wallet createwallet "wallet_1"
+w-cli-no-wallet createwallet "wallet_2"
+w-cli-no-wallet createwallet "wallet_3"
+w-cli rescanblockchain
 
 # Wait for node to finish loading all wallets and respond to command to get new address
 until ADDRGEN1=$(w-cli getnewaddress)
@@ -516,7 +523,7 @@ CREATE=$(create_multisig "reissuance")
 MULTISIG_REISSUANCE_ADDRESS="$(echo $CREATE | cut -d'|' -f1)"
 
 # Create the base transaction
-BASE=$(w1-cli createrawtransaction '''[]''' '''{"''data''":"''00''"}''')
+BASE=$(w1-cli createrawtransaction '''[]''' '''[{"''data''":"''00''"}]''')
 
 # Fund the transaction
 FUNDED=$(w1-cli fundrawtransaction $BASE '''{"''feeRate''":'$FEERATE'}''')
@@ -592,7 +599,7 @@ MULTISIG_ASSET_CHANGE_ADDRESS="$(echo $CREATE | cut -d'|' -f1)"
 BITCOIN_CHANGE=$(w1-cli getrawchangeaddress)
 
 # Create the multi-sig spending transaction
-RAW_TX=$(w1-cli createrawtransaction '''[]''' '''{"'''$RECEIVING_ADDRESS'''":'$AMOUNT'}''' 0 false '''{"'''$RECEIVING_ADDRESS'''":"'''$ASSET'''"}''')
+RAW_TX=$(w1-cli createrawtransaction '''[]''' '''[{"'''$RECEIVING_ADDRESS'''":'$AMOUNT',"'''asset'''":"'''$ASSET'''"}]''' 0 false)
 
 # Fund the transaction
 FUNDED_RAW_TX=$(w1-cli fundrawtransaction $RAW_TX '''{"'''includeWatching'''":true, "'''changeAddress'''":{"'''bitcoin'''":"'''$BITCOIN_CHANGE'''", "'''$ASSET'''":"'''$MULTISIG_ASSET_CHANGE_ADDRESS'''"}}''')
@@ -650,7 +657,7 @@ AMOUNT="0.00700000"
 
 REISSUANCE_TOKEN_AMOUNT="0.00000001"
 
-BASE=$(w1-cli createrawtransaction '''[]''' '''{"'''$REISSUANCE_TOKEN_ADDRESS'''":'$REISSUANCE_TOKEN_AMOUNT'}''' 0 false '''{"'''$REISSUANCE_TOKEN_ADDRESS'''":"'''$TOKEN'''"}''')
+BASE=$(w1-cli createrawtransaction '''[]''' '''[{"'''$REISSUANCE_TOKEN_ADDRESS'''":'$REISSUANCE_TOKEN_AMOUNT',"'''asset'''":"'''$TOKEN'''"}]''' 0 false)
 
 BITCOIN_CHANGE=$(w1-cli getrawchangeaddress)
 
@@ -756,13 +763,9 @@ echo "Completed without error"
 <a id="registry"></a>
 ### Example 3: Issuing an asset and using the contract hash argument to enable registration with the Blockstream Liquid Asset Registry.
 
-Save the code below in a file named **advancedexamplesregistry.sh** and place it in your home directory and run:
+Please refer to the <a href="https://docs.liquid.net/docs/blockstream-liquid-asset-registry" target="_blank">Blockstream docs site</a> to see how to create an asset, register it and prove ownership against a domain name.
 
-~~~~
-bash advancedexamplesregistry.sh
-~~~~
-
-Update the following fields within the script before running it and check the path to your elementsd and elements-cli:
+You will need to update the following fields within the script before running it and check the path to your elementsd and elements-cli:
 
 ~~~
 NAME
@@ -773,120 +776,7 @@ TOKEN_AMOUNT
 PRECISION
 ~~~
 
-For reference as to how the values should be set please refer to the <a href="https://docs.blockstream.com/liquid/developer-guide/developer-guide-index.html#proof-of-issuance-blockstream-s-liquid-asset-registry" target="_blank">Blockstream docs site</a>.
-
-##### Note: The following will use the live Liquid network by default as the `datadir` is set to `.elements`. Assets issued on elementsregtest cannot be registered.
-
-~~~~
-#!/bin/bash
-set -x
-
-shopt -s expand_aliases
-
-# We don't need to validate pegin for this example so no bitcoin node is used
-alias e1-dae="$HOME/elements/src/elementsd -datadir=$HOME/.elements -validatepegin=0"
-alias e1-cli="$HOME/elements/src/elements-cli -datadir=$HOME/.elements"
-
-# We will hash using sha256sum if available, openssl otherwise (other options are available)
-which sha256sum >/dev/null 2>&1 && alias sha256hash="sha256sum | sed 's/ .*//g'" || alias sha256hash="openssl dgst -sha256 | sed 's/.*= //g'"
-
-# Ignore error
-set +o errexit
-
-# The following may error without issue if the daemon is not already running
-e1-cli stop
-sleep 15
-
-# Start the daemon
-e1-dae
-sleep 15
-
-# Make sure the node has finished startup and is responding to commands
-until e1-cli getwalletinfo
-do
-  echo "Waiting for e1 to finish loading..."
-  sleep 2
-done
-
-# Exit on error
-set -o errexit
-
-# We will be using the issueasset command and the contract_hash argument:
-# issueasset <assetamount> <tokenamount> <blind> <contract_hash>
-
-NAME="your asset name here"
-TICKER="ticker here"
-DOMAIN="domain.here"
-ASSET_AMOUNT=100
-TOKEN_AMOUNT=1
-PRECISION=0
-
-# Don't change the following:
-VERSION=0 
-
-# As we need to sign the deletion request message later we need
-# a legacy address. If you prefer to generate a pubkey and sign
-# outside of Elements you can use a regular address instead.
-NEWADDR=$(e1-cli getnewaddress "" legacy)
-
-VALIDATEADDR=$(e1-cli getaddressinfo $NEWADDR)
-
-PUBKEY=$(echo $VALIDATEADDR | jq -r '.pubkey')
-
-ASSET_ADDR=$NEWADDR
-
-NEWADDR=$(e1-cli getnewaddress "" legacy)
-
-TOKEN_ADDR=$NEWADDR
-
-# Create the contract and calculate the contract hash
-# The contract is formatted for use in the Blockstream Asset Registry:
-
-CONTRACT='{"entity":{"domain":"'$DOMAIN'"},"issuer_pubkey":"'$PUBKEY'","name":"'$NAME'","precision":'$PRECISION',"ticker":"'$TICKER'","version":'$VERSION'}'
-
-CONTRACT_HASH=$(echo -n "${CONTRACT}" | sha256hash)
-
-# Reverse the hash
-TEMP=$CONTRACT_HASH
-LEN=${#TEMP}
-until [ $LEN -eq "0" ]; do
-    END=${TEMP:(-2)}
-    CONTRACT_HASH_REV="$CONTRACT_HASH_REV$END"
-    TEMP=${TEMP::$((${#TEMP} - 2))}
-    LEN=$((LEN-2))
-done
-
-# Wait for peers to connect (optional)
-sleep 180
-
-# Issue the asset and pass in the contract hash
-IA=$(e1-cli issueasset $ASSET_AMOUNT $TOKEN_AMOUNT false $CONTRACT_HASH_REV)
-
-# Details of the issuance...
-ASSET=$(echo $IA | jq -r '.asset')
-TOKEN=$(echo $IA | jq -r '.token')
-ISSUETX=$(echo $IA | jq -r '.txid')
-
-# Output the proof file - you need to place this on your domain.
-# See the Blockstream docs link above for reference as to where.
-echo "Authorize linking the domain name $DOMAIN to the Liquid asset $ASSET" > liquid-asset-proof-$ASSET
-
-# Create the bash script to run after you have placed the proof file on your domain
-# that will call the registry and request the asset is registered.
-echo "curl https://assets.blockstream.info/ --data-raw '{\"asset_id\":\"$ASSET\",\"contract\":$CONTRACT}'" > register_asset-$ASSET.sh
-
-# Create the bash script to delete the asset from the registry (if needed later)
-PRIV=$(e1-cli dumpprivkey $ASSET_ADDR)
-SIGNED=$(e1-cli signmessagewithprivkey $PRIV "remove $ASSET from registry")
-echo "curl -X DELETE https://assets.blockstream.info/$ASSET -H 'Content-Type: application/json' -d '{\"signature\":\"$SIGNED\"}'" > delete_asset_$ASSET.sh
-
-# Stop the daemon
-e1-cli stop
-sleep 10
-
-echo "Completed without error"
-
-~~~~
+* * *
 
 <a id="verify"></a>
 ### Example 4: Verify an output's asset and amount values using the blinding factors.
