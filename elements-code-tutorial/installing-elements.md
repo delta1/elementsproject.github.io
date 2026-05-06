@@ -39,19 +39,19 @@ sha256sum: WARNING: 19 lines are improperly formatted
 You can verify the gpg signature of the hashes as follows:
 
 ```
-$ gpg --keyserver keyserver.ubuntu.com --recv-keys DE10E82629A8CAD55B700B972F2A88D7F8D68E87
-gpg: key 2A57E0A610D7F19C: public key "Steven Roose <steven@stevenroose.org>" imported
+$ gpg --keyserver keyserver.ubuntu.com --recv-keys BD0F3062F87842410B06A0432F656B0610604482
+gpg: key 2F656B0610604482: public key "Pablo Greco <pgreco@blockstream.com>" imported
 gpg: Total number processed: 1
 gpg:               imported: 1
+
 $ gpg --verify SHA256SUMS.asc 
-gpg: Signature made Thu 03 Mar 2022 06:02:41 AM PST
-gpg:                using RSA key DE10E82629A8CAD55B700B972F2A88D7F8D68E87
-gpg: Good signature from "Steven Roose <steven@stevenroose.org>" [unknown]
-gpg:                 aka "Steven Roose (Jabber) <steven@konuro.net>" [unknown]
+gpg: Signature made Mon 13 Apr 2026 06:06:31 PM CEST
+gpg:                using RSA key BD0F3062F87842410B06A0432F656B0610604482
+gpg: Good signature from "Pablo Greco <pgreco@blockstream.com>" [unknown]
+gpg:                 aka "Pablo Greco <psgreco@gmail.com>" [unknown]
 gpg: WARNING: This key is not certified with a trusted signature!
 gpg:          There is no indication that the signature belongs to the owner.
-Primary key fingerprint: 8CC9 74D9 CFD0 34DC EED2  13B0 2A57 E0A6 10D7 F19C
-     Subkey fingerprint: DE10 E826 29A8 CAD5 5B70  0B97 2F2A 88D7 F8D6 8E87
+Primary key fingerprint: BD0F 3062 F878 4241 0B06  A043 2F65 6B06 1060 4482
 ```
 
 Extract the archive, and copy the `elementsd`, `elements-cli`, and `elements-qt` executables to `/usr/local/bin`.
